@@ -35,9 +35,10 @@ git push -u origin branch-name
 ```
 
 3. Document your changes and create Pull Request
-<br/>
-Note: Make sure that it's in the development branch.
-![image](https://user-images.githubusercontent.com/58845052/136660285-b97aced6-2a21-4b6d-9eaf-535f8c73ce0f.png)
+
+- Note: Make sure that it's in the development branch.
+
+![image](https://user-images.githubusercontent.com/58845052/136660462-0c46db45-9022-48f4-ba36-c9427e0680d3.png)
 
 
 ## Packages
