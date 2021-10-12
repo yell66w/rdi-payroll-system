@@ -50,7 +50,7 @@ npm install
 npm start
 ```
 
-# Adding new feature
+# Creating Pull Request
 1. **Create new branch**
 ```bash
 git checkout -b branch-name
@@ -64,6 +64,9 @@ git push -u origin branch-name
 ```
 
 3. Document your changes and create Pull Request
+- Note: Make sure that it's in the development branch.
+
+![image](https://user-images.githubusercontent.com/58845052/136660462-0c46db45-9022-48f4-ba36-c9427e0680d3.png)
 
 ## Packages
 Redux: https://redux.js.org/tutorials/quick-start
