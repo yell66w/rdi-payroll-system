@@ -4,12 +4,15 @@ import styled from "styled-components";
 
 const color = {
   default: (props) => props.theme.colors.violet,
+  darkViolet: (props) => props.theme.colors.darkViolet,
   secondary: (props) => props.theme.colors.white,
   red: (props) => props.theme.colors.red,
   green: (props) => props.theme.colors.green,
 };
 
-export const Container = styled.div`
+export const Container = styled.button`
+  cursor: pointer;
+  user-select: none;
   color: ${(props) =>
     props.color === "secondary" ? color.default : color.secondary};
   background-color: ${(props) =>
@@ -21,12 +24,22 @@ export const Container = styled.div`
       ? color.green
       : color.default};
   border: ${(props) =>
-    props.color === "secondary" && `2px solid ${props.theme.colors.violet}`};
+    props.color === "secondary"
+      ? `2px solid ${props.theme.colors.violet}`
+      : "none"};
+  outline: none;
   min-width: 15rem;
   width: 100%;
-  padding: 1.2rem;
+  height: 3rem;
   border-radius: 10px;
-  text-align: center;
   text-transform: uppercase;
   font-family: ${(props) => props.theme.fonts.avenirRoman};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:active {
+    background: #440099;
+    transition: 0.1s ease-in-out;
+  }
 `;

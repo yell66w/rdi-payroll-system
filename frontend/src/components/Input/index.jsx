@@ -4,6 +4,7 @@ import { ReactComponent as Lock } from "assets/icons/lock.svg";
 import { ReactComponent as Person } from "assets/icons/person.svg";
 
 import { Container, Input, Wrapper, Label } from "./styles.js";
+import { useFormContext } from "react-hook-form";
 
 const InputField = ({
   uname = false,
@@ -11,8 +12,11 @@ const InputField = ({
   placeholder,
   label,
   disabled = false,
+  name,
+  required,
 }) => {
   const [placeholderName, setPlaceholderName] = useState(placeholder || "");
+  const { register } = useFormContext();
 
   useEffect(() => {
     if (uname) {
@@ -44,6 +48,7 @@ const InputField = ({
           placeholder={`${placeholderName}`}
           type={pwd ? "password" : "text"}
           disabled={disabled}
+          {...register(name, { required })}
         />
       </Container>
     </Wrapper>
