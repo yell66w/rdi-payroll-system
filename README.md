@@ -29,11 +29,14 @@ git checkout dev
 ```
 
 2. download MYSQL Workbench 
+
 HOW TO: https://www.youtube.com/watch?v=OM4aZJW_Ojs
+
 	a. Set Up new Connection
 		host: "localhost",
- 		 user: "root",
- 		 password: "root"
+ 		user: "root",
+ 		password: "root"
+
 	b. Import nodejs_loginuser.sql to Workbench. (Backend/user_db)
 
 3. **Change directory to backend and pull in project dependencies**
