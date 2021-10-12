@@ -9,9 +9,7 @@ import { Provider } from "react-redux";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme.js";
-
 import "assets/fonts/fonts.css";
-
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
