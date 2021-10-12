@@ -7,6 +7,7 @@ export const theme = {
     red: "#ec2e2e",
     green: "#37873e",
     lightViolet: "#e1c8ff",
+    darkViolet: "#440099",
   },
   fonts: {
     avenirBlack: "Avenir-Black",

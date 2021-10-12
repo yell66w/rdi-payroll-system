@@ -14,10 +14,10 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
   min-width: 15rem;
-  width: 15rem;
-  padding: 0.5rem 1rem;
+  width: 100%;
+  height: 3rem;
   border: 1.5px solid ${(props) => (props.disabled ? colors.default : "silver")};
   border-radius: 10px;
   background: ${(props) =>
@@ -25,7 +25,7 @@ export const Container = styled.div`
   span {
     display: flex;
     align-items: center;
-    margin: 0 0.5rem;
+    margin: 0 1rem;
 
     svg {
       height: 1rem;
@@ -40,11 +40,12 @@ export const Container = styled.div`
 
 export const Input = styled.input`
   width: 100%;
+  padding: 0 1rem 0 0;
   height: 2rem;
   border: none;
   outline: none;
-  text-transform: capitalize;
   font-size: ${(props) => props.theme.fontSizes.md};
+  font-family: ${(props) => props.theme.fontSizes.avenirRoman};
   background: ${(props) =>
     props.disabled ? colors.lightViolet : colors.white};
 `;
@@ -52,4 +53,5 @@ export const Input = styled.input`
 export const Label = styled.label`
   text-transform: uppercase;
   margin-left: 0.2rem;
+  font-family: ${(props) => props.theme.fontSizes.avenirRoman};
 `;
