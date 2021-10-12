@@ -38,7 +38,7 @@ app.post('/users', async (req, res) => {
 })
 
 app.post('/users/login', async (req, res) => {
-    var username = req.body.username;
+    var username = req.body.name;
     var password = req.body.password;
 
     connection.query("select * from loginuser where user_name = ? and user_pass = ?",[username,password],function(error,result,fields){
