@@ -21,6 +21,33 @@ npm install
 ```bash
 npm start
 ```
+
+## Backend
+1. **Checkout to dev branch**
+```bash
+git checkout dev
+```
+
+2. download MYSQL Workbench 
+HOW TO: https://www.youtube.com/watch?v=OM4aZJW_Ojs
+	a. Set Up new Connection
+		host: "localhost",
+ 		 user: "root",
+ 		 password: "root"
+	b. Import nodejs_loginuser.sql to Workbench. (Backend/user_db)
+
+3. **Change directory to backend and pull in project dependencies**
+```bash
+cd backend
+npm install
+```
+
+4. **Host the app locally**
+```bash
+npm start
+```
+
+
 # Adding new feature
 1. **Create new branch**
 ```bash
