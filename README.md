@@ -72,6 +72,7 @@ git push -u origin branch-name
 Redux: https://redux.js.org/tutorials/quick-start
 <br/>
 Styled Components: https://styled-components.com/
-
+<br/>
+React Hook Form: https://react-hook-form.com/
 
 
