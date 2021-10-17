@@ -17,8 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // database
 const db = require("./models");
+db.sequelize.sync();
 
 require("./routes/user.routes")(app);
+require("./routes/auth.routes")(app);
 
 // set port, listen for requests
 const PORT = config.PORT;
