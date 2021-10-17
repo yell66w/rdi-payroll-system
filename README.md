@@ -68,6 +68,16 @@ git push -u origin branch-name
 
 ![image](https://user-images.githubusercontent.com/58845052/136660462-0c46db45-9022-48f4-ba36-c9427e0680d3.png)
 
+4. Request for a review
+5. If reviewer approved the PR he/you can now merge it
+
+# Testing a Pull Request
+```bash
+git checkout dev
+git pull
+git checkout pr-branch-name
+```
+
 ## Packages
 Redux: https://redux.js.org/tutorials/quick-start
 <br/>
