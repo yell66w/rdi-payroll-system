@@ -7,20 +7,34 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
+        allowNull: false,
       },
       username: {
         type: DataTypes.STRING,
-        unique: true,
+        allowNull: false,
+        validate: {},
+        unique: {
+          args: true,
+          msg: "Username address already in use!",
+        },
       },
       email: {
         type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isEmail: true,
+        },
+        unique: {
+          args: true,
+          msg: "Email address already in use!",
+        },
       },
       password: {
+        allowNull: false,
         type: DataTypes.STRING,
       },
     },
     {
-      // Options
       timestamps: true,
       underscrored: true,
       createdAt: "created_at",

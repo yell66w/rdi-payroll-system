@@ -11,4 +11,5 @@ module.exports = function (app) {
   });
 
   app.get("/users", controller.findAll);
+  app.get("/users/:id", controller.findOne);
 };
