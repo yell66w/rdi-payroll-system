@@ -10,5 +10,6 @@
    DB_NAME=rdi_payroll_system
    DB_PORT=3306
    PORT=8000
+   NODE_ENV=development
 8. Wag mo kalimutan iedit yung username,password,host ng mysql mo
 9. npm start
