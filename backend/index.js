@@ -27,7 +27,9 @@ app.get('/users', (req, res) => {
 
 app.post('/users', async (req, res) => {
     try {
-      var sql = "INSERT INTO loginuser (user_name, user_pass) VALUES ()";
+      const hashedPassword = await bcrypt.hash(req.body.password, 10)
+      const user = { name: req.body.name, password: hashedPassword }
+      var sql = "INSERT INTO loginuser (user_name, user_pass) VALUES (user)";
       connection.query(sql, function (err, result) {
         if (err) throw err;
       });
@@ -38,14 +40,15 @@ app.post('/users', async (req, res) => {
 })
 
 app.post('/users/login', async (req, res) => {
-    var username = req.body.username;
+    var username = req.body.name;
     var password = req.body.password;
-
+    const wrongInfo = { error: "Incorrect username or password"}
+    
     connection.query("select * from loginuser where user_name = ? and user_pass = ?",[username,password],function(error,result,fields){
         if (result.length > 0) {
             res.json(result);
         } else {
-            console.log("Incorrect username or password");
+          res.status(401).send(wrongInfo);
         }
         res.end();
     })
