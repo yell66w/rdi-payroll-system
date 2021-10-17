@@ -1,10 +1,11 @@
-exports.findAll = (req, res) => {
-  res.status(200).send("All Users");
-};
-exports.findOne = (req, res) => {
-  res.status(200).send(`One user ${req.params.id}`);
-};
+const db = require("../models");
+const User = db.user;
 
-exports.createUser = (req, res) => {
-  res.status(200).send("User created.");
+exports.findAll = async (req, res) => {
+  const users = await User.scope("withoutPassword").findAll();
+  res.status(200).send(users);
+};
+exports.findOne = async (req, res) => {
+  const user = await User.scope("withoutPassword").findByPk(req.params.id);
+  res.status(200).send(user);
 };
