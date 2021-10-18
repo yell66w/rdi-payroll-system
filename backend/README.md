@@ -4,7 +4,7 @@
 2. Create ka ng database, yung name dapat rdi_payroll_system
 3. CREATE database rdi_payroll_system;
 4. Punta ka sa backend na folder tapos type "npm install" walang quotations
-5. Create ka ng .env file dito sa backend folder
+5. Create ka ng .env file dito sa backend folder (Make sure naka cd backend ka)
 6. Ilagay mo to sa .env
 ```env
    DB_HOST=127.0.0.1
