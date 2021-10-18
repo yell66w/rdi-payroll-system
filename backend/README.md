@@ -33,6 +33,8 @@
 3. Gawa ka ng route (e.g. employee.route.js)
 
 **PANO MAGCREATE NG TABLE/MODEL/ENTITY SA DATABASE?**
+
+--Ito yung table sa database
 1. Punta ka sa /models 
 2. Nandito yung documentation sa pag gawa ng model https://sequelize.org/master/manual/model-basics.html
 3. Pwede mo naman din icopy paste nalang yung nagawa kong model (ichange mo lang yung name)
@@ -62,6 +64,7 @@ const Employee = sequelize.define(
 9. Example: db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);
 
 **PANO MAGLAGAY NG CONTROLLER**
+
 -- Controller yung responsible sa pag query sa database
 -- Ito yung mga function talaga na gagamitin natin
 1. Punta ka sa /controller
@@ -71,6 +74,7 @@ const Employee = sequelize.define(
 5. Yung name ng controller dapat same sa name ng model or in line sa gusto mong gawin, e.g. employee.controller.js 
 
 **PANO MAGLAGAY NG ROUTES**
+
 -- Ito yung ilalagay niyo sa postman
 -- Ito yung gagamitin ng frontend para maaccess yung api natin
 -- Ito yung mga endpoints, yung URL
@@ -86,6 +90,7 @@ const Employee = sequelize.define(
 
 ------------------------------------------------------------
 **PANO MMAGLAGAY NG MGA SEEDS?**
+
 -- Yung seeds ay yung mga iniinsert natin kaagad sa database para may laman na siya agad.
 1. Punta ka sa /seeders
 2. Nandito yung documentation sa pag gawa ng seeds https://sequelize.org/master/manual/migrations.html
