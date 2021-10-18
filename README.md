@@ -29,69 +29,9 @@ npm start
 
 ## Backend
 
-1. **Checkout to dev branch**
+(In Progress)
 
-```bash
-git checkout dev
-```
-
-2. download MYSQL Workbench
-
-HOW TO: https://www.youtube.com/watch?v=OM4aZJW_Ojs
-
-    a. Set Up new Connection
-    	host: "localhost",
-
-user: "root",
-password: "root"
-
-    b. Import nodejs_loginuser.sql to Workbench. (Backend/user_db)
-
-3. **Change directory to backend and pull in project dependencies**
-
-```bash
-cd backend
-npm install
-```
-
-4. **Host the app locally**
-
-```bash
-npm start
-```
-
-## Backend
-
-1. **Checkout to dev branch**
-
-```bash
-git checkout dev
-```
-
-2. download MYSQL Workbench
-
-HOW TO: https://www.youtube.com/watch?v=OM4aZJW_Ojs
-
-    a. Set Up new Connection
-    	host: "localhost",
-
-user: "root",
-password: "root"
-
-    b. Import nodejs_loginuser.sql to Workbench. (Backend/user_db)
-
-3. **Change directory to backend and pull in project dependencies**
-
-```bash
-cd backend
-npm install
-```
-
-4. **Host the app locally**
-
-```bash
-npm start
-```
+see [backend_readme](backend/README.md)             
 
 # Creating Pull Request
 
@@ -132,15 +72,7 @@ git checkout pr-branch-name
 
 4. Request for a review
 5. If reviewer approved the PR he/you can now merge it
-
-# Testing a Pull Request
-
-```bash
-git checkout dev
-git pull
-git checkout pr-branch-name
-```
-
+6. 
 ## Packages
 
 Redux: https://redux.js.org/tutorials/quick-start
