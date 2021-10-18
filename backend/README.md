@@ -19,8 +19,8 @@
 
 
 7. Wag mo kalimutan iedit yung username,password,host ng mysql mo (IMPORTANT! kung nagkakaroon ka ng access denied, gawa ka nalang ng new account sa mysql)
-8. npm run dev
-9. npx sequelize-cli db:seed:all (i run mo tong command para magkalaman yung database)
+8. ```npm run dev```
+9. ```npx sequelize-cli db:seed:all``` (i run mo tong command para magkalaman yung database)
 
 **PANO I-TEST YUNG API?**
 
