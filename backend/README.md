@@ -92,6 +92,7 @@ const Employee = sequelize.define(
 **PANO MMAGLAGAY NG MGA SEEDS?**
 
 -- Yung seeds ay yung mga iniinsert natin kaagad sa database para may laman na siya agad.
+-- Magcecreate kalang ng seeds kung kailangan mo may laman kaagad yung database
 1. Punta ka sa /seeders
 2. Nandito yung documentation sa pag gawa ng seeds https://sequelize.org/master/manual/migrations.html
 3. Nasa Creating the first Seed (ctrl+f mo nalang haha)
