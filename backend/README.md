@@ -1,3 +1,5 @@
+**BASIC SETUP**
+
 1. Install mo mysql
 2. Create ka ng database, yung name dapat rdi_payroll_system
 3. CREATE database rdi_payroll_system;
