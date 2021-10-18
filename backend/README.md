@@ -59,7 +59,7 @@ const Employee = sequelize.define(
 6. Ilagay mo nalang sa loob yung fields ng table based dun sa database design
 7. After mo makagawa ng model, punta ka sa /models/index.js
 8. Iregister mo dyan yung model mo sa baba
-9. E.g. db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);
+9. Example: db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);
 
 **PANO MAGLAGAY NG CONTROLLER**
 -- Controller yung responsible sa pag query sa database
