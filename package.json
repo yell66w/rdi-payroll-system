@@ -1,0 +1,24 @@
+{
+  "name": "rdi-payroll-system",
+  "version": "1.0.0",
+  "description": "## Frontend",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd frontend && npm start\" \"cd ../\" \"cd backend && npm run dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TempName-1/rdi-payroll-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TempName-1/rdi-payroll-system/issues"
+  },
+  "homepage": "https://github.com/TempName-1/rdi-payroll-system#readme",
+  "dependencies": {
+    "concurrently": "^6.3.0"
+  }
+}
