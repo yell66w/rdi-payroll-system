@@ -76,7 +76,7 @@ const Employee = sequelize.define(
 2. Copy paste mo lang yung mga sample ko diyan, tas ibahin mo nalang yung name e.g. employee.routes.js
 3. Ibahin mo din yung controller na inimport based sa kung anong controller gagamitin mo para sa route na yan
 4. Ito documentation sa routing https://expressjs.com/en/guide/routing.html
-5. Make sure na ifofollow mo to sa REST API https://usercontent.one/wp/www.kennethlange.com/wp-content/uploads/2018/10/task_api.png?media=1631958963
+5. Make sure na ifofollow mo to sa REST API ![image](https://usercontent.one/wp/www.kennethlange.com/wp-content/uploads/2018/10/task_api.png?media=1631958963)
 6. After mo magcreate ng route, iregister mo siya
 7. Punta ka lang sa src/index.js tapos iimport mo sa loob ng db.sequelize.sync().then yung route mo
 8. E.g. require("./routes/employee.routes")(app);
