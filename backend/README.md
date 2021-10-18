@@ -54,6 +54,8 @@ const Employee = sequelize.define(
     }
 ```
 (Tip: sa vscode pwede mo idouble click yung user tapos ctrl+shift+l)
+
+
 6. Ilagay mo nalang sa loob yung fields ng table based dun sa database design
 7. After mo makagawa ng model, punta ka sa /models/index.js
 8. Iregister mo dyan yung model mo sa baba
