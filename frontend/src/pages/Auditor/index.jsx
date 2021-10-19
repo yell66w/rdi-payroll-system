@@ -4,7 +4,7 @@ import Link from "components/Link/list.jsx"
 import { MainCan, MainRight } from "./styles.js";
 import { Route } from "react-router-dom";
 import Attendance from "./attendance.jsx";
-
+// try one for pushing
 const AuditorPage = () => {
   return (
     <>
