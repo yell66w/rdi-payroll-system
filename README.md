@@ -72,7 +72,7 @@ git checkout pr-branch-name
 
 4. Request for a review
 5. If reviewer approved the PR he/you can now merge it
-6. 
+
 ## Packages
 
 Redux: https://redux.js.org/tutorials/quick-start
