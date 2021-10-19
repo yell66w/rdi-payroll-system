@@ -12,4 +12,7 @@ module.exports = function (app) {
 
   app.get("/employees", controller.findAll);
   app.get("/employees/:id", controller.findOne);
+  app.post("/employees", controller.create);
+  app.patch("/employees/:id", controller.update);
+  app.delete("/employees/:id", controller.delete);
 };

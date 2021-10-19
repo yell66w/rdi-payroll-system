@@ -1,72 +1,66 @@
-module.exports = (sequelize, Sequelize, DataTypes) => {
-  const Employee = sequelize.define(
-    "employee", // Model name
-    {
-      // Attributes
+"use strict";
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable("employees", {
       id: {
-        type: DataTypes.UUID,
+        type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         allowNull: false,
       },
       first_name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       last_name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       middle_name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       birth_date: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
         allowNull: false,
       },
       address: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       email: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
           isEmail: true,
         },
       },
       contact_no: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       employee_type: {
-        type: DataTypes.ENUM({
+        type: Sequelize.ENUM({
           values: ["REGULAR", "CONTRACTUAL"], //TODO - ADD MORE TYPES
         }),
         defaultValue: "REGULAR",
         allowNull: false,
       },
       date_hired: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
         allowNull: false,
       },
       time_shift_from: {
-        type: DataTypes.TIME,
+        type: Sequelize.TIME,
         allowNull: false,
       },
       time_shift_to: {
-        type: DataTypes.TIME,
+        type: Sequelize.TIME,
         allowNull: false,
       },
-    },
-    {
-      timestamps: true,
-      underscrored: true,
-      createdAt: "created_at",
-      updatedAt: "updated_at",
-    }
-  );
-
-  return Employee;
+    });
+  },
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable("employees");
+  },
 };
