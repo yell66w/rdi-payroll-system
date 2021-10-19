@@ -55,10 +55,7 @@ const LoginPage = () => {
   return (
     <Container>
       <Left>
-        <Powered>
-          <p>POWERED BY:</p>
-          <h1>FANART INC.</h1>
-        </Powered>
+        <Powered></Powered>
       </Left>
       <Right>
         <Logo />
