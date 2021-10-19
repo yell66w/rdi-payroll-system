@@ -32,6 +32,18 @@
 
 ------------------------------------------------------
 
+**DATABASE SCHEMA**
+
+
+
+
+![FLOW CHART](https://user-images.githubusercontent.com/37836505/137889285-98ffa6db-1787-4004-965e-c406ab200e2a.png)
+
+
+
+
+--------------------------------------------------
+
 **PANO YUNG PROCESS NG PAG CONTRIBUTE?**
 1. Gawa ka ng model (e.g. employee.model.js)
 2. Gawa ka ng controller (e.g. employee.controller.js)
