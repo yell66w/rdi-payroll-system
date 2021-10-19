@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Container,
   Left,
@@ -7,17 +8,50 @@ import {
   Form,
   Powered,
 } from "./styles.js";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import InputField from "components/Input/index.jsx";
 import Button from "components/Button/index.jsx";
 import { ReactComponent as Logo } from "assets/icons/logo.svg";
 import { useForm, FormProvider } from "react-hook-form";
 
+// import { useFirstRender } from "context/useFirstRender.js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  authSelector,
+  signinUser,
+  clearState,
+} from "features/auth/authSlice.js";
+
 const LoginPage = () => {
   const { name } = useParams();
   const methods = useForm();
-  // FIX: Convert to JSON later, but for now, console log
-  const onSubmit = (data) => console.log(data);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { isFetching, isError, isSuccess, errorMessage } =
+    useSelector(authSelector);
+
+  const onSubmit = (data) => {
+    if (data.username === name) {
+      dispatch(signinUser(data));
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isError) {
+      console.log(errorMessage);
+      dispatch(clearState());
+    }
+    if (isSuccess) {
+      dispatch(clearState());
+      history.push(`/${name}`);
+    }
+  }, [isError, isSuccess]);
 
   return (
     <Container>
@@ -35,7 +69,7 @@ const LoginPage = () => {
               <Header>{name}</Header>
               <InputField uname name="username" required />
               <InputField pwd name="password" required />
-              <Button type="submit">Log in</Button>
+              <Button type="submit">{isFetching ? "Loading" : "Log in"}</Button>
             </Form>
           </FormProvider>
         </LoginContainer>
