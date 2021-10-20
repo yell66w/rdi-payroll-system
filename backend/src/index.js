@@ -22,6 +22,7 @@ db.sequelize.sync().then(() => {
   require("./routes/user.routes")(app);
   require("./routes/auth.routes")(app);
   require("./routes/employee.routes")(app);
+  require("./routes/company.routes")(app);
   // set port, listen for requests
   const PORT = config.PORT;
   app.listen(PORT, () => {
