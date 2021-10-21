@@ -1,4 +1,5 @@
 import React from "react"
+import CompLog from "../../assets/img/companyLog.png"
 import {Nav, CompanyLogo, DummyLogo} from "./styles.js"
 
 function Sidebar({children})
@@ -7,9 +8,7 @@ function Sidebar({children})
         <>
             <Nav>
                 <CompanyLogo>
-                    <DummyLogo>
-
-                    </DummyLogo>
+                    <DummyLogo src={CompLog}/>                                            
                 </CompanyLogo>
                 {children}
             </Nav>

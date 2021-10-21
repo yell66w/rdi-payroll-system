@@ -9,3 +9,7 @@ export const MainRight = styled.div`
   flex-direction: column;
   flex-grow: 6;
 `;
+
+export const WrapperRight = styled.div`
+  padding: 1.5em 1em;
+`;

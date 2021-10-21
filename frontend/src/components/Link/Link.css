@@ -14,14 +14,21 @@
     color: #ffffff;       
     text-decoration: none;
     text-transform: uppercase;
-    font-family: "Avenir-Black";      
+    font-family: "Avenir-Book";   
+}
+
+.link:hover
+{    
+    
+    text-decoration:underline;
+    
 }
 
 .link-active
 {
     color: #4c00aa;
     background-color: #fff;
-    
+    font-family: "Avenir-Black";
 }
 
 
@@ -46,4 +53,11 @@
 {    
     border-top-right-radius: 1em;
     transform: translate(1px, 36px);
+}
+
+
+.link-active:hover
+{
+    text-decoration: none;
+    
 }

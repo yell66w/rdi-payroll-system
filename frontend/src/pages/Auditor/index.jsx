@@ -1,28 +1,45 @@
-import Sidebar from "components/Sidebar/sidebar.jsx"
-import Header from "components/Header/header.jsx"
-import NavLink from "components/Link/list.jsx"
-import { MainCan, MainRight } from "./styles.js";
 import { Route } from "react-router-dom";
+import Sidebar from "components/Sidebar"
+import Header from "components/Header"
+import NavLink from "components/Link"
+
+import { 
+   MainCan,
+   MainRight,
+   WrapperRight } from "./styles.js";
+
+
 import Attendance from "./attendance.jsx";
-// try one for pushing
+import EmploFile from "./employeefile.jsx";
+import ForApproval from "./forapproval.jsx";
+import Reports from "./reports.jsx";
+
+
 const AuditorPage = () => {
   return (
     <>
           <MainCan>
             <Sidebar>
-                <NavLink to="/auditor">Hello</NavLink>  
-                <NavLink to="/auditor/attendance">Hello</NavLink>  
-                <NavLink to="/auditor/hehego">Hello</NavLink>  
+                <NavLink to="/auditor">PAYROLL</NavLink>  
+                <NavLink to="/auditor/attendance">ATTENDANCE</NavLink>  
+                <NavLink to="/auditor/employeefile">EMPLOYEE FILE</NavLink>  
+                <NavLink to="/auditor/forapproval">FOR APPROVAL</NavLink>  
+                <NavLink to="/auditor/reports">REPORTS</NavLink>  
             </Sidebar>   
               
            
-              <MainRight>
-              
+              <MainRight>              
                 <Header headerName="payroll" />
-                <div>
-                    this is table main
-                </div>
-              <Route path="/auditor/attendance" component={Attendance}/>       
+                
+                <WrapperRight>
+                  <Route path="/auditor/attendance" component={Attendance}/>       
+                  <Route path="/auditor/employeefile" component={EmploFile}/>       
+                  <Route path="/auditor/forapproval" component={ForApproval}/>       
+                  <Route path="/auditor/reports" component={Reports}/> 
+
+
+
+                </WrapperRight>                
               </MainRight>
             
           </MainCan>    

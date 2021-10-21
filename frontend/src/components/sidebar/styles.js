@@ -15,8 +15,8 @@ export const CompanyLogo = styled.div`
     justify-content: center;
 `;
 
-export const DummyLogo = styled.div`
-    width: 160px;
-    height: 160px;
-    background-color: ${(props)=> props.theme.colors.white};
+export const DummyLogo = styled.img`
+    width: 120px;
+    height: 100px;
+    
 `;
