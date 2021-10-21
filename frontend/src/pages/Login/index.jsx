@@ -26,8 +26,8 @@ const LoginPage = () => {
   const methods = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isFetching, isError, isSuccess, errorMessage, role, username } =
-    useSelector(authSelector);
+
+  const { isFetching, isError, isSuccess } = useSelector(authSelector);
 
   const onSubmit = (data) => {
     dispatch(signinUser(data));
@@ -45,14 +45,17 @@ const LoginPage = () => {
     }
     if (isSuccess) {
       dispatch(clearState());
-      history.push(`/${role.toLowerCase()}`);
+      history.replace("/");
     }
   }, [isError, isSuccess]);
 
   return (
     <Container>
       <Left>
-        <Powered></Powered>
+        <Powered>
+          <p>POWERED BY:</p>
+          <h1>FANART INC.</h1>
+        </Powered>
       </Left>
       <Right>
         <Logo />

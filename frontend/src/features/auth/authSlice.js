@@ -47,7 +47,6 @@ export const authSlice = createSlice({
       state.isFetching = true;
     },
     [signinUser.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.username = payload.username;
       state.role = payload.role;
       state.isFetching = false;
