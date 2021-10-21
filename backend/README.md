@@ -49,7 +49,7 @@
 2. Gawa ka ng controller (e.g. employee.controller.js)
 3. Gawa ka ng route (e.g. employee.route.js)
 
-**PANO MAGCREATE NG TABLE/MODEL/ENTITY SA DATABASE?**
+**PANO MAGCREATE NG TABLE/MODEL/ENTITY SA DATABASE**
 
 --Ito yung table sa database
 1. Punta ka sa /models 
@@ -78,7 +78,25 @@ const Employee = sequelize.define(
 6. Ilagay mo nalang sa loob yung fields ng table based dun sa database design
 7. After mo makagawa ng model, punta ka sa /models/index.js
 8. Iregister mo dyan yung model mo sa baba
-9. Example: db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);
+9. Example: ```js db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);```
+
+
+**PANO MAGLAGAY NG RELATIONSHIPS SA MGA TABLE**
+1. Punta ka sa models/index.js
+2. Nandito ang docs sa sequelize assoc - https://sequelize.org/master/manual/assocs.html
+3. Ilagay mo lang sa baba yung ng models/index.js yung relationships, sa baba ng pagregister sa models.
+```js
+//OneToMany Relationship (One Company-> Many Employees)
+db.employee.belongsTo(db.company, {
+  foreignKey: "company_id",
+  foreignKeyConstraint: true,
+});
+db.company.hasMany(db.employee, { as: "employees", foreignKey: "company_id" });
+```
+4. After niyan, registered na yung relationship nila.
+5. Imodify mo nalang yung controller para masama yung relationships sa query
+6. Nandito yung docs sa pagquery - https://sequelize.org/master/manual/assocs.html#basics-of-queries-involving-associations
+
 
 **PANO MAGLAGAY NG CONTROLLER**
 
@@ -102,7 +120,7 @@ const Employee = sequelize.define(
 5. Make sure na ifofollow mo to sa REST API ![image](https://usercontent.one/wp/www.kennethlange.com/wp-content/uploads/2018/10/task_api.png?media=1631958963)
 6. After mo magcreate ng route, iregister mo siya
 7. Punta ka lang sa src/index.js tapos iimport mo sa loob ng db.sequelize.sync().then yung route mo
-8. E.g. require("./routes/employee.routes")(app);
+8. E.g. ```require("./routes/employee.routes")(app);```
 
 
 ------------------------------------------------------------
