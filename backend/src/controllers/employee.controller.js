@@ -28,7 +28,26 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.update = async (req, res) => {};
+exports.update = async (req, res) => {
+  if (req.body.company_id) {
+    //Find the Company if it exists
+    try {
+      await Company.findByPk(req.body.company_id);
+    } catch (error) {
+      return res.status(400).send(error.message);
+    }
+  }
+  try {
+    await Employee.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.status(200).send("Employee updated successfully");
+  } catch (error) {
+    return res.status(400).send(error.message);
+  }
+};
 
 exports.delete = async (req, res) => {
   try {
