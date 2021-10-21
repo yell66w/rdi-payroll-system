@@ -1,3 +1,14 @@
+## Table of Contents
+
+| Contents                             |          Description          |
+| :----------------------------------- | :----------------------------: |
+| [Building from Source](#building-from-source)             |     Getting started    |
+| [Frontend](#frontend)             |      Frontend setup    |
+| [Backend](#backend)     |       see [BACKEND.md](backend/README.md)       |
+| [Creating a pull request](#creating-pull-request) |          How to create a pull request        |
+| [Testing a pull request](#testing-a-pull-request)                       |     How to test a pull request   |
+| [Packages](#packages)           | Packages |
+
 # Building from Source
 
 ## Frontend
@@ -29,9 +40,7 @@ npm start
 
 ## Backend
 
-(In Progress)
-
-see [backend_readme](backend/README.md)             
+see [BACKEND.md](backend/README.md)             
 
 # Creating Pull Request
 
