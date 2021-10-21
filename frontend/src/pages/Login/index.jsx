@@ -8,13 +8,13 @@ import {
   Form,
   Powered,
 } from "./styles.js";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import InputField from "components/Input/index.jsx";
 import Button from "components/Button/index.jsx";
 import { ReactComponent as Logo } from "assets/icons/logo.svg";
+
 import { useForm, FormProvider } from "react-hook-form";
 
-// import { useFirstRender } from "context/useFirstRender.js";
 import { useDispatch, useSelector } from "react-redux";
 import {
   authSelector,
@@ -23,11 +23,10 @@ import {
 } from "features/auth/authSlice.js";
 
 const LoginPage = () => {
-  const { name } = useParams();
   const methods = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isFetching, isError, isSuccess, errorMessage, username } =
+  const { isFetching, isError, isSuccess, errorMessage, role, username } =
     useSelector(authSelector);
 
   const onSubmit = (data) => {
@@ -42,13 +41,11 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(errorMessage);
       dispatch(clearState());
     }
     if (isSuccess) {
       dispatch(clearState());
-      // FIX: Username for the time being but it will be the user's role
-      history.push(`/${username}`);
+      history.push(`/${role.toLowerCase()}`);
     }
   }, [isError, isSuccess]);
 

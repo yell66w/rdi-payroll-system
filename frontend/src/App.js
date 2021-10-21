@@ -1,26 +1,26 @@
 import { Switch, Route, useHistory } from "react-router-dom";
 import IndexPage from "pages/index";
-import EncoderPage from "pages/encoder";
-import AuditorPage from "pages/auditor";
 import { useEffect } from "react";
 
 import { useSelector } from "react-redux";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
-  const { username } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
   const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (!token) {
+    if (!token && isError) {
       history.push(`/`);
-    } else {
-      history.push(`/${username}`);
     }
-  }, [username]);
+  }, [isError]);
   return (
     <>
+      <ToastContainer />
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/" component={HomePage} />

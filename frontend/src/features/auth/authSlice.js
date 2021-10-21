@@ -1,5 +1,4 @@
-// NOTE: https://cloudnweb.dev/2021/02/modern-react-redux-tutotials-redux-toolkit-login-user-registration/
-
+import { toast } from "react-toastify";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { signin } from "utils/auth.routes";
 
@@ -48,10 +47,12 @@ export const authSlice = createSlice({
       state.isFetching = true;
     },
     [signinUser.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.username = payload.username;
       state.role = payload.role;
       state.isFetching = false;
       state.isSuccess = true;
+      toast.success(`Welcome ${payload.username}`);
 
       return state;
     },
@@ -59,6 +60,7 @@ export const authSlice = createSlice({
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload.message;
+      toast.error(state.errorMessage);
     },
   },
 });
