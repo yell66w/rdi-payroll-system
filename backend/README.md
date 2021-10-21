@@ -1,4 +1,20 @@
-**BASIC SETUP**
+
+## Table of Contents
+
+| Contents              |      Description          |
+| :-------------------- | :-----------------------: |
+| [basic-setup](#basic-setup)        |      basic setup ng backend           |
+| [api-testing](#api-testing)  |     pano itest yung API          |
+| [database-schema](#database-schema)      | database schema     |
+| [how-to-contribute](#how-to-contribute)    |   contribution       |
+| [models](#models)        |   pano gumawa ng models        |
+| [associations](#associations)      |   pano maglagay ng relationships        |
+| [controllers](#controllers)        |      pano gumawa ng controller          |
+| [routes](#routes)        | pano gumawa ng routes     |
+| [seeders](#seeders)| pano gumawa ng seeders |
+
+
+# BASIC SETUP
 
 1. Install mo mysql
 2. Create ka ng database, yung name dapat rdi_payroll_system
@@ -22,7 +38,7 @@
 8. ```npm run dev```
 9. ```npx sequelize-cli db:seed:all``` (i run mo tong command para magkalaman yung database)
 
-**PANO I-TEST YUNG API?**
+# API TESTING 
 
 1. Install ka postman
 2. Create ka ng new HTTP request
@@ -32,7 +48,7 @@
 
 ------------------------------------------------------
 
-**DATABASE SCHEMA**
+# DATABASE SCHEMA
 
 
 
@@ -44,14 +60,15 @@
 
 --------------------------------------------------
 
-**PANO YUNG PROCESS NG PAG CONTRIBUTE?**
+# HOW TO CONTRIBUTE
 1. Gawa ka ng model (e.g. employee.model.js)
 2. Gawa ka ng controller (e.g. employee.controller.js)
 3. Gawa ka ng route (e.g. employee.route.js)
 
-**PANO MAGCREATE NG TABLE/MODEL/ENTITY SA DATABASE**
+# MODELS
 
 --Ito yung table sa database
+
 1. Punta ka sa /models 
 2. Nandito yung documentation sa pag gawa ng model https://sequelize.org/master/manual/model-basics.html
 3. Pwede mo naman din icopy paste nalang yung nagawa kong model (ichange mo lang yung name)
@@ -81,7 +98,7 @@ const Employee = sequelize.define(
 9. Example: ```js db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);```
 
 
-**PANO MAGLAGAY NG RELATIONSHIPS SA MGA TABLE**
+# ASSOCIATIONS
 1. Punta ka sa models/index.js
 2. Nandito ang docs sa sequelize assoc - https://sequelize.org/master/manual/assocs.html
 3. Ilagay mo lang sa baba yung ng models/index.js yung relationships, sa baba ng pagregister sa models.
@@ -98,9 +115,10 @@ db.company.hasMany(db.employee, { as: "employees", foreignKey: "company_id" });
 6. Nandito yung docs sa pagquery - https://sequelize.org/master/manual/assocs.html#basics-of-queries-involving-associations
 7. Kung nagkaka-error ka sa pag query, try mo idelete muna yung mga table na inedit or nilagyan mo ng relationships. Tapos irestart mo yung server (Okay pa to kasi dev palang naman, pero bawal to sa production haha gagamit tayo ng migration dyan)
 
-**PANO MAGLAGAY NG CONTROLLER**
+# CONTROLLERS
 
 -- Controller yung responsible sa pag query sa database
+
 -- Ito yung mga function talaga na gagamitin natin
 1. Punta ka sa /controller
 2. Nandito yung documentation sa pag query https://sequelize.org/master/manual/model-querying-basics.html
@@ -108,11 +126,14 @@ db.company.hasMany(db.employee, { as: "employees", foreignKey: "company_id" });
 4. Sundin mo nalang yung examples ko
 5. Yung name ng controller dapat same sa name ng model or in line sa gusto mong gawin, e.g. employee.controller.js 
 
-**PANO MAGLAGAY NG ROUTES**
+# ROUTES
 
 -- Ito yung ilalagay niyo sa postman
+
 -- Ito yung gagamitin ng frontend para maaccess yung api natin
+
 -- Ito yung mga endpoints, yung URL
+
 1. Punta ka sa /routes
 2. Copy paste mo lang yung mga sample ko diyan, tas ibahin mo nalang yung name e.g. employee.routes.js
 3. Ibahin mo din yung controller na inimport based sa kung anong controller gagamitin mo para sa route na yan
@@ -124,9 +145,11 @@ db.company.hasMany(db.employee, { as: "employees", foreignKey: "company_id" });
 
 
 ------------------------------------------------------------
-**PANO MMAGLAGAY NG MGA SEEDS?**
+# SEEDERS
+**OPTIONAL**
 
 -- Yung seeds ay yung mga iniinsert natin kaagad sa database para may laman na siya agad.
+
 -- Magcecreate kalang ng seeds kung kailangan mo may laman kaagad yung database
 1. Punta ka sa /seeders
 2. Nandito yung documentation sa pag gawa ng seeds https://sequelize.org/master/manual/migrations.html
