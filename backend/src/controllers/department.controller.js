@@ -1,10 +1,10 @@
 const db = require("../models");
-const Company = db.company;
+const Department = db.department;
 
 exports.create = async (req, res) =>{
     try {
-        const new_company = await Company.create(req.body);
-        return res.status(200).send(new_company);
+        const new_department = await Department.create(req.body);
+        return res.status(200).send(new_department);
     } catch (error) {
         
         return res.status(400).send(error.message);
@@ -12,25 +12,25 @@ exports.create = async (req, res) =>{
 }
 
 exports.findAll = async (req, res) =>{
-    const company = await Company.findAll();
-    return res.status(200).send(company);
+    const department = await Department.findAll();
+    return res.status(200).send(department);
 }
 
 exports.findOne = async (req, res) => {
-    const company = await Company.findByPk(req.params.id);
-    return res.status(200).send(company);
+    const department = await Department.findByPk(req.params.id);
+    return res.status(200).send(department);
   };
 
 
 
   exports.update = async (req, res) => {
     try {
-      await Company.update(req.body, {
+      await Department.update(req.body, {
         where: {
           id: req.params.id,
         },
       });
-      return res.status(200).send("Company updated successfully");
+      return res.status(200).send("Department updated successfully");
     } catch (error) {
       return res.status(400).send(error.message);
     }
@@ -38,12 +38,12 @@ exports.findOne = async (req, res) => {
   
   exports.delete = async (req, res) => {
     try {
-      await Company.destroy({
+      await Department.destroy({
         where: {
           id: req.params.id,
         },
       });
-      return res.status(200).send("Company deleted successfully.");
+      return res.status(200).send("Department deleted successfully.");
     } catch (error) {
       return res.status(400).send(error.message);
     }

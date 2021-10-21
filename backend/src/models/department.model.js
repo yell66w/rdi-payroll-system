@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize, DataTypes) => {
-    const Company = sequelize.define(
-      "company", // Model name
+    const Department = sequelize.define(
+      "department", // Model name
       {
         // Attributes
         id:{
@@ -23,6 +23,5 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       }
     );
   
-    return Company;
+    return Department;
   };
-  
