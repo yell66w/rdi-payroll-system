@@ -5,10 +5,10 @@ import NavLink from "components/Link";
 
 import { MainCan, MainRight, WrapperRight } from "./styles.js";
 
-import Attendance from "./attendance.jsx";
-import EmploFile from "./employeefile.jsx";
-import ForApproval from "./forapproval.jsx";
-import Reports from "./reports.jsx";
+import Attendance from "containers/Attendance/";
+import EmploFile from "containers/EmployeeFile/";
+import ForApproval from "containers/ForApproval/";
+import Reports from "containers/Reports/";
 
 const AuditorPage = () => {
   return (
