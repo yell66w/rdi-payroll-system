@@ -36,7 +36,10 @@ db.company = require("./company.model.js")(sequelize, Sequelize, DataTypes);
  */
 
 //OneToMany Relationship (One Company-> Many Employees)
-db.employee.belongsTo(db.company);
-db.company.hasMany(db.employee);
+db.employee.belongsTo(db.company, {
+  foreignKey: "company_id",
+  foreignKeyConstraint: true,
+});
+db.company.hasMany(db.employee, { as: "employees", foreignKey: "company_id" });
 
 module.exports = db;
