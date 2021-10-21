@@ -23,7 +23,20 @@ db.Sequelize = Sequelize;
 db.Op = Op;
 db.sequelize = sequelize;
 
+/**
+ * Models
+ */
+
 db.user = require("./user.model.js")(sequelize, Sequelize, DataTypes);
 db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);
 db.company = require("./company.model.js")(sequelize, Sequelize, DataTypes);
+
+/**
+ * Relationships
+ */
+
+//OneToMany Relationship (One Company-> Many Employees)
+db.employee.belongsTo(db.company);
+db.company.hasMany(db.employee);
+
 module.exports = db;
