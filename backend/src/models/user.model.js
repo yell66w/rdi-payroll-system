@@ -22,6 +22,13 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      role: {
+        type: DataTypes.ENUM({
+          values: ["ADMIN", "ENCODER", "AUDITOR"], //TODO - ADD MORE TYPES
+        }),
+        defaultValue: "ENCODER",
+        allowNull: false,
+      },
     },
     {
       scopes: {
