@@ -61,9 +61,34 @@
 --------------------------------------------------
 
 # HOW TO CONTRIBUTE
-1. Gawa ka ng model (e.g. employee.model.js)
-2. Gawa ka ng controller (e.g. employee.controller.js)
-3. Gawa ka ng route (e.g. employee.route.js)
+1. Gawa ka muna new branch based sa dev branch
+```bash 
+   cd backend
+   git checkout dev
+   git pull origin dev
+   git checkout -b "name-ng-feature-na-ginagawa-mo"
+```
+3. Gawa ka ng model (e.g. employee.model.js)
+4. Gawa ka ng controller (e.g. employee.controller.js)
+5. Gawa ka ng route (e.g. employee.route.js)
+6. After mo matapos yung working feature na ginagawa mo, gawin mo to para updated sa dev branch yung ginagawa mong branch
+```bash
+   git add .
+   git commit -m "yung-description ng ginawa mo"
+   #bago mo i push make sure na updated dev branch mo
+   git checkout dev
+   git pull origin dev
+   git checkout "name-ng-branch-na-pinagtrabahuan-mo-kanina"
+   git rebase dev
+```
+7. Itest mo ulit yung code mo kung gumagana parin, kung may error ifix mo muna bago mo ipush tsaka ayusin mo din yung mga conflict (Kung di mo kaya maayos, pwede ka magtanong sa team)
+8. After mo mafix yung error, pwede mo na ipush 
+```bash
+   git add .
+   git commit -m "yung-description ng ginawa mo"
+   git push -u origin "yung-name-ng-branch-na-pinagtrabahuan-mo"
+```
+9. After nyan, punta ka sa github tapos submit ka pull request sa dev or sa branch na gusto mo ichange
 
 # MODELS
 
