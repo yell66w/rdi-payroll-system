@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const MainCan = styled.div`
-  display: flex;    
+  display: flex;
 `;
 
 export const MainRight = styled.div`
