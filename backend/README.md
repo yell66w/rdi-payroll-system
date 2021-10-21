@@ -96,7 +96,7 @@ db.company.hasMany(db.employee, { as: "employees", foreignKey: "company_id" });
 4. After niyan, registered na yung relationship nila.
 5. Imodify mo nalang yung controller para masama yung relationships sa query
 6. Nandito yung docs sa pagquery - https://sequelize.org/master/manual/assocs.html#basics-of-queries-involving-associations
-
+7. Kung nagkaka-error ka sa pag query, try mo idelete muna yung mga table na inedit or nilagyan mo ng relationships. Tapos irestart mo yung server (Okay pa to kasi dev palang naman, pero bawal to sa production haha gagamit tayo ng migration dyan)
 
 **PANO MAGLAGAY NG CONTROLLER**
 
