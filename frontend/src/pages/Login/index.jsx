@@ -27,13 +27,11 @@ const LoginPage = () => {
   const methods = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isFetching, isError, isSuccess, errorMessage } =
+  const { isFetching, isError, isSuccess, errorMessage, username } =
     useSelector(authSelector);
 
   const onSubmit = (data) => {
-    if (data.username === name) {
-      dispatch(signinUser(data));
-    }
+    dispatch(signinUser(data));
   };
 
   useEffect(() => {
@@ -49,7 +47,8 @@ const LoginPage = () => {
     }
     if (isSuccess) {
       dispatch(clearState());
-      history.push(`/${name}`);
+      // FIX: Username for the time being but it will be the user's role
+      history.push(`/${username}`);
     }
   }, [isError, isSuccess]);
 
@@ -66,7 +65,7 @@ const LoginPage = () => {
         <LoginContainer>
           <FormProvider {...methods}>
             <Form onSubmit={methods.handleSubmit(onSubmit)}>
-              <Header>{name}</Header>
+              <Header>Login</Header>
               <InputField uname name="username" required />
               <InputField pwd name="password" required />
               <Button type="submit">{isFetching ? "Loading" : "Log in"}</Button>

@@ -26,6 +26,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: {
     username: "",
+    role: "",
     params: "",
     isFetching: false,
     isError: false,
@@ -48,6 +49,7 @@ export const authSlice = createSlice({
     },
     [signinUser.fulfilled]: (state, { payload }) => {
       state.username = payload.username;
+      state.role = payload.role;
       state.isFetching = false;
       state.isSuccess = true;
 
