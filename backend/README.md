@@ -53,7 +53,7 @@
 
 
 
-![FLOW CHART](https://user-images.githubusercontent.com/37836505/137889285-98ffa6db-1787-4004-965e-c406ab200e2a.png)
+![Database Design (ER DIAGRAM).jpeg](https://images.zenhubusercontent.com/616fad0c18fb23251f970759/159984cf-1d57-4ad1-8bc4-560b3887e217)
 
 
 
