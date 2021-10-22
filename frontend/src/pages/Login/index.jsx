@@ -8,7 +8,6 @@ import {
   Form,
   Powered,
 } from "./styles.js";
-import { useHistory } from "react-router-dom";
 import InputField from "components/Input/index.jsx";
 import Button from "components/Button/index.jsx";
 import { ReactComponent as Logo } from "assets/icons/logo.svg";
@@ -25,7 +24,6 @@ import {
 const LoginPage = () => {
   const methods = useForm();
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const { isFetching, isError, isSuccess } = useSelector(authSelector);
 
@@ -45,7 +43,6 @@ const LoginPage = () => {
     }
     if (isSuccess) {
       dispatch(clearState());
-      history.replace("/");
     }
   }, [isError, isSuccess]);
 

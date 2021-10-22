@@ -8,7 +8,9 @@ const PublicRoute = ({ children, isAuth, ...rest }) => {
         !isAuth ? (
           children
         ) : (
-          <Redirect to={{ pathname: "/", state: { from: location } }} />
+          <>
+            <Redirect to={{ pathname: "/", state: { from: location } }} />
+          </>
         )
       }
     />
