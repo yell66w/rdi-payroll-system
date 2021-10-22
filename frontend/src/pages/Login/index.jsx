@@ -35,8 +35,10 @@ const LoginPage = () => {
     return () => {
       dispatch(clearState());
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
 
   useEffect(() => {
     if (isError) {
@@ -45,6 +47,7 @@ const LoginPage = () => {
     if (isSuccess) {
       dispatch(clearState());
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, isSuccess]);
 

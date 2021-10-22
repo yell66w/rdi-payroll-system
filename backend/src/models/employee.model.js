@@ -35,6 +35,10 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         validate: {
           isEmail: true,
         },
+        unique: {
+          args: true,
+          msg: "Email address already in use!",
+        },
       },
       contact_no: {
         type: DataTypes.STRING,

@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize, DataTypes) => {
-    const Company = sequelize.define(
-      "company", // Model name
+    const Position = sequelize.define(
+      "position", // Model name
       {
         // Attributes
         id:{
@@ -10,10 +10,9 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
             allowNull: false,
         },
         name:{
-            type: DataTypes.STRING(30),
-            allowNull:false,
+            type: DataTypes.STRING,
+            allowNull: false,
         },
-        
       },
       {
         timestamps: true,
@@ -23,6 +22,6 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       }
     );
   
-    return Company;
+    return Position;
   };
   
