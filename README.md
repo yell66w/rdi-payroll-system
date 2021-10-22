@@ -89,4 +89,5 @@ Redux: https://redux.js.org/tutorials/quick-start
 Styled Components: https://styled-components.com/
 <br/>
 React Hook Form: https://react-hook-form.com/
-
+<br/>
+React Table: https://react-table.tanstack.com/
