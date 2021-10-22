@@ -7,5 +7,13 @@ export const TextLink = styled.a`
 `;
 
 export const Container = styled.div`
+  display: flex;
   padding: 2em;
+  flex-direction: row;
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  flex-grow: ${(props) => (props.flex ? props.flex : 1)};
+  background-color: ${(props) => (props.bg ? props.bg : null)};
 `;

@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
 export const TableStyles = styled.div`
+  flex: 0 0 100%;
   table {
+    width: 100%;
     text-align: center;
+    overflow-wrap: break-word;
     border-spacing: 0;
     tbody {
       tr:nth-child(even) {

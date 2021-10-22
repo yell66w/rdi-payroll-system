@@ -1,8 +1,15 @@
 import Table from "components/Table";
 import React from "react";
 import { useTable } from "react-table";
-import { TextLink, Container } from "./styles";
+import { TextLink, Container, Flex } from "./styles";
 const EmployeeFile = () => {
+  /**
+   * TODO -
+   * employeeSlice.js
+   * const {data} = useSelector(employeeSelector)
+   *
+   */
+
   const data = React.useMemo(
     () => [
       {
@@ -99,7 +106,12 @@ const EmployeeFile = () => {
   return (
     <>
       <Container>
-        <Table tableInstance={tableInstance} />
+        <Flex flex={3}>
+          <Table tableInstance={tableInstance} />
+        </Flex>
+        <Flex bg={"violet"} flex={1}>
+          <div>Filter Component</div>
+        </Flex>
       </Container>
     </>
   );
