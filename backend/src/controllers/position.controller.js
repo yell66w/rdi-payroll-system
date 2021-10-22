@@ -1,22 +1,19 @@
 const db = require("../models");
-const Employee = db.employee;
-const Company = db.company;
+const Position = db.position;
 
 exports.findAll = async (req, res) => {
-  const users = await Employee.findAll({
-    include: ["company", "department", "position"],
-  });
-  return res.status(200).send(users);
+  const position = await Position.findAll({ include: "department" });
+  return res.status(200).send(position);
 };
 exports.findOne = async (req, res) => {
-  const user = await Employee.findByPk(req.params.id);
-  return res.status(200).send(user);
+  const position = await Position.findByPk(req.params.id);
+  return res.status(200).send(position);
 };
 
 exports.create = async (req, res) => {
   try {
-    const new_employee = await Employee.create(req.body);
-    return res.status(200).send(new_employee);
+    const new_position = await Position.create(req.body);
+    return res.status(200).send(new_position);
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -24,12 +21,12 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    await Employee.update(req.body, {
+    await Position.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).send("Employee updated successfully");
+    return res.status(200).send("Position updated successfully");
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -37,12 +34,12 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    await Employee.destroy({
+    await Position.destroy({
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).send("Employee deleted successfully.");
+    return res.status(200).send("Position deleted successfully.");
   } catch (error) {
     return res.status(400).send(error.message);
   }
