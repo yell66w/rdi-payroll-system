@@ -25,7 +25,7 @@ const LoginPage = () => {
   const methods = useForm();
   const dispatch = useDispatch();
 
-  const { isFetching, isError, isSuccess } = useSelector(authSelector);
+  const { isError, isSuccess } = useSelector(authSelector);
 
   const onSubmit = (data) => {
     dispatch(signinUser(data));
@@ -35,7 +35,10 @@ const LoginPage = () => {
     return () => {
       dispatch(clearState());
     };
-  }, [dispatch]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   useEffect(() => {
     if (isError) {
@@ -44,7 +47,9 @@ const LoginPage = () => {
     if (isSuccess) {
       dispatch(clearState());
     }
-  }, [isError, isSuccess, dispatch]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isError, isSuccess]);
 
   return (
     <Container>
@@ -62,7 +67,7 @@ const LoginPage = () => {
               <Header>Login</Header>
               <InputField uname name="username" required />
               <InputField pwd name="password" required />
-              <Button type="submit">{isFetching ? "Loading" : "Log in"}</Button>
+              <Button type="submit">Log in</Button>
             </Form>
           </FormProvider>
         </LoginContainer>
