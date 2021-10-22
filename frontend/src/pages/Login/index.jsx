@@ -35,7 +35,7 @@ const LoginPage = () => {
     return () => {
       dispatch(clearState());
     };
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isError) {
@@ -44,7 +44,7 @@ const LoginPage = () => {
     if (isSuccess) {
       dispatch(clearState());
     }
-  }, [isError, isSuccess]);
+  }, [isError, isSuccess, dispatch]);
 
   return (
     <Container>
