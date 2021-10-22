@@ -11,7 +11,9 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
-  const company = await Company.findAll({ include: "employees" });
+  const company = await Company.findAll({
+    include: ["employees", "departments"],
+  });
   return res.status(200).send(company);
 };
 
