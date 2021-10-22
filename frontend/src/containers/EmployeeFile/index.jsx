@@ -26,6 +26,34 @@ const EmployeeFile = () => {
         employee: "Janecee M. Doe",
         time_duration: "6",
       },
+      {
+        company: "RDI",
+        department: "Accounting & Finance",
+        position: "Auditor",
+        employee: "Janecee M. Doe",
+        time_duration: "6",
+      },
+      {
+        company: "RDI",
+        department: "Accounting & Finance",
+        position: "Auditor",
+        employee: "Janecee M. Doe",
+        time_duration: "6",
+      },
+      {
+        company: "RDI",
+        department: "Accounting & Finance",
+        position: "Auditor",
+        employee: "Janecee M. Doe",
+        time_duration: "6",
+      },
+      {
+        company: "RDI",
+        department: "Accounting & Finance",
+        position: "Auditor",
+        employee: "Janecee M. Doe",
+        time_duration: "6",
+      },
     ],
     []
   );
