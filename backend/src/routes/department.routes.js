@@ -10,9 +10,9 @@ module.exports = function (app) {
     next();
   });
 
-app.post("/department", controller.create);
-app.get("/department/:id", controller.findOne);
-app.get("/department", controller.findAll);
-app.delete("/department/:id", controller.delete);
-app.patch("/department/:id", controller.update);
+  app.post("/departments", controller.create);
+  app.get("/departments/:id", controller.findOne);
+  app.get("/departments", controller.findAll);
+  app.delete("/departments/:id", controller.delete);
+  app.patch("/departments/:id", controller.update);
 };
