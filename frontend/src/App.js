@@ -10,6 +10,7 @@ import PrivateRoute from "routes/PrivateRoute";
 
 import { useSelector } from "react-redux";
 import { authSelector } from "features/auth/authSlice";
+import Loader from "components/Loader";
 
 const LoginPage = lazy(() => import("pages/Login"));
 const NoFoundComponent = lazy(() => import("pages/NoFoundComponent"));
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={"Loading"}>
+      <Suspense fallback={<Loader primary />}>
         <Switch>
           <PublicRoute path="/login" isAuth={isAuth}>
             <LoginPage />
