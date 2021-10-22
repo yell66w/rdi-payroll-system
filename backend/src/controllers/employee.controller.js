@@ -12,14 +12,6 @@ exports.findOne = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  if (!req.body.company_id) {
-    return res.status(400).send("Company is required");
-  }
-  try {
-    await Company.findByPk(req.body.company_id);
-  } catch (error) {
-    return res.status(400).send(error.message);
-  }
   try {
     const new_employee = await Employee.create(req.body);
     return res.status(200).send(new_employee);
@@ -29,14 +21,6 @@ exports.create = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  if (req.body.company_id) {
-    //Find the Company if it exists
-    try {
-      await Company.findByPk(req.body.company_id);
-    } catch (error) {
-      return res.status(400).send(error.message);
-    }
-  }
   try {
     await Employee.update(req.body, {
       where: {
