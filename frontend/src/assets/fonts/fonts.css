@@ -10,3 +10,8 @@
   font-family: "Avenir-Roman";
   src: url("./Avenir-Roman.otf") format("opentype");
 }
+
+@font-face {
+  font-family: "Bebas";
+  src: url("./BebasNeue-Regular.woff") format("woff");
+}

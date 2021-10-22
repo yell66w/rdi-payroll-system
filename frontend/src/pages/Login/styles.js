@@ -29,6 +29,7 @@ export const Powered = styled.div`
   }
 
   h1 {
+    font-family: ${(props)=> props.theme.fonts.bebasNeue};    
     margin: 0;
   }
 `;
