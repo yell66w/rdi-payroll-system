@@ -13,6 +13,7 @@ export const theme = {
     avenirBlack: "Avenir-Black",
     avenirBook: "Avenir-Book",
     avenirRoman: "Avenir-Roman",
+    bebasNeue: "Bebas" ,
   },
   fontSizes: {
     xs: "0.75rem", //12px

@@ -1,9 +1,6 @@
-const LoginPage = () => {
-  return (
-    <>
-      <div>Index page</div>
-    </>
-  );
+import LoginPage from "pages/Login";
+const Main = () => {
+  return <LoginPage />;
 };
 
-export default LoginPage;
+export default Main;

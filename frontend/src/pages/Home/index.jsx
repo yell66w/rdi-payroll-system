@@ -1,15 +1,9 @@
 import Header from "components/Header";
 import Sidebar from "components/Sidebar";
-import Attendance from "containers/Attendance";
-import EmploFile from "containers/EmployeeFile";
-import ForApproval from "containers/ForApproval";
-import Reports from "containers/Reports";
 import { MainCan, MainRight, WrapperRight } from "./styles";
-import React from "react";
-import { Route } from "react-router-dom";
 import Link from "components/Link";
 
-const MainWrapper = () => {
+const MainWrapper = ({ children }) => {
   return (
     <>
       <MainCan>
@@ -23,12 +17,7 @@ const MainWrapper = () => {
 
         <MainRight>
           <Header headerName={`payroll`} />
-          <WrapperRight>
-            <Route path={`/attendance`} component={Attendance} />
-            <Route path={`/employee-file`} component={EmploFile} />
-            <Route path={`/for-approval`} component={ForApproval} />
-            <Route path={`/reports`} component={Reports} />
-          </WrapperRight>
+          <WrapperRight>{children}</WrapperRight>
         </MainRight>
       </MainCan>
     </>

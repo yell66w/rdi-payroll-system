@@ -23,25 +23,44 @@ db.Sequelize = Sequelize;
 db.Op = Op;
 db.sequelize = sequelize;
 
+/**
+ * Models
+ */
+
 db.user = require("./user.model.js")(sequelize, Sequelize, DataTypes);
 db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);
 db.company = require("./company.model.js")(sequelize, Sequelize, DataTypes);
+
 db.department = require("./department.model.js")(sequelize, Sequelize, DataTypes);
 db.position = require("./position.model.js")(sequelize, Sequelize, DataTypes);
 
-//ASSOCIATION (One company  ---> Many departments)
+
+
+
+/**
+ * Relationships
+ */
+
+//OneToMany Relationship (One Company-> Many Employees)
+db.employee.belongsTo(db.company, {
+  foreignKey: "company_id",
+  foreignKeyConstraint: true,
+});
+db.company.hasMany(db.employee, { as: "employees", foreignKey: "company_id" });
+
+//OneToMany (One company  ---> Many departments)
 db.department.belongsTo(db.company,{
   foreignKey:{name:"company_id", allowNull:false},
   foreignKeyConstraint: true,
 });
-db.company.hasMany(db.department, {as: "department", foreignKey: "company_id"});
+db.company.hasMany(db.department, {as: "departments", foreignKey: "company_id"});
 
-
-//ASSOCIATION (One department  ---> Many position)
+//OneToMany (One department  ---> Many position)
 db.position.belongsTo(db.department,{
   foreignKey:{name:"department_id", allowNull:false},
   foreignKeyConstraint: true,
 });
-db.company.hasMany(db.position, {as: "position", foreignKey: "department_id"});
+db.department.hasMany(db.position, {as: "positions", foreignKey: "department_id"});
+
 
 module.exports = db;
