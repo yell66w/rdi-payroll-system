@@ -2,7 +2,7 @@ const db = require("../models");
 const Position = db.position;
 
 exports.findAll = async (req, res) => {
-  const position = await Position.findAll();
+  const position = await Position.findAll({ include: "department" });
   return res.status(200).send(position);
 };
 exports.findOne = async (req, res) => {
