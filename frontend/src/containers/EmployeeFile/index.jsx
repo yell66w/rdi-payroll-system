@@ -1,7 +1,7 @@
 import Table from "components/Table";
 import React from "react";
 import { useTable } from "react-table";
-import { TextLink } from "./styles";
+import { TextLink, Container } from "./styles";
 const EmployeeFile = () => {
   const data = React.useMemo(
     () => [
@@ -70,7 +70,9 @@ const EmployeeFile = () => {
 
   return (
     <>
-      <Table tableInstance={tableInstance} />
+      <Container>
+        <Table tableInstance={tableInstance} />
+      </Container>
     </>
   );
 };

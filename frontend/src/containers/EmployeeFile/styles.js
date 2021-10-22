@@ -5,3 +5,7 @@ export const TextLink = styled.a`
   text-decoration: underline;
   font-family: ${(props) => props.theme.fonts.avenirRoman};
 `;
+
+export const Container = styled.div`
+  padding: 2em;
+`;
