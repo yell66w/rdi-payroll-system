@@ -44,11 +44,31 @@ db.position = require("./position.model.js")(sequelize, Sequelize, DataTypes);
 
 //OneToMany Relationship (One Company-> Many Employees)
 db.employee.belongsTo(db.company, {
-  foreignKey: "company_id",
-  allowNull: false,
+  foreignKey: { name: "company_id", allowNull: false },
+
   foreignKeyConstraint: true,
 });
 db.company.hasMany(db.employee, { as: "employees", foreignKey: "company_id" });
+
+//OneToMany Relationship (One Department-> Many Employees)
+db.employee.belongsTo(db.department, {
+  foreignKey: { name: "department_id", allowNull: false },
+  foreignKeyConstraint: true,
+});
+db.department.hasMany(db.employee, {
+  as: "employees",
+  foreignKey: "company_id",
+});
+
+//OneToMany Relationship (One Position -> Many Employees)
+db.employee.belongsTo(db.position, {
+  foreignKey: { name: "position_id", allowNull: false },
+  foreignKeyConstraint: true,
+});
+db.position.hasMany(db.employee, {
+  as: "employees",
+  foreignKey: "position_id",
+});
 
 //OneToMany (One company  ---> Many departments)
 db.department.belongsTo(db.company, {
