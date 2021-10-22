@@ -67,4 +67,5 @@ export const Header = styled.h1`
   font-size: ${(props) => props.theme.fontSizes.xxl};
   text-transform: uppercase;
   color: ${colors.default};
+  margin-top: 0;
 `;
