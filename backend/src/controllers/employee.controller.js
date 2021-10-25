@@ -2,16 +2,25 @@ const db = require("../models");
 const Employee = db.employee;
 
 exports.findAll = async (req, res) => {
-  const users = await Employee.findAll({
-    include: [
-      "company",
-      "department",
-      "position",
-      "deduction",
-      "earning",
-      "files",
-    ],
-  });
+  const company = req.query.company;
+  const department = req.query.department;
+  const position = req.query.position;
+  let options = { where: {} };
+
+  if (company) {
+    options.where.company_id = company;
+  }
+  if (department) options.where.department_id = department;
+  if (position) options.where.position_id = position;
+  options.include = [
+    "company",
+    "department",
+    "position",
+    "deduction",
+    "earning",
+    "files",
+  ];
+  const users = await Employee.findAll(options);
   return res.status(200).send(users);
 };
 exports.findOne = async (req, res) => {
