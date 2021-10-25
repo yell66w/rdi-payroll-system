@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const color = {
   default: (props) => props.theme.colors.violet,
-  secondary: (props) => props.theme.colors.white,
+  secondary: (props) => props.theme.colors.white
 };
 
 export const Container = styled.div`

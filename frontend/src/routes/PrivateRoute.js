@@ -5,11 +5,7 @@ const PrivateRoute = ({ children, isAuth, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        isAuth ? (
-          children
-        ) : (
-          <Redirect to={{ pathname: '/login', state: { from: location } }} />
-        )
+        isAuth ? children : <Redirect to={{ pathname: '/login', state: { from: location } }} />
       }
     />
   );

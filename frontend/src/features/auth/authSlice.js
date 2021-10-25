@@ -2,25 +2,22 @@ import { toast } from 'react-toastify';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { signin } from 'utils/auth.routes';
 
-export const signinUser = createAsyncThunk(
-  '/auth/signin',
-  async (data, { rejectWithValue }) => {
-    try {
-      const res = await signin(JSON.stringify(data));
-      if (res.status === 200) {
-        localStorage.setItem('token', res.data.accessToken);
-        return res.data;
-      } else {
-        return rejectWithValue(res.data);
-      }
-    } catch (error) {
-      if (!error.response) {
-        throw error;
-      }
-      return rejectWithValue(error.response.data);
+export const signinUser = createAsyncThunk('/auth/signin', async (data, { rejectWithValue }) => {
+  try {
+    const res = await signin(JSON.stringify(data));
+    if (res.status === 200) {
+      localStorage.setItem('token', res.data.accessToken);
+      return res.data;
+    } else {
+      return rejectWithValue(res.data);
     }
+  } catch (error) {
+    if (!error.response) {
+      throw error;
+    }
+    return rejectWithValue(error.response.data);
   }
-);
+});
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -30,7 +27,7 @@ export const authSlice = createSlice({
     isFetching: false,
     isError: false,
     isSuccess: false,
-    errorMessage: '',
+    errorMessage: ''
   },
 
   reducers: {
@@ -40,7 +37,7 @@ export const authSlice = createSlice({
       state.isError = false;
 
       return state;
-    },
+    }
   },
   extraReducers: {
     [signinUser.pending]: (state) => {
@@ -60,8 +57,8 @@ export const authSlice = createSlice({
       state.isError = true;
       state.errorMessage = payload.message;
       toast.error(state.errorMessage);
-    },
-  },
+    }
+  }
 });
 
 export const { clearState } = authSlice.actions;

@@ -9,15 +9,7 @@ function CurrDate() {
   // var day = today.getDay();
   // var dayList = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY ","THURSDAY","FRIDAY","SATURDAY"];
   const today = new Date();
-  const dayList = [
-    'SUNDAY',
-    'MONDAY',
-    'TUESDAY',
-    'WEDNESDAY ',
-    'THURSDAY',
-    'FRIDAY',
-    'SATURDAY',
-  ];
+  const dayList = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY ', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
   const monthList = [
     'JAN',
     'FEB',
@@ -30,7 +22,7 @@ function CurrDate() {
     'SEPT',
     'OCT',
     'NOV',
-    'DEC',
+    'DEC'
   ];
 
   const month = monthList[today.getMonth()];

@@ -5,9 +5,7 @@ import Loader from 'components/Loader/index.jsx';
 
 const Button = ({ children, color }) => {
   const { isFetching } = useSelector(authSelector);
-  return (
-    <Container color={color}>{isFetching ? <Loader /> : children}</Container>
-  );
+  return <Container color={color}>{isFetching ? <Loader /> : children}</Container>;
 };
 
 export default Button;

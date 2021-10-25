@@ -17,50 +17,50 @@ const EmployeeFile = () => {
         department: 'Accounting & Finance',
         position: 'Chief Financial Officer',
         employee: 'Jane M. Doe',
-        time_duration: '6',
+        time_duration: '6'
       },
       {
         company: 'RDI',
         department: 'Accounting & Finance',
         position: 'Accounting Clerk',
         employee: 'Jane M. Donut',
-        time_duration: '6',
+        time_duration: '6'
       },
       {
         company: 'RDI',
         department: 'Accounting & Finance',
         position: 'Auditor',
         employee: 'Janecee M. Doe',
-        time_duration: '6',
+        time_duration: '6'
       },
       {
         company: 'RDI',
         department: 'Accounting & Finance',
         position: 'Auditor',
         employee: 'Janecee M. Doe',
-        time_duration: '6',
+        time_duration: '6'
       },
       {
         company: 'RDI',
         department: 'Accounting & Finance',
         position: 'Auditor',
         employee: 'Janecee M. Doe',
-        time_duration: '6',
+        time_duration: '6'
       },
       {
         company: 'RDI',
         department: 'Accounting & Finance',
         position: 'Auditor',
         employee: 'Janecee M. Doe',
-        time_duration: '6',
+        time_duration: '6'
       },
       {
         company: 'RDI',
         department: 'Accounting & Finance',
         position: 'Auditor',
         employee: 'Janecee M. Doe',
-        time_duration: '6',
-      },
+        time_duration: '6'
+      }
     ],
     []
   );
@@ -69,34 +69,34 @@ const EmployeeFile = () => {
     () => [
       {
         Header: 'COMPANY',
-        accessor: 'company', // accessor is the "key" in the data
+        accessor: 'company' // accessor is the "key" in the data
       },
       {
         Header: 'DEPARTMENT',
-        accessor: 'department',
+        accessor: 'department'
       },
       {
         Header: 'POSITION',
-        accessor: 'position',
+        accessor: 'position'
       },
       {
         Header: 'EMPLOYEE',
-        accessor: 'employee',
+        accessor: 'employee'
       },
       {
         Header: 'TIME DURATION',
         accessor: 'time_duration',
         Cell: (props) => {
           return <span>{props.value} years</span>;
-        },
+        }
       },
       {
         Header: '',
         accessor: 'id',
         Cell: (props) => {
           return <TextLink>Edit</TextLink>;
-        },
-      },
+        }
+      }
     ],
     []
   );
