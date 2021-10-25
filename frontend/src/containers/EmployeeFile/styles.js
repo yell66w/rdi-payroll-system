@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 export const TextLink = styled.a`
   color: ${(props) => props.theme.colors.lightViolet};
   cursor: pointer;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const colors = {
   default: (props) => props.theme.colors.violet,
@@ -18,8 +18,10 @@ export const Container = styled.div`
   min-width: 15rem;
   width: 100%;
   height: 3rem;
-  box-shadow: 0pt 0pt 0pt 1.5pt ${(props) => (props.disabled ? colors.default : "silver")};
-  /* border: 1.5px solid ${(props) => (props.disabled ? colors.default : "silver")}; */
+  box-shadow: 0pt 0pt 0pt 1.5pt
+    ${(props) => (props.disabled ? colors.default : 'silver')};
+  /* border: 1.5px solid ${(props) =>
+    props.disabled ? colors.default : 'silver'}; */
   border-radius: 10px;
   background: ${(props) =>
     props.disabled ? colors.lightViolet : colors.white};
@@ -49,7 +51,7 @@ export const Input = styled.input`
   font-size: ${(props) => props.theme.fontSizes.md};
   font-family: ${(props) => props.theme.fontSizes.avenirRoman};
   background: ${(props) =>
-  props.disabled ? colors.lightViolet : colors.white};
+    props.disabled ? colors.lightViolet : colors.white};
 `;
 
 export const Label = styled.label`

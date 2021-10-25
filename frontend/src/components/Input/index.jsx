@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import { ReactComponent as Lock } from "assets/icons/lock.svg";
-import { ReactComponent as Person } from "assets/icons/person.svg";
+import { ReactComponent as Lock } from 'assets/icons/lock.svg';
+import { ReactComponent as Person } from 'assets/icons/person.svg';
 
-import { Container, Input, Wrapper, Label } from "./styles.js";
-import { useFormContext } from "react-hook-form";
+import { Container, Input, Wrapper, Label } from './styles.js';
+import { useFormContext } from 'react-hook-form';
 
 const InputField = ({
   uname = false,
@@ -15,15 +15,15 @@ const InputField = ({
   name,
   required,
 }) => {
-  const [placeholderName, setPlaceholderName] = useState(placeholder || "");
+  const [placeholderName, setPlaceholderName] = useState(placeholder || '');
   const { register } = useFormContext();
 
   useEffect(() => {
     if (uname) {
-      setPlaceholderName("Enter your username");
+      setPlaceholderName('Enter your username');
     }
     if (pwd) {
-      setPlaceholderName("Enter your password");
+      setPlaceholderName('Enter your password');
     }
     if (placeholder) {
       setPlaceholderName(placeholder);
@@ -46,7 +46,7 @@ const InputField = ({
         )}
         <Input
           placeholder={`${placeholderName}`}
-          type={pwd ? "password" : "text"}
+          type={pwd ? 'password' : 'text'}
           disabled={disabled}
           {...register(name, { required })}
         />

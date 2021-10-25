@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const color = {
   default: (props) => props.theme.colors.violet,
@@ -40,7 +40,7 @@ export const Label = styled.label`
   }
 
   ${Input} + .radio__control::before {
-    content: "";
+    content: '';
     width: 0.5rem;
     height: 0.5rem;
     box-shadow: inset 0.5rem 0.5rem ${color.default};

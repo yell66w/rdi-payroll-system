@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container } from './styles';
 
 const Loader = ({ primary = false }) => {
   return <Container primary={primary}></Container>;
