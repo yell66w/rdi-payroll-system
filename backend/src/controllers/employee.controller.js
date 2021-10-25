@@ -3,7 +3,14 @@ const Employee = db.employee;
 
 exports.findAll = async (req, res) => {
   const users = await Employee.findAll({
-    include: ["company", "department", "position", "deduction", "earning", "file"],
+    include: [
+      "company",
+      "department",
+      "position",
+      "deduction",
+      "earning",
+      "files",
+    ],
   });
   return res.status(200).send(users);
 };
