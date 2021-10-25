@@ -24,6 +24,34 @@ module.exports = {
         updated_at: new Date(),
         company_id: companyRows[0].id,
       },
+      {
+        id: uuidv4(),
+        name: "Accounting",
+        created_at: new Date(),
+        updated_at: new Date(),
+        company_id: companyRows[1].id,
+      },
+      {
+        id: uuidv4(),
+        name: "IT",
+        created_at: new Date(),
+        updated_at: new Date(),
+        company_id: companyRows[2].id,
+      },
+      {
+        id: uuidv4(),
+        name: "Accounting",
+        created_at: new Date(),
+        updated_at: new Date(),
+        company_id: companyRows[3].id,
+      },
+      {
+        id: uuidv4(),
+        name: "IT",
+        created_at: new Date(),
+        updated_at: new Date(),
+        company_id: companyRows[3].id,
+      },
     ]);
   },
   down: async (queryInterface, Sequelize) => {
