@@ -1,6 +1,5 @@
 const db = require("../models");
 const Employee = db.employee;
-const Company = db.company;
 
 exports.findAll = async (req, res) => {
   const users = await Employee.findAll({
