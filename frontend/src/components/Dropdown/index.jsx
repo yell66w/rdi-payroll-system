@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Container, Label, List, Options, Wrapper } from "./styles.js";
-import { ReactComponent as DropdownIcon } from "assets/icons/dropdown.svg";
+import { Container, Label, List, Options, Wrapper } from './styles.js';
+import { ReactComponent as DropdownIcon } from 'assets/icons/dropdown.svg';
 
 const Dropdown = ({ label, options = [] }) => {
   const [isOpen, setIsOpen] = useState(false);

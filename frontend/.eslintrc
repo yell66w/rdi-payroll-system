@@ -1,0 +1,4 @@
+{
+  "extends": ["prettier"],
+  "parserOptions": {"sourceType": "module"}
+}

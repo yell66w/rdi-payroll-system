@@ -1,12 +1,7 @@
-import React from "react"
+import React from 'react';
 
-function Reports()
-{
-    return(
-        <div>
-            THIS IS REPORTS
-        </div>
-    )
+function Reports() {
+  return <div>THIS IS REPORTS</div>;
 }
 
-export default Reports
+export default Reports;

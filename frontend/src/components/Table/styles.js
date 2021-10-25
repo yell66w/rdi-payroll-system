@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TableStyles = styled.div`
   flex: 0 0 100%;

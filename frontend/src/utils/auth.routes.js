@@ -1,4 +1,4 @@
-import axios from "./API.js";
+import axios from './API.js';
 
 export const users = () => axios.get(`/users`);
 

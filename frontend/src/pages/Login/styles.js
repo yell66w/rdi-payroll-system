@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const colors = {
   default: (props) => props.theme.colors.violet,
@@ -29,7 +29,7 @@ export const Powered = styled.div`
   }
 
   h1 {
-    font-family: ${(props)=> props.theme.fonts.bebasNeue};    
+    font-family: ${(props) => props.theme.fonts.bebasNeue};
     margin: 0;
   }
 `;

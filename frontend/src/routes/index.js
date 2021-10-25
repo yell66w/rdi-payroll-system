@@ -1,26 +1,26 @@
-import { lazy } from "react";
+import { lazy } from 'react';
 
 const routes = [
   {
-    path: "",
-    component: lazy(() => import("containers/Payroll")),
+    path: '',
+    component: lazy(() => import('containers/Payroll')),
     exact: true,
   },
   {
-    path: "attendance",
-    component: lazy(() => import("containers/Attendance")),
+    path: 'attendance',
+    component: lazy(() => import('containers/Attendance')),
   },
   {
-    path: "employee-file",
-    component: lazy(() => import("containers/EmployeeFile")),
+    path: 'employee-file',
+    component: lazy(() => import('containers/EmployeeFile')),
   },
   {
-    path: "for-approval",
-    component: lazy(() => import("containers/ForApproval")),
+    path: 'for-approval',
+    component: lazy(() => import('containers/ForApproval')),
   },
   {
-    path: "reports",
-    component: lazy(() => import("containers/Reports")),
+    path: 'reports',
+    component: lazy(() => import('containers/Reports')),
   },
 ];
 

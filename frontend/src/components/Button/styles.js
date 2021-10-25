@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // NOTE: properties are on theme.js
 
@@ -14,19 +14,19 @@ export const Container = styled.button`
   cursor: pointer;
   user-select: none;
   color: ${(props) =>
-    props.color === "secondary" ? color.default : color.secondary};
+    props.color === 'secondary' ? color.default : color.secondary};
   background-color: ${(props) =>
-    props.color === "secondary"
+    props.color === 'secondary'
       ? color.secondary
-      : props.color === "red"
+      : props.color === 'red'
       ? color.red
-      : props.color === "green"
+      : props.color === 'green'
       ? color.green
       : color.default};
   border: ${(props) =>
-    props.color === "secondary"
+    props.color === 'secondary'
       ? `2px solid ${props.theme.colors.violet}`
-      : "none"};
+      : 'none'};
   outline: none;
   min-width: 15rem;
   width: 100%;

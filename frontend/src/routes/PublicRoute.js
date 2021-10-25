@@ -1,4 +1,4 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect } from 'react-router-dom';
 
 const PublicRoute = ({ children, isAuth, ...rest }) => {
   return (
@@ -9,7 +9,7 @@ const PublicRoute = ({ children, isAuth, ...rest }) => {
           children
         ) : (
           <>
-            <Redirect to={{ pathname: "/", state: { from: location } }} />
+            <Redirect to={{ pathname: '/', state: { from: location } }} />
           </>
         )
       }

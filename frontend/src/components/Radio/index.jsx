@@ -1,4 +1,4 @@
-import { Label, Input, Container } from "./styles.js";
+import { Label, Input, Container } from './styles.js';
 
 const Radio = ({ children }) => {
   return (
