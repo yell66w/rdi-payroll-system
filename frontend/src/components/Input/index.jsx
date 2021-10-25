@@ -13,7 +13,7 @@ const InputField = ({
   label,
   disabled = false,
   name,
-  required,
+  required
 }) => {
   const [placeholderName, setPlaceholderName] = useState(placeholder || '');
   const { register } = useFormContext();

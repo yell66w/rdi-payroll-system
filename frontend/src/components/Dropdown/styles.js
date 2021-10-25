@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const colors = {
   white: (props) => props.theme.colors.white,
-  lightViolet: (props) => props.theme.colors.lightViolet,
+  lightViolet: (props) => props.theme.colors.lightViolet
 };
 
 export const Wrapper = styled.div`

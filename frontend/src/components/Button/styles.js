@@ -7,14 +7,13 @@ const color = {
   darkViolet: (props) => props.theme.colors.darkViolet,
   secondary: (props) => props.theme.colors.white,
   red: (props) => props.theme.colors.red,
-  green: (props) => props.theme.colors.green,
+  green: (props) => props.theme.colors.green
 };
 
 export const Container = styled.button`
   cursor: pointer;
   user-select: none;
-  color: ${(props) =>
-    props.color === 'secondary' ? color.default : color.secondary};
+  color: ${(props) => (props.color === 'secondary' ? color.default : color.secondary)};
   background-color: ${(props) =>
     props.color === 'secondary'
       ? color.secondary
@@ -24,9 +23,7 @@ export const Container = styled.button`
       ? color.green
       : color.default};
   border: ${(props) =>
-    props.color === 'secondary'
-      ? `2px solid ${props.theme.colors.violet}`
-      : 'none'};
+    props.color === 'secondary' ? `2px solid ${props.theme.colors.violet}` : 'none'};
   outline: none;
   min-width: 15rem;
   width: 100%;

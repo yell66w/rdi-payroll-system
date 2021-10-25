@@ -7,13 +7,13 @@ export const theme = {
     red: '#ec2e2e',
     green: '#37873e',
     lightViolet: '#e1c8ff',
-    darkViolet: '#440099',
+    darkViolet: '#440099'
   },
   fonts: {
     avenirBlack: 'Avenir-Black',
     avenirBook: 'Avenir-Book',
     avenirRoman: 'Avenir-Roman',
-    bebasNeue: 'Bebas',
+    bebasNeue: 'Bebas'
   },
   fontSizes: {
     xs: '0.75rem', //12px
@@ -28,6 +28,6 @@ export const theme = {
 
     xl2: '1.5rem', //24px
 
-    xxl: '2.25rem', //36px
-  },
+    xxl: '2.25rem' //36px
+  }
 };

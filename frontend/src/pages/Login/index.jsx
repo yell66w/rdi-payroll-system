@@ -1,13 +1,5 @@
 import { useEffect } from 'react';
-import {
-  Container,
-  Left,
-  Right,
-  LoginContainer,
-  Header,
-  Form,
-  Powered,
-} from './styles.js';
+import { Container, Left, Right, LoginContainer, Header, Form, Powered } from './styles.js';
 import InputField from 'components/Input/index.jsx';
 import Button from 'components/Button/index.jsx';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
@@ -15,11 +7,7 @@ import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import { useForm, FormProvider } from 'react-hook-form';
 
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  authSelector,
-  signinUser,
-  clearState,
-} from 'features/auth/authSlice.js';
+import { authSelector, signinUser, clearState } from 'features/auth/authSlice.js';
 
 const LoginPage = () => {
   const methods = useForm();
