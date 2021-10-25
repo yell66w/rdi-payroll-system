@@ -1,10 +1,9 @@
 const db = require("../models");
 const Employee = db.employee;
-const Company = db.company;
 
 exports.findAll = async (req, res) => {
   const users = await Employee.findAll({
-    include: ["company", "department", "position"],
+    include: ["company", "department", "position", "deduction", "earning", "file"],
   });
   return res.status(200).send(users);
 };

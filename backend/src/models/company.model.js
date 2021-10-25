@@ -25,4 +25,3 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
   
     return Company;
   };
-  
