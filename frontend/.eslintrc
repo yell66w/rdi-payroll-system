@@ -1,4 +1,6 @@
 {
   "extends": ["prettier"],
-  "parserOptions": {"sourceType": "module"}
+  "parser": "babel-eslint",
+  "parserOptions": { "sourceType": "module", "ecmaVersion": 2015 },
+  "plugins": ["react", "react-hooks"]
 }
