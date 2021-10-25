@@ -20,6 +20,7 @@ exports.findOne = async (req, res) => {
   return res.status(200).send(deduction);
 };
 
+//TODO ADD DEDUCTION TOTAL LOGIC
 exports.update = async (req, res) => {
   try {
     await Deduction.update(req.body, {
