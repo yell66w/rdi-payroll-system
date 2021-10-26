@@ -20,6 +20,7 @@ exports.findOne = async (req, res) => {
   return res.status(200).send(earning);
 };
 
+//TODO ADD EARNING TOTAL LOGIC
 exports.update = async (req, res) => {
   try {
     await Earning.update(req.body, {

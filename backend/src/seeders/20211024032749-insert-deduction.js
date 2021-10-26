@@ -3,6 +3,11 @@ const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    const employees = await queryInterface.sequelize.query(
+      `SELECT id FROM employees;`
+    );
+
+    const employeeRows = employees[0];
     return await queryInterface.bulkInsert("deductions", [
       {
         id: uuidv4(),
@@ -15,6 +20,7 @@ module.exports = {
         total: Math.floor(Math.random() * 300),
         created_at: new Date(),
         updated_at: new Date(),
+        employee_id: employeeRows[0].id,
       },
       {
         id: uuidv4(),
@@ -27,6 +33,7 @@ module.exports = {
         total: Math.floor(Math.random() * 300),
         created_at: new Date(),
         updated_at: new Date(),
+        employee_id: employeeRows[1].id,
       },
       {
         id: uuidv4(),
@@ -39,80 +46,8 @@ module.exports = {
         total: Math.floor(Math.random() * 300),
         created_at: new Date(),
         updated_at: new Date(),
+        employee_id: employeeRows[2].id,
       },
-      {
-        id: uuidv4(),
-        sss_contribution: Math.floor(Math.random() * 300),
-        pagibig_funds: Math.floor(Math.random() * 300),
-        pagibig_loans: Math.floor(Math.random() * 300),
-        philhealth_loans: Math.floor(Math.random() * 300),
-        cash_advance: Math.floor(Math.random() * 300),
-        others: Math.floor(Math.random() * 300),
-        total: Math.floor(Math.random() * 300),
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: uuidv4(),
-        sss_contribution: Math.floor(Math.random() * 300),
-        pagibig_funds: Math.floor(Math.random() * 300),
-        pagibig_loans: Math.floor(Math.random() * 300),
-        philhealth_loans: Math.floor(Math.random() * 300),
-        cash_advance: Math.floor(Math.random() * 300),
-        others: Math.floor(Math.random() * 300),
-        total: Math.floor(Math.random() * 300),
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: uuidv4(),
-        sss_contribution: Math.floor(Math.random() * 300),
-        pagibig_funds: Math.floor(Math.random() * 300),
-        pagibig_loans: Math.floor(Math.random() * 300),
-        philhealth_loans: Math.floor(Math.random() * 300),
-        cash_advance: Math.floor(Math.random() * 300),
-        others: Math.floor(Math.random() * 300),
-        total: Math.floor(Math.random() * 300),
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: uuidv4(),
-        sss_contribution: Math.floor(Math.random() * 300),
-        pagibig_funds: Math.floor(Math.random() * 300),
-        pagibig_loans: Math.floor(Math.random() * 300),
-        philhealth_loans: Math.floor(Math.random() * 300),
-        cash_advance: Math.floor(Math.random() * 300),
-        others: Math.floor(Math.random() * 300),
-        total: Math.floor(Math.random() * 300),
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: uuidv4(),
-        sss_contribution: Math.floor(Math.random() * 300),
-        pagibig_funds: Math.floor(Math.random() * 300),
-        pagibig_loans: Math.floor(Math.random() * 300),
-        philhealth_loans: Math.floor(Math.random() * 300),
-        cash_advance: Math.floor(Math.random() * 300),
-        others: Math.floor(Math.random() * 300),
-        total: Math.floor(Math.random() * 300),
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: uuidv4(),
-        sss_contribution: Math.floor(Math.random() * 300),
-        pagibig_funds: Math.floor(Math.random() * 300),
-        pagibig_loans: Math.floor(Math.random() * 300),
-        philhealth_loans: Math.floor(Math.random() * 300),
-        cash_advance: Math.floor(Math.random() * 300),
-        others: Math.floor(Math.random() * 300),
-        total: Math.floor(Math.random() * 300),
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      
     ]);
   },
   down: async (queryInterface, Sequelize) => {
