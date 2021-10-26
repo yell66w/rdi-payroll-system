@@ -12,6 +12,7 @@
         "extensions": [".js", ".jsx"]
       }
     ],
+    "react/jsx-key": "error",
     "react/prop-types": 0,
     "no-unused-vars": "warn",
     "no-var": "warn",
