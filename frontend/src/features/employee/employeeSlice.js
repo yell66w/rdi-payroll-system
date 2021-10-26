@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllEmployees } from 'utils/employee.routes';
 
 const initialState = {
@@ -49,5 +49,5 @@ const employeeSlice = createSlice({
   }
 });
 
-export const {} = employeeSlice.actions;
+// export const {} = employeeSlice.actions;
 export default employeeSlice.reducer;
