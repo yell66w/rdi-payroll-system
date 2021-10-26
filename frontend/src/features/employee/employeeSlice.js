@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { employees } from 'utils/employee.routes';
+import { getAllEmployees } from 'utils/employee.routes';
 
 const initialState = {
   data: [],
@@ -13,7 +13,7 @@ export const findAllEmployees = createAsyncThunk(
   '/employees/all',
   async (data, { rejectWithValue }) => {
     try {
-      const res = await employees();
+      const res = await getAllEmployees();
       if (res.status === 200) {
         return res.data;
       } else {
