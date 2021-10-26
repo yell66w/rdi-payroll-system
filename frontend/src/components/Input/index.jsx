@@ -16,7 +16,7 @@ const InputField = ({
   required
 }) => {
   const [placeholderName, setPlaceholderName] = useState(placeholder || '');
-  const { register } = useFormContext();
+  const { register } = useFormContext() || {};
 
   useEffect(() => {
     if (uname) {

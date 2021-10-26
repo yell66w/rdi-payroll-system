@@ -1,7 +1,11 @@
+import Menu from 'components/Menu';
+import Settings from 'components/Menu/settings';
 import Table from 'components/Table';
+import { settingsSelector } from 'features/settings/settingsSlice';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useTable } from 'react-table';
-import { TextLink, Container, Flex } from './styles';
+import { Wrapper, TextLink, Container, Flex, TableContainer } from './styles';
 const EmployeeFile = () => {
   /**
    * TODO -
@@ -9,6 +13,8 @@ const EmployeeFile = () => {
    * const {data} = useSelector(employeeSelector)
    *
    */
+
+  const { isOpen } = useSelector(settingsSelector);
 
   const data = React.useMemo(
     () => [
@@ -93,7 +99,7 @@ const EmployeeFile = () => {
       {
         Header: '',
         accessor: 'id',
-        Cell: (props) => {
+        Cell: () => {
           return <TextLink>Edit</TextLink>;
         }
       }
@@ -104,16 +110,21 @@ const EmployeeFile = () => {
   const tableInstance = useTable({ columns, data });
 
   return (
-    <>
+    <Wrapper>
       <Container>
-        <Flex flex={3}>
-          <Table tableInstance={tableInstance} />
+        {/* NOTE: Gayahin nalang tong flex sa ibang components */}
+        <Flex flex={isOpen ? 2 : 8}>
+          <TableContainer>
+            {/* NOTE: To use Settings Component set parent div to position relative*/}
+            <Settings />
+            <Table tableInstance={tableInstance} />
+          </TableContainer>
         </Flex>
-        <Flex bg={'violet'} flex={1}>
-          <div>Filter Component</div>
+        <Flex bg="gray" flex={1}>
+          {isOpen && <Menu />}
         </Flex>
       </Container>
-    </>
+    </Wrapper>
   );
 };
 

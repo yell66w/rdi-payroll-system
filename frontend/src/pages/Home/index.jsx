@@ -4,7 +4,7 @@ import { MainCan, MainRight, WrapperRight } from './styles';
 import Link from 'components/Link';
 import { useLocation } from 'react-router';
 
-const MainWrapper = ({ children, props }) => {
+const MainWrapper = ({ children }) => {
   const location = useLocation();
 
   const routesMap = new Map();
