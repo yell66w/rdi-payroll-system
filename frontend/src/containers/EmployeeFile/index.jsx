@@ -7,7 +7,7 @@ import { useTable } from 'react-table';
 import { TextLink, Container, Flex } from './styles';
 const EmployeeFile = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.employees);
+  const { data, isFetching } = useSelector((state) => state.employees);
 
   useEffect(() => {
     dispatch(findAllEmployees());
@@ -56,11 +56,18 @@ const EmployeeFile = () => {
 
   const tableInstance = useTable({ columns, data });
 
+  if (isFetching) {
+    /**
+     * TODO - Loading Component
+     */
+    return <div>Loading</div>;
+  }
   return (
     <>
       <Container>
         <Flex flex={3}>
-          <Table tableInstance={tableInstance} />
+          {/* TODO - Component kung alang laman data */}
+          {data.length > 0 ? <Table tableInstance={tableInstance} /> : 'Wow, such empty'}
         </Flex>
         <Flex bg={'violet'} flex={1}>
           <div>Filter Component</div>
