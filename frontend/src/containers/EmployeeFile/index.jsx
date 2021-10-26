@@ -2,7 +2,7 @@ import Menu from 'components/Menu';
 import Settings from 'components/Menu/settings';
 import Table from 'components/Table';
 import { settingsSelector } from 'features/settings/settingsSlice';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTable } from 'react-table';
 import { Wrapper, TextLink, Container, Flex, TableContainer } from './styles';
