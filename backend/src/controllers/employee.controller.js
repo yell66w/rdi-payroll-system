@@ -41,7 +41,7 @@ exports.exportToCSV = async (req, res) => {
   csv
     .write(employees, { headers: true })
     .on("finish", function () {
-      console.log("File exported to CSV.");
+      console.log("File exported to CSV!");
     })
     .pipe(ws);
 
