@@ -41,9 +41,17 @@ exports.exportToCSV = async (req, res) => {
   csv
     .write(employees, { headers: true })
     .on("finish", function () {
-      return res.status(200).send("Data exported to CSV successfully!");
+      console.log("File exported to CSV.");
     })
     .pipe(ws);
+
+  const file = path.resolve(
+    __dirname,
+    "../../storage/employees/csv",
+    "employees.csv"
+  );
+
+  res.download(file);
 };
 
 exports.findAll = async (req, res) => {
