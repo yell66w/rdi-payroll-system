@@ -73,7 +73,7 @@ const EmployeeFile = () => {
         <Flex justify="space-between" direction="column" bg="pink" flex={1}>
           <div>Filter Component</div>
           {/* TODO - Component Sa Export All */}
-          <Button onClick={dispatch(exportAndDownloadEmployeesToCSV())} color="darkViolet">
+          <Button onClick={() => dispatch(exportAndDownloadEmployeesToCSV())} color="darkViolet">
             Export
           </Button>
         </Flex>
