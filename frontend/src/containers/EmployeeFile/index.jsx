@@ -5,9 +5,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTable } from 'react-table';
-import API from 'utils/API';
 import { TextLink, Container, Flex } from './styles';
-import download from 'downloadjs';
 const EmployeeFile = () => {
   const dispatch = useDispatch();
   const { data, isFetching } = useSelector((state) => state.employees);
