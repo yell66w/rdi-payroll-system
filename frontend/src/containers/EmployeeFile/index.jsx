@@ -57,6 +57,10 @@ const EmployeeFile = () => {
 
   const tableInstance = useTable({ columns, data });
 
+  const onExportClick = () => {
+    console.log('nice');
+  };
+
   if (isFetching) {
     /**
      * TODO - Loading Component
@@ -73,7 +77,9 @@ const EmployeeFile = () => {
         <Flex justify="space-between" direction="column" bg="pink" flex={1}>
           <div>Filter Component</div>
           {/* TODO - Component Sa Export All */}
-          <Button color="darkViolet">Export</Button>
+          <Button onClick={onExportClick} color="darkViolet">
+            Export
+          </Button>
         </Flex>
       </Container>
     </>
