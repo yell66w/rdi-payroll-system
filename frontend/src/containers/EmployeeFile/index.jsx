@@ -1,11 +1,13 @@
 import Button from 'components/Button';
 import Table from 'components/Table';
-import { findAllEmployees } from 'features/employee/employeeSlice';
+import { exportEmployeesToCSV, findAllEmployees } from 'features/employee/employeeSlice';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTable } from 'react-table';
+import API from 'utils/API';
 import { TextLink, Container, Flex } from './styles';
+import download from 'downloadjs';
 const EmployeeFile = () => {
   const dispatch = useDispatch();
   const { data, isFetching } = useSelector((state) => state.employees);
@@ -57,8 +59,10 @@ const EmployeeFile = () => {
 
   const tableInstance = useTable({ columns, data });
 
-  const onExportClick = () => {
-    console.log('nice');
+  const onExportClick = async () => {
+    const res = await API.get(`employees/export-to-csv`);
+    const csvFile = new File([res.data], 'employees.csv');
+    download(csvFile, 'employees.csv');
   };
 
   if (isFetching) {
