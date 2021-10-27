@@ -28,7 +28,7 @@ exports.exportToCSV = async (req, res) => {
     FROM employees e 
     LEFT JOIN companies c ON e.company_id = c.id 
     LEFT JOIN positions p ON e.position_id = p.id
-    LEFT JOIN departments d ON e.position_id = d.id
+    LEFT JOIN departments d ON e.department_id = d.id
   `;
   const employees = await sequelize.query(query, {
     type: QueryTypes.SELECT,
