@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import API from 'utils/API';
 import { getAllEmployees } from 'utils/employee.routes';
+import download from 'downloadjs';
 
 const initialState = {
   data: [],
@@ -29,13 +30,14 @@ export const findAllEmployees = createAsyncThunk(
   }
 );
 
-export const exportEmployeesToCSV = createAsyncThunk(
+export const exportAndDownloadEmployeesToCSV = createAsyncThunk(
   '/employees/export-to-csv',
   async (_, { rejectWithValue }) => {
     try {
       const res = await API.get(`employees/export-to-csv`);
       if (res.status === 200) {
-        return res.data;
+        const csvFile = new File([res.data], 'employees.csv');
+        download(csvFile, 'employees.csv');
       } else {
         throw new Error(res.data);
       }

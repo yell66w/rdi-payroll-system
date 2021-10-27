@@ -1,6 +1,6 @@
 import Button from 'components/Button';
 import Table from 'components/Table';
-import { exportEmployeesToCSV, findAllEmployees } from 'features/employee/employeeSlice';
+import { exportAndDownloadEmployeesToCSV, findAllEmployees } from 'features/employee/employeeSlice';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,12 +59,6 @@ const EmployeeFile = () => {
 
   const tableInstance = useTable({ columns, data });
 
-  const onExportClick = async () => {
-    const res = await API.get(`employees/export-to-csv`);
-    const csvFile = new File([res.data], 'employees.csv');
-    download(csvFile, 'employees.csv');
-  };
-
   if (isFetching) {
     /**
      * TODO - Loading Component
@@ -81,7 +75,7 @@ const EmployeeFile = () => {
         <Flex justify="space-between" direction="column" bg="pink" flex={1}>
           <div>Filter Component</div>
           {/* TODO - Component Sa Export All */}
-          <Button onClick={onExportClick} color="darkViolet">
+          <Button onClick={dispatch(exportAndDownloadEmployeesToCSV())} color="darkViolet">
             Export
           </Button>
         </Flex>
