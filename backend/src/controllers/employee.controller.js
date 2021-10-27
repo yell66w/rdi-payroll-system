@@ -1,6 +1,26 @@
 const { Op } = require("../models");
 const db = require("../models");
 const Employee = db.employee;
+const fs = require("fs");
+const path = require("path");
+const csv = require("fast-csv");
+const e = require("express");
+
+exports.exportToCSV = async (req, res) => {
+  const employees = await Employee.findAll();
+  const jsonData = JSON.parse(JSON.stringify(employees));
+  const ws = fs.createWriteStream(
+    path.resolve(__dirname, "../../assets", "employees.csv")
+  );
+  csv
+    .write(jsonData, { headers: true })
+    .on("finish", function () {
+      console.log("Write to CSV successfully!");
+      console.log(typeof jsonData);
+    })
+    .pipe(ws);
+  return res.status(200).send("Data exported successfully.");
+};
 
 exports.findAll = async (req, res) => {
   const company = req.query.company;
@@ -31,12 +51,12 @@ exports.findAll = async (req, res) => {
     "earning",
     "files",
   ];
-  const users = await Employee.findAll(options);
-  return res.status(200).send(users);
+  const employees = await Employee.findAll(options);
+  return res.status(200).send(employees);
 };
 exports.findOne = async (req, res) => {
-  const user = await Employee.findByPk(req.params.id);
-  return res.status(200).send(user);
+  const employee = await Employee.findByPk(req.params.id);
+  return res.status(200).send(employee);
 };
 
 exports.create = async (req, res) => {
