@@ -1,6 +1,50 @@
-const { Op } = require("../models");
+const { Op, sequelize } = require("../models");
 const db = require("../models");
 const Employee = db.employee;
+const fs = require("fs");
+const path = require("path");
+const csv = require("fast-csv");
+const e = require("express");
+const { QueryTypes } = require("sequelize");
+
+exports.exportToCSV = async (req, res) => {
+  //TODO - DROP NALANG KUNG ISESELECT * TAS EXCLUDE DROP COLUMN TEMP TABLE
+  const query = `
+    SELECT 
+    last_name,
+    middle_name,
+    first_name, 
+    c.name AS company,
+    p.name AS position, 
+    d.name AS department, 
+    birth_date, 
+    address, 
+    email, 
+    contact_no, 
+    employee_type, 
+    date_hired, 
+    time_shift_from, 
+    time_shift_to
+    FROM employees e 
+    LEFT JOIN companies c ON e.company_id = c.id 
+    LEFT JOIN positions p ON e.position_id = p.id
+    LEFT JOIN departments d ON e.department_id = d.id
+  `;
+  const employees = await sequelize.query(query, {
+    type: QueryTypes.SELECT,
+  });
+
+  //TODO - PROD - CLOUDINARY
+  const ws = fs.createWriteStream(
+    path.resolve(__dirname, "../../storage/employees/csv", "employees.csv")
+  );
+  csv
+    .write(employees, { headers: true })
+    .on("finish", function () {
+      return res.status(200).send("Data exported to CSV successfully!");
+    })
+    .pipe(ws);
+};
 
 exports.findAll = async (req, res) => {
   const company = req.query.company;
@@ -31,12 +75,12 @@ exports.findAll = async (req, res) => {
     "earning",
     "files",
   ];
-  const users = await Employee.findAll(options);
-  return res.status(200).send(users);
+  const employees = await Employee.findAll(options);
+  return res.status(200).send(employees);
 };
 exports.findOne = async (req, res) => {
-  const user = await Employee.findByPk(req.params.id);
-  return res.status(200).send(user);
+  const employee = await Employee.findByPk(req.params.id);
+  return res.status(200).send(employee);
 };
 
 exports.create = async (req, res) => {
