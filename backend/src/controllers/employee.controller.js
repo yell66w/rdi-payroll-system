@@ -1,25 +1,49 @@
-const { Op } = require("../models");
+const { Op, sequelize } = require("../models");
 const db = require("../models");
 const Employee = db.employee;
 const fs = require("fs");
 const path = require("path");
 const csv = require("fast-csv");
 const e = require("express");
+const { QueryTypes } = require("sequelize");
 
 exports.exportToCSV = async (req, res) => {
-  const employees = await Employee.findAll();
-  const jsonData = JSON.parse(JSON.stringify(employees));
+  //TODO - DROP NALANG KUNG ISESELECT * TAS EXCLUDE DROP COLUMN TEMP TABLE
+  const query = `
+    SELECT 
+    last_name,
+    middle_name,
+    first_name, 
+    c.name AS company,
+    p.name AS position, 
+    d.name AS department, 
+    birth_date, 
+    address, 
+    email, 
+    contact_no, 
+    employee_type, 
+    date_hired, 
+    time_shift_from, 
+    time_shift_to
+    FROM employees e 
+    LEFT JOIN companies c ON e.company_id = c.id 
+    LEFT JOIN positions p ON e.position_id = p.id
+    LEFT JOIN departments d ON e.position_id = d.id
+  `;
+  const employees = await sequelize.query(query, {
+    type: QueryTypes.SELECT,
+  });
+
+  //TODO - PROD - CLOUDINARY
   const ws = fs.createWriteStream(
-    path.resolve(__dirname, "../../assets", "employees.csv")
+    path.resolve(__dirname, "../../storage/employees/csv", "employees.csv")
   );
   csv
-    .write(jsonData, { headers: true })
+    .write(employees, { headers: true })
     .on("finish", function () {
-      console.log("Write to CSV successfully!");
-      console.log(typeof jsonData);
+      return res.status(200).send("Data exported to CSV successfully!");
     })
     .pipe(ws);
-  return res.status(200).send("Data exported successfully.");
 };
 
 exports.findAll = async (req, res) => {
