@@ -14,6 +14,9 @@ export const Container = styled.div`
 
 export const Flex = styled.div`
   display: flex;
+  align-items: ${(props) => (props.align ? props.align : null)};
+  justify-content: ${(props) => (props.justify ? props.justify : null)};
+  flex-direction: ${(props) => (props.direction ? props.direction : 'row')};
   flex-grow: ${(props) => (props.flex ? props.flex : 1)};
   background-color: ${(props) => (props.bg ? props.bg : null)};
 `;

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import API from 'utils/API';
 import { getAllEmployees } from 'utils/employee.routes';
 
 const initialState = {
@@ -11,9 +12,28 @@ const initialState = {
 
 export const findAllEmployees = createAsyncThunk(
   '/employees/all',
-  async (data, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await getAllEmployees();
+      if (res.status === 200) {
+        return res.data;
+      } else {
+        throw new Error(res.data);
+      }
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const exportEmployeesToCSV = createAsyncThunk(
+  '/employees/export-to-csv',
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await API.get(`employees/export-to-csv`);
       if (res.status === 200) {
         return res.data;
       } else {
