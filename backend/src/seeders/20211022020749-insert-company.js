@@ -6,25 +6,25 @@ module.exports = {
     return await queryInterface.bulkInsert("companies", [
       {
         id: uuidv4(),
-        name: "company 1",
+        name: "Company 1",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         id: uuidv4(),
-        name: "company 2",
+        name: "Company 2",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         id: uuidv4(),
-        name: "company 3",
+        name: "Company 3",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         id: uuidv4(),
-        name: "company 4",
+        name: "Company 4",
         created_at: new Date(),
         updated_at: new Date(),
       },
