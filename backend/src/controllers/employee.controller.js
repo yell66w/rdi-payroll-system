@@ -42,16 +42,16 @@ exports.exportToCSV = async (req, res) => {
     .write(employees, { headers: true })
     .on("finish", function () {
       console.log("File exported to CSV!");
+      //TODO  - BUGGY CODE -
+      const file = path.resolve(
+        __dirname,
+        "../../storage/employees/csv",
+        "employees.csv"
+      );
+
+      res.download(file);
     })
     .pipe(ws);
-
-  const file = path.resolve(
-    __dirname,
-    "../../storage/employees/csv",
-    "employees.csv"
-  );
-
-  res.download(file);
 };
 
 exports.findAll = async (req, res) => {
