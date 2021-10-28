@@ -1,5 +1,6 @@
+import Button from 'components/Button';
 import Table from 'components/Table';
-import { findAllEmployees } from 'features/employee/employeeSlice';
+import { exportAndDownloadEmployeesToCSV, findAllEmployees } from 'features/employee/employeeSlice';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,14 +40,14 @@ const EmployeeFile = () => {
       },
       {
         Header: 'TIME DURATION',
-        Cell: (props) => {
+        Cell: () => {
           return <div>??? years</div>;
         }
       },
       {
         Header: '',
         accessor: 'id',
-        Cell: (props) => {
+        Cell: () => {
           return <TextLink>Edit</TextLink>;
         }
       }
@@ -69,8 +70,17 @@ const EmployeeFile = () => {
           {/* TODO - Component kung alang laman data */}
           {data.length > 0 ? <Table tableInstance={tableInstance} /> : 'Wow, such empty'}
         </Flex>
-        <Flex bg={'violet'} flex={1}>
+        <Flex justify="space-between" direction="column" bg="pink" flex={1}>
           <div>Filter Component</div>
+          {/* TODO - Component Sa Export All */}
+          <Button
+            onClick={() => {
+              dispatch(exportAndDownloadEmployeesToCSV());
+            }}
+            color="darkViolet"
+          >
+            Export
+          </Button>
         </Flex>
       </Container>
     </>

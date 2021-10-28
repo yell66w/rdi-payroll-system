@@ -9,5 +9,8 @@
     "react/jsx-key": "warn",
     "react/prop-types": "warn",
     "no-unused-vars": "warn"
+  },
+  "env": {
+    "browser":true
   }
 }
