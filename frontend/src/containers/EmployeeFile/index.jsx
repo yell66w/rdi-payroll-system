@@ -1,6 +1,10 @@
 import Button from 'components/Button';
 import Table from 'components/Table';
-import { exportAndDownloadEmployeesToCSV, findAllEmployees } from 'features/employee/employeeSlice';
+import {
+  downloadEmployeesCSV,
+  exportEmployeesToCSV,
+  findAllEmployees
+} from 'features/employee/employeeSlice';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -75,7 +79,8 @@ const EmployeeFile = () => {
           {/* TODO - Component Sa Export All */}
           <Button
             onClick={() => {
-              dispatch(exportAndDownloadEmployeesToCSV());
+              dispatch(exportEmployeesToCSV());
+              dispatch(downloadEmployeesCSV());
             }}
             color="darkViolet"
           >
