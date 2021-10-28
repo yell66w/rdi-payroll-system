@@ -7,12 +7,17 @@ const csv = require("fast-csv");
 const { QueryTypes } = require("sequelize");
 
 exports.downloadCSV = async (req, res) => {
-  const file = path.resolve(
-    __dirname,
-    "../../storage/employees/csv",
-    "employees.csv"
-  );
-  res.download(file);
+  try {
+    const file = path.resolve(
+      __dirname,
+      "../../storage/employees/csv",
+      "employees.csv"
+    );
+    res.download(file);
+  } catch (error) {
+    res.status(400).send("File cannot be downloaded.");
+  }
+
   //TODO - UNLINK AFTER DOWNLOADING
 };
 exports.exportToCSV = async (req, res) => {
@@ -46,10 +51,20 @@ exports.exportToCSV = async (req, res) => {
   const ws = fs.createWriteStream(
     path.resolve(__dirname, "../../storage/employees/csv", "employees.csv")
   );
-  csv
+  var parser = csv
     .write(employees, { headers: true })
-    .on("finish", function () {
+    .on("data", (data) => {
+      parser.pause();
+      module.exports.saveData(data, function (err) {
+        // TODO: handle error
+        parser.resume();
+      });
+    })
+    .on("end", () => {
       res.status(200).send("File exported to CSV!");
+    })
+    .on("error", () => {
+      res.status(400).send("Something went wront!");
     })
     .pipe(ws);
 };
