@@ -1,9 +1,13 @@
+import Button from 'components/Button/index.jsx';
 import Input from 'components/Input';
+import { exportAndDownloadEmployeesToCSV } from 'features/employee/employeeSlice.js';
 import { useForm, FormProvider } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { Wrapper, Container, Heading, Tab } from './styles.js';
 
 const Menu = () => {
   const methods = useForm();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -18,6 +22,15 @@ const Menu = () => {
             <form>
               <Input name="company" />
             </form>
+            <Button
+              onClick={() => {
+                dispatch(exportAndDownloadEmployeesToCSV());
+              }}
+              color="darkViolet"
+            >
+              Export
+            </Button>
+            {/* TODO - Component Sa Export All */}
           </Container>
         </FormProvider>
       </Wrapper>

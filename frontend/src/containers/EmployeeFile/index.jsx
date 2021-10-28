@@ -81,19 +81,8 @@ const EmployeeFile = () => {
             {data.length > 0 ? <Table tableInstance={tableInstance} /> : 'Wow, such empty'}
           </TableContainer>
         </Flex>
-        <Flex justify="space-between" direction="column" bg="gray" flex={1}>
+        <Flex bg="gray" flex={1}>
           {isOpen && <Menu />}
-          {/* TODO - Component Sa Export All */}
-
-          <Button
-            onClick={() => {
-              dispatch(exportAndDownloadEmployeesToCSV());
-            }}
-            color="darkViolet"
-          >
-            Export
-          </Button>
-          <div>Filter Component</div>
         </Flex>
       </Container>
     </Wrapper>
