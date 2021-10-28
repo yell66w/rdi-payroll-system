@@ -30,7 +30,7 @@
     "react/static-property-placement": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-key": "warn",
-    "react/prop-types": "warn",
+    "react/prop-types": "off",
     "no-unused-vars": "warn"
   },
   "env": {
