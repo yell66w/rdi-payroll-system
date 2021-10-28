@@ -4,9 +4,17 @@ const Employee = db.employee;
 const fs = require("fs");
 const path = require("path");
 const csv = require("fast-csv");
-const e = require("express");
 const { QueryTypes } = require("sequelize");
 
+exports.downloadCSV = async (req, res) => {
+  const file = path.resolve(
+    __dirname,
+    "../../storage/employees/csv",
+    "employees.csv"
+  );
+  res.download(file);
+  //TODO - UNLINK AFTER DOWNLOADING
+};
 exports.exportToCSV = async (req, res) => {
   //TODO - DROP NALANG KUNG ISESELECT * TAS EXCLUDE DROP COLUMN TEMP TABLE
   const query = `
@@ -41,18 +49,9 @@ exports.exportToCSV = async (req, res) => {
   csv
     .write(employees, { headers: true })
     .on("finish", function () {
-      console.log("File exported to CSV!");
+      res.status(200).send("File exported to CSV!");
     })
     .pipe(ws);
-
-  //TODO - BUGGY CODE SYNC
-
-  const file = path.resolve(
-    __dirname,
-    "../../storage/employees/csv",
-    "employees.csv"
-  );
-  res.download(file);
 };
 
 exports.findAll = async (req, res) => {
