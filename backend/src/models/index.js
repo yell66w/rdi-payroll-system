@@ -93,38 +93,35 @@ db.department.hasMany(db.position, {
   foreignKey: "department_id",
 });
 
-
+//TODO - prone to error (add (after create) listener on employee model)
 //OneAndOnlyONE (One Employee  ---> One File)
-db.file.belongsTo(db.employee,{
-  foreignKey:{name:"employee_id", allowNull:false},
-  foreignKeyConstraint:true,
+db.file.belongsTo(db.employee, {
+  foreignKey: { name: "employee_id", allowNull: false },
+  foreignKeyConstraint: true,
 });
-db.employee.hasOne(db.file,{
-  as:"files",
-  foreignKey: "employee_id"
+db.employee.hasOne(db.file, {
+  as: "files",
+  foreignKey: "employee_id",
 });
-
-
 
 //OneAndOnlyONE (One Employee  ---> one deduction)
-db.deduction.belongsTo(db.employee,{
-  foreignKey:{name:"employee_id", allowNull:false},
-  foreignKeyConstraint:true,
+db.deduction.belongsTo(db.employee, {
+  foreignKey: { name: "employee_id", allowNull: false },
+  foreignKeyConstraint: true,
 });
-db.employee.hasOne(db.deduction,{
-  as:"deduction",
-  foreignKey: "employee_id"
+db.employee.hasOne(db.deduction, {
+  as: "deduction",
+  foreignKey: "employee_id",
 });
-
 
 //OneAndOnlyONE (One Employee  ---> one earnings)
-db.earning.belongsTo(db.employee,{
-  foreignKey:{name:"employee_id", allowNull:false},
-  foreignKeyConstraint:true,
+db.earning.belongsTo(db.employee, {
+  foreignKey: { name: "employee_id", allowNull: false },
+  foreignKeyConstraint: true,
 });
-db.employee.hasOne(db.earning,{
-  as:"earning",
-  foreignKey: "employee_id"
+db.employee.hasOne(db.earning, {
+  as: "earning",
+  foreignKey: "employee_id",
 });
 
 module.exports = db;

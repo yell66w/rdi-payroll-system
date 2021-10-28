@@ -6,15 +6,6 @@
   "rules": {
     "react/jsx-uses-react": 1,
     "react/react-in-jsx-scope": 0,
-    "react/jsx-filename-extension": [
-      0,
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ],
-    "react/jsx-key": "error",
-    "react/prop-types": 0,
-    "no-unused-vars": "warn",
     "no-var": "warn",
     "no-undef-init": "off",
     "no-undef": "error",
@@ -36,6 +27,13 @@
     "react/jsx-props-no-spreading": 0,
     "react/jsx-curly-brace-presence": 0,
     "react/sort-comp": 0,
-    "react/static-property-placement": 0
+    "react/static-property-placement": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-key": "warn",
+    "react/prop-types": "warn",
+    "no-unused-vars": "warn"
+  },
+  "env": {
+    "browser": true
   }
 }
