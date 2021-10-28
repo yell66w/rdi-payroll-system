@@ -4,22 +4,10 @@ const Employee = db.employee;
 const fs = require("fs");
 const path = require("path");
 const csv = require("fast-csv");
+const { format } = require("@fast-csv/format");
 const { QueryTypes } = require("sequelize");
+const { resolve } = require("path");
 
-exports.downloadCSV = async (req, res) => {
-  try {
-    const file = path.resolve(
-      __dirname,
-      "../../storage/employees/csv",
-      "employees.csv"
-    );
-    res.download(file);
-  } catch (error) {
-    res.status(400).send("File cannot be downloaded.");
-  }
-
-  //TODO - UNLINK AFTER DOWNLOADING
-};
 exports.exportToCSV = async (req, res) => {
   //TODO - DROP NALANG KUNG ISESELECT * TAS EXCLUDE DROP COLUMN TEMP TABLE
   const query = `
@@ -51,22 +39,17 @@ exports.exportToCSV = async (req, res) => {
   const ws = fs.createWriteStream(
     path.resolve(__dirname, "../../storage/employees/csv", "employees.csv")
   );
-  var parser = csv
-    .write(employees, { headers: true })
-    .on("data", (data) => {
-      parser.pause();
-      module.exports.saveData(data, function (err) {
-        // TODO: handle error
-        parser.resume();
-      });
-    })
-    .on("end", () => {
-      res.status(200).send("File exported to CSV!");
-    })
-    .on("error", () => {
-      res.status(400).send("Something went wront!");
-    })
-    .pipe(ws);
+
+  var filepath = ws.path;
+
+  csv
+    .writeToPath(path.resolve(filepath), employees, { headers: true })
+    .on("finish", () => {
+      console.log("Done writing");
+      const file = resolve(filepath);
+      //TODO UNLINK AFTER DOWNLOADING
+      res.download(file);
+    });
 };
 
 exports.findAll = async (req, res) => {

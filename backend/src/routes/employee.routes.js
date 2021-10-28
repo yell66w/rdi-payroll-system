@@ -12,7 +12,6 @@ module.exports = function (app) {
 
   app.get("/employees", controller.findAll);
   app.get("/employees/export-to-csv", controller.exportToCSV);
-  app.get("/employees/download-csv", controller.downloadCSV);
   app.get("/employees/:id", controller.findOne);
   app.post("/employees", controller.create);
   app.patch("/employees/:id", controller.update);
