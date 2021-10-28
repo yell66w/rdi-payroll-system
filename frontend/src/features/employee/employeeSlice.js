@@ -30,32 +30,15 @@ export const findAllEmployees = createAsyncThunk(
   }
 );
 
-export const downloadEmployeesCSV = createAsyncThunk(
-  '/employees/download-csv',
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await API.get(`employees/download-csv`);
-      if (res.status === 200) {
-        const csvFile = new File([res.data], 'employees.csv');
-        download(csvFile, 'employees.csv');
-      } else {
-        throw new Error(res.data);
-      }
-    } catch (error) {
-      if (!error.response) {
-        throw error;
-      }
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
 export const exportEmployeesToCSV = createAsyncThunk(
   '/employees/export-to-csv',
   async (_, { rejectWithValue }) => {
     try {
       const res = await API.get(`employees/export-to-csv`);
-      if (res.status !== 200) {
+      if (res.status === 200) {
+        const csvFile = new File([res.data], 'employees.csv');
+        download(csvFile, 'employees.csv');
+      } else {
         throw new Error(res.data);
       }
     } catch (error) {

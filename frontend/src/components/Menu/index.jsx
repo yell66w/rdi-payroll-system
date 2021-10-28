@@ -1,6 +1,6 @@
 import Button from 'components/Button/index.jsx';
 import Input from 'components/Input';
-import { downloadEmployeesCSV, exportEmployeesToCSV } from 'features/employee/employeeSlice.js';
+import { exportEmployeesToCSV } from 'features/employee/employeeSlice.js';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Wrapper, Container, Heading, Tab } from './styles.js';
@@ -25,7 +25,6 @@ const Menu = () => {
             <Button
               onClick={() => {
                 dispatch(exportEmployeesToCSV());
-                dispatch(downloadEmployeesCSV());
               }}
               color="darkViolet"
             >
