@@ -73,6 +73,7 @@ const Payroll = () => {
     <Wrapper>
       <Container>
         {/* NOTE: Gayahin nalang tong flex sa ibang components */}
+        {/* TODO - Add nalang ng global styles na pwede gamitin kahit san like Flex */}
         <Flex flex={isOpen ? 2 : 8}>
           <TableContainer>
             {/* TODO - Component kung alang laman data */}
