@@ -4,7 +4,6 @@ const Employee = db.employee;
 const fs = require("fs");
 const path = require("path");
 const csv = require("fast-csv");
-const { format } = require("@fast-csv/format");
 const { QueryTypes } = require("sequelize");
 const { resolve } = require("path");
 
