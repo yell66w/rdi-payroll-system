@@ -11,5 +11,6 @@ export const MainRight = styled.div`
 `;
 
 export const WrapperRight = styled.div`
-  padding: 1.5em 1em;
+  height: 100%;
+  width: 100%;
 `;

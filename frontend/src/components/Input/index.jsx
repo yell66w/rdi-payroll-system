@@ -9,13 +9,13 @@ import { useFormContext } from 'react-hook-form';
 const InputField = ({
   uname = false,
   pwd = false,
-  placeholder,
+  placeholder = '',
   label,
   disabled = false,
   name,
   required
 }) => {
-  const [placeholderName, setPlaceholderName] = useState(placeholder || '');
+  const [placeholderName, setPlaceholderName] = useState(placeholder);
   const { register } = useFormContext();
 
   useEffect(() => {
