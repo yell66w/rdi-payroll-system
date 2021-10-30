@@ -7,12 +7,12 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton
-} from '@chakra-ui/react';
+} from '@chakra-ui/modal';
 import Button from 'components/Button';
 
 const AddEmployee = ({ isOpen, onClose }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal bg="red" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Modal Title</ModalHeader>

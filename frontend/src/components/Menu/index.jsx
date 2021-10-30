@@ -5,7 +5,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Wrapper, Container, Heading, Tab } from './styles.js';
 
-const Menu = () => {
+const Menu = ({ children }) => {
   const methods = useForm();
   const dispatch = useDispatch();
 
@@ -30,6 +30,7 @@ const Menu = () => {
             >
               Export
             </Button>
+            {children}
             {/* TODO - Component Sa Export All */}
           </Container>
         </FormProvider>
