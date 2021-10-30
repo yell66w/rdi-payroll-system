@@ -50,6 +50,7 @@ const InputField = ({
           placeholder={`${placeholderName}`}
           type={type}
           disabled={disabled}
+          menu={menu}
           {...register(name, { required })}
         />
       </Container>

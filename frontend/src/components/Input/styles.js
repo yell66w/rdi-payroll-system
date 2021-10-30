@@ -40,7 +40,7 @@ export const Container = styled.div`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 0 1em;
+  padding: ${(props) => (props.menu ? '0 1em' : '0 1em 0 0')};
   height: 2rem;
   border: none;
   outline: none;

@@ -5,6 +5,8 @@ import Input from 'components/Input';
 import Radio from 'components/Radio/index.jsx';
 import Toggle from 'components/Toggle/index.jsx';
 import { useForm, FormProvider } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { exportEmployeesToCSV } from 'features/employee/employeeSlice';
 import {
   Wrapper,
   Heading,
@@ -19,6 +21,7 @@ import {
 
 const Menu = () => {
   const methods = useForm();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -62,6 +65,14 @@ const Menu = () => {
               </div>
             </FormContainer>
             <Button type="reset">Reset Selection</Button>
+            <Button
+              onClick={() => {
+                dispatch(exportEmployeesToCSV());
+              }}
+              color="darkViolet"
+            >
+              Export
+            </Button>
           </Form>
         </FormProvider>
       </Wrapper>
