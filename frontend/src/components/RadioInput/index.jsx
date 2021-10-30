@@ -2,7 +2,10 @@ import { useFormContext } from 'react-hook-form';
 import { Label, Input, Container } from './styles.js';
 
 const RadioInput = ({ children, label, name, ...rest }) => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors }
+  } = useFormContext();
 
   return (
     <Container>
@@ -13,6 +16,7 @@ const RadioInput = ({ children, label, name, ...rest }) => {
         </span>
         <span className="radio__label">{children ? children : label}</span>
       </Label>
+      <p>{errors[name]?.message}</p>
     </Container>
   );
 };

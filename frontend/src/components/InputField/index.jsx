@@ -9,7 +9,10 @@ const InputField = ({
   name,
   ...rest
 }) => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors }
+  } = useFormContext();
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
@@ -22,6 +25,8 @@ const InputField = ({
           {...rest}
         />
       </Container>
+      {/* TODO ERROR STYLE */}
+      <p>{errors[name]?.message}</p>
     </Wrapper>
   );
 };

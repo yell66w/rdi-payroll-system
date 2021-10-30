@@ -42,7 +42,7 @@ const employeeSchema = yup
 
 const AddEmployee = ({ isOpen, onClose }) => {
   const methods = useForm({ resolver: yupResolver(employeeSchema) });
-  const { handleSubmit, register } = methods;
+  const { handleSubmit } = methods;
   const onSubmit = (data) => console.log(data);
   return (
     <ReactModal
@@ -70,8 +70,11 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 placeholder="Employee Number"
               />
               <InputField name="last_name" label="Last Name" placeholder="Last Name" />
+
               <InputField name="first_name" label="First Name" placeholder="First Name" />
+
               <InputField name="middle_name" label="Middle Name" placeholder="Middle Name" />
+
               <RadioInput value="MALE" name="sex" label="MALE" placeholder="MALE" />
               <RadioInput value="FEMALE" name="sex" label="FEMALE" placeholder="FEMALE" />
               <InputField
