@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import InputField from 'components/InputField';
 import { FormProvider, useForm } from 'react-hook-form';
+import RadioInput from 'components/RadioInput';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
@@ -66,14 +67,8 @@ const AddEmployee = ({ isOpen, onClose }) => {
               <InputField name="last_name" label="Last Name" placeholder="Last Name" />
               <InputField name="first_name" label="First Name" placeholder="First Name" />
               <InputField name="middle_name" label="Middle Name" placeholder="Middle Name" />
-              <InputField type="radio" value="MALE" name="sex" label="MALE" placeholder="MALE" />
-              <InputField
-                type="radio"
-                value="FEMALE"
-                name="sex"
-                label="FEMALE"
-                placeholder="FEMALE"
-              />
+              <RadioInput value="MALE" name="sex" label="MALE" placeholder="MALE" />
+              <RadioInput value="FEMALE" name="sex" label="FEMALE" placeholder="FEMALE" />
 
               <InputField
                 type="date"
