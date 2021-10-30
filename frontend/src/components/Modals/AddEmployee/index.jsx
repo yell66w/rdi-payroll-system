@@ -53,12 +53,15 @@ const AddEmployee = ({ isOpen, onClose }) => {
       isOpen={isOpen}
       contentLabel="Add Employee Modal"
     >
+      {/* HEADER */}
       <header>
         <h1>Personal Information</h1>
         <button onClick={onClose}>Close Modal</button>
       </header>
+      {/* FORM BODY */}
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* LEFT DIV */}
           <div>
             <section>
               <InputField
@@ -152,6 +155,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
               <FileInput name="sss" label="SSS" placeholder="SSS" />
             </section>
           </div>
+          {/* RIGHT DIV */}
           <div>
             <InputField type="file" name="photo" label="Add Photo" placeholder="Add Photo" />
             <button>Import</button>
