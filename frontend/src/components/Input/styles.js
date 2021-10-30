@@ -17,9 +17,9 @@ export const Container = styled.div`
   align-items: center;
   min-width: 15rem;
   width: 100%;
-  height: 3rem;
-  box-shadow: 0pt 0pt 0pt 1.5pt ${(props) => (props.disabled ? colors.default : 'silver')};
-  /* border: 1.5px solid ${(props) => (props.disabled ? colors.default : 'silver')}; */
+  height: ${(props) => (props.menu ? '2.5rem' : '3rem')};
+  box-shadow: 0pt 0pt 0pt 1.5pt
+    ${(props) => (props.disabled ? colors.default : props.menu ? colors.white : 'silver')};
   border-radius: 10px;
   background: ${(props) => (props.disabled ? colors.lightViolet : colors.white)};
   span {
@@ -34,14 +34,13 @@ export const Container = styled.div`
   }
 
   &:focus-within {
-    /* border: 2px solid ${(props) => props.theme.colors.violet}; */
-    box-shadow: 0pt 0pt 0pt 2pt ${(props) => props.theme.colors.violet};
+    box-shadow: 0pt 0pt 0pt 2pt ${(props) => (props.menu ? 'white' : props.theme.colors.violet)};
   }
 `;
 
 export const Input = styled.input`
   width: 100%;
-  padding: 0 1rem 0 0;
+  padding: 0 1em;
   height: 2rem;
   border: none;
   outline: none;

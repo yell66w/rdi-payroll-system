@@ -9,11 +9,13 @@ import { useFormContext } from 'react-hook-form';
 const InputField = ({
   uname = false,
   pwd = false,
+  menu = false,
   placeholder = '',
   label,
   disabled = false,
   name,
-  required
+  required,
+  type
 }) => {
   const [placeholderName, setPlaceholderName] = useState(placeholder);
   const { register } = useFormContext();
@@ -33,7 +35,7 @@ const InputField = ({
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
-      <Container disabled={disabled}>
+      <Container disabled={disabled} menu={menu}>
         {uname && (
           <span>
             <Person />
@@ -46,7 +48,7 @@ const InputField = ({
         )}
         <Input
           placeholder={`${placeholderName}`}
-          type={pwd ? 'password' : 'text'}
+          type={type}
           disabled={disabled}
           {...register(name, { required })}
         />

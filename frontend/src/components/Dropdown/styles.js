@@ -8,13 +8,14 @@ const colors = {
 export const Wrapper = styled.div`
   cursor: pointer;
   position: relative;
-  width: 15rem;
+  width: 100%;
+  min-width: 15rem;
 `;
 
 export const Container = styled.div`
   background: ${colors.white};
-  padding: 1rem;
-  border-radius: 20px;
+  padding: 0.75rem;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,10 +30,14 @@ export const Label = styled.div`
 export const Options = styled.div`
   position: absolute;
   width: inherit;
+  max-height: 12rem;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: ${colors.white};
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 0.5rem 0;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  z-index: 10;
 `;
 
 export const List = styled.li`
