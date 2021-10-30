@@ -1,17 +1,17 @@
-import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
-const FileInput = (placeholder = '', label, disabled = false, name, ...rest) => {
+const InputField = ({ placeholder = '', disabled = false, name, ...rest }) => {
   const { register } = useFormContext();
   return (
     <input
-      disabled={disabled}
       placeholder={placeholder}
       type="file"
-      {...register(name)}
+      ref={register}
+      name={name}
+      disabled={disabled}
       {...rest}
     />
   );
 };
 
-export default FileInput;
+export default InputField;

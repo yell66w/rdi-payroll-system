@@ -150,14 +150,14 @@ const AddEmployee = ({ isOpen, onClose }) => {
             </section>
             <section>
               <h1>Legal Documents</h1>
-              <FileInput name="nbi_clearance" label="NBI Clearance" placeholder="NBI Clearance" />
+              {/* <FileInput name="nbi_clearance" label="NBI Clearance" placeholder="NBI Clearance" />
               <FileInput name="nso" label="NSO" placeholder="NSO" />
-              <FileInput name="sss" label="SSS" placeholder="SSS" />
+              <FileInput name="sss" label="SSS" placeholder="SSS" /> */}
             </section>
           </div>
           {/* RIGHT DIV */}
           <div>
-            <InputField type="file" name="photo" label="Add Photo" placeholder="Add Photo" />
+            <FileInput name="photo" label="Add Photo" placeholder="Add Photo" />
             <button>Import</button>
             <button type="submit">Save Record</button>
             <button>Cancel</button>
