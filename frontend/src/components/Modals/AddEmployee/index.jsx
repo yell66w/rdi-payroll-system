@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import InputField from 'components/InputField';
 import { FormProvider, useForm } from 'react-hook-form';
 import RadioInput from 'components/RadioInput';
+import SelectField from 'components/SelectField';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
@@ -40,7 +41,7 @@ const employeeSchema = yup
 
 const AddEmployee = ({ isOpen, onClose }) => {
   const methods = useForm({ resolver: yupResolver(employeeSchema) });
-  const { handleSubmit, register } = methods;
+  const { handleSubmit } = methods;
   const onSubmit = (data) => console.log(data);
   return (
     <ReactModal
@@ -69,7 +70,6 @@ const AddEmployee = ({ isOpen, onClose }) => {
               <InputField name="middle_name" label="Middle Name" placeholder="Middle Name" />
               <RadioInput value="MALE" name="sex" label="MALE" placeholder="MALE" />
               <RadioInput value="FEMALE" name="sex" label="FEMALE" placeholder="FEMALE" />
-
               <InputField
                 type="date"
                 name="birth_date"
@@ -91,22 +91,36 @@ const AddEmployee = ({ isOpen, onClose }) => {
             </section>
             <section>
               <h1>Employment Status</h1>
-              <select name="employment_type" id="employment_type" {...register('employment_type')}>
+              <SelectField
+                label="Employment Type"
+                placeholder="Employment Type"
+                name="employment_type"
+                id="employment_type"
+              >
                 <option value="1">ET 1 </option>
                 <option value="2">ET 2 </option>
-              </select>
-              <select name="company" id="company" {...register('company')}>
+              </SelectField>
+
+              <SelectField label="Company" placeholder="Company" name="company" id="company">
                 <option value="1">COMPANY 1 </option>
                 <option value="2">COMPANY 2 </option>
-              </select>
-              <select name="department" id="department" {...register('department')}>
+              </SelectField>
+
+              <SelectField
+                label="Department"
+                placeholder="Department"
+                name="department"
+                id="department"
+              >
                 <option value="1">DEPT 1 </option>
                 <option value="2">DEPT 2 </option>
-              </select>
-              <select name="position" id="position" {...register('position')}>
+              </SelectField>
+
+              <SelectField label="Position" placeholder="Position" name="position" id="position">
                 <option value="1">POSITION 1 </option>
                 <option value="2">POSITION 2 </option>
-              </select>
+              </SelectField>
+
               <InputField
                 type="number"
                 name="basic_pay"
@@ -120,10 +134,15 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 label="Date Hired"
                 placeholder="Date Hired"
               />
-              <select name="time_shift" id="time_shift" {...register('time_shift')}>
+              <SelectField
+                label="Time Shift"
+                placeholder="Time Shift"
+                name="time_shift"
+                id="time_shift"
+              >
                 <option value="1">TIME 1 </option>
                 <option value="2">TIME 2 </option>
-              </select>
+              </SelectField>
             </section>
             <section>
               <h1>Legal Documents</h1>
