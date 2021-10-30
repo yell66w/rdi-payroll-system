@@ -32,17 +32,17 @@ const employeeSchema = yup
     position: yup.string().required(),
     basic_pay: yup.number().required(),
     date_hired: yup.string().required(),
-    time_shift: yup.string().required(),
-    nbi_clearance: yup.mixed(),
-    nso: yup.mixed(),
-    sss: yup.mixed(),
-    photo: yup.mixed()
+    time_shift: yup.string().required()
+    // nbi_clearance: yup.mixed().required(),
+    // nso: yup.mixed().required(),
+    // sss: yup.mixed().required(),
+    // photo: yup.mixed().required()
   })
   .required();
 
 const AddEmployee = ({ isOpen, onClose }) => {
   const methods = useForm({ resolver: yupResolver(employeeSchema) });
-  const { handleSubmit } = methods;
+  const { handleSubmit, register } = methods;
   const onSubmit = (data) => console.log(data);
   return (
     <ReactModal
@@ -150,14 +150,15 @@ const AddEmployee = ({ isOpen, onClose }) => {
             </section>
             <section>
               <h1>Legal Documents</h1>
-              {/* <FileInput name="nbi_clearance" label="NBI Clearance" placeholder="NBI Clearance" />
-              <FileInput name="nso" label="NSO" placeholder="NSO" />
-              <FileInput name="sss" label="SSS" placeholder="SSS" /> */}
+              {/* TODO FILEINPUT COMPONENT */}
+              {/* <FileInput name="nbi_clearance" label="NBI Clearance" placeholder="NBI Clearance" /> */}
+              {/* <FileInput name="nso" label="NSO" placeholder="NSO" /> */}
+              {/* <FileInput name="sss" label="SSS" placeholder="SSS" /> */}
             </section>
           </div>
           {/* RIGHT DIV */}
           <div>
-            <FileInput name="photo" label="Add Photo" placeholder="Add Photo" />
+            {/* <FileInput name="photo" label="Add Photo" placeholder="Add Photo" /> */}
             <button>Import</button>
             <button type="submit">Save Record</button>
             <button>Cancel</button>
