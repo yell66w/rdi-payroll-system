@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import { useForm } from 'react-hook-form';
 import { ModalStyle, OverlayStyle } from './styles';
 ReactModal.setAppElement('#root');
 
 const AddEmployee = ({ isOpen, onClose }) => {
+  const { control, handleSubmit, register } = useForm();
+  const onSubmit = (data) => console.log(data);
   return (
     <ReactModal
       contentElement={(props, children) => <ModalStyle {...props}>{children}</ModalStyle>}
@@ -17,10 +20,10 @@ const AddEmployee = ({ isOpen, onClose }) => {
         <h1>Personal Information</h1>
         <button onClick={onClose}>Close Modal</button>
       </header>
-      <form action="">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <section>
-            <input type="text" placeholder="Employee Number" />
+            <input type="text" placeholder="Employee Number" {...register('employee_number')} />
             <input type="text" placeholder="Last Name" />
             <input type="text" placeholder="First Name" />
             <input type="text" placeholder="Middle Name" />
