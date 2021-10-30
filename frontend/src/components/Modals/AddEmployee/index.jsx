@@ -7,6 +7,7 @@ import InputField from 'components/InputField';
 import { FormProvider, useForm } from 'react-hook-form';
 import RadioInput from 'components/RadioInput';
 import SelectField from 'components/SelectField';
+import FileInput from 'components/FileInput';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
@@ -146,14 +147,9 @@ const AddEmployee = ({ isOpen, onClose }) => {
             </section>
             <section>
               <h1>Legal Documents</h1>
-              <InputField
-                type="file"
-                name="nbi_clearance"
-                label="NBI Clearance"
-                placeholder="NBI Clearance"
-              />
-              <InputField type="file" name="nso" label="NSO" placeholder="NSO" />
-              <InputField type="file" name="sss" label="SSS" placeholder="SSS" />
+              <FileInput name="nbi_clearance" label="NBI Clearance" placeholder="NBI Clearance" />
+              <FileInput name="nso" label="NSO" placeholder="NSO" />
+              <FileInput name="sss" label="SSS" placeholder="SSS" />
             </section>
           </div>
           <div>
