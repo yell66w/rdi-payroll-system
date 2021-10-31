@@ -11,6 +11,7 @@ import { useTable } from 'react-table';
 import { Wrapper, TextLink, Container, Flex, TableContainer } from './styles';
 import AddEmployee from 'components/Modals/AddEmployee';
 import Button from 'components/Button/';
+import getTimeDuration from 'helpers/getTimeDuration';
 
 const EmployeeFile = () => {
   const dispatch = useDispatch();
@@ -56,8 +57,9 @@ const EmployeeFile = () => {
       },
       {
         Header: 'TIME DURATION',
-        Cell: () => {
-          return <div>??? years</div>;
+        accessor: 'date_hired',
+        Cell: (props) => {
+          return <div>{getTimeDuration(props.value)} years</div>;
         }
       },
       {

@@ -33,13 +33,13 @@ db.company = require("./company.model.js")(sequelize, Sequelize, DataTypes);
 db.file = require("./file.model.js")(sequelize, Sequelize, DataTypes);
 db.deduction = require("./deduction.model.js")(sequelize, Sequelize, DataTypes);
 db.earning = require("./earning.model.js")(sequelize, Sequelize, DataTypes);
-
 db.department = require("./department.model.js")(
   sequelize,
   Sequelize,
   DataTypes
 );
 db.position = require("./position.model.js")(sequelize, Sequelize, DataTypes);
+db.request = require("./request.model.js")(sequelize, Sequelize, DataTypes);
 
 /**
  * Relationships
