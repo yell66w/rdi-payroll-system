@@ -1,6 +1,17 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import { ModalStyle, OverlayStyle } from './styles';
+import {
+  ButtonsContainer,
+  Form,
+  Header,
+  LeftContainer,
+  ModalStyle,
+  OverlayStyle,
+  RadioGroup,
+  RightContainer,
+  Section,
+  SubSection
+} from './styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import InputField from 'components/InputField';
@@ -8,13 +19,14 @@ import { FormProvider, useForm } from 'react-hook-form';
 import RadioInput from 'components/RadioInput';
 import SelectField from 'components/SelectField';
 import { useDispatch } from 'react-redux';
-import { addEmployee, clearState } from 'features/employee/employeeSlice';
+import { addEmployee } from 'features/employee/employeeSlice';
 import { useEffect } from 'react';
 import { findAllCompanies } from 'features/company/companySlice';
 import { findAllDepartments } from 'features/department/departmentSlice';
 import { findAllPositions } from 'features/position/positionSlice';
 import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import { HeaderText, Text } from 'styles';
+import Button from 'components/Button';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
@@ -37,7 +49,7 @@ const employeeSchema = yup
     company_id: yup.string().required('Company is required.'),
     department_id: yup.string().required('Department is required.'),
     position_id: yup.string().required('Position is required.'),
-    basic_pay: yup.number().required('Basic Pay is required.'),
+    basic_pay: yup.number('Basic Pay must be a number.').required('Basic Pay is required.'),
     date_hired: yup.string().required('Date hired is required.'),
     time_shift: yup.string().required('Time shift is required.')
     // nbi_clearance: yup.mixed().required(),
@@ -71,146 +83,120 @@ const AddEmployee = ({ isOpen, onClose }) => {
 
   return (
     <ReactModal
+      className="_"
+      overlayClassName="_"
       contentElement={(props, children) => <ModalStyle {...props}>{children}</ModalStyle>}
       overlayElement={(props, contentElement) => (
         <OverlayStyle {...props}>{contentElement}</OverlayStyle>
       )}
+      // style={{
+      //   overlay: {
+      //     zIndex: 1000
+      //   }
+      // }}
       isOpen={isOpen}
       contentLabel="Add Employee Modal"
+      onRequestClose={onClose}
     >
       {/* HEADER */}
-      <header>
-        <h1>Personal Information</h1>
-        <button onClick={onClose}>Close Modal</button>
-      </header>
+      <Header>
+        <HeaderText>PERSONAL INFORMATION</HeaderText>
+        <div>
+          {/* TODO - CLOSE BUTTON */}
+          {/* <Button onClick={onClose}>Close Modal</Button> */}
+        </div>
+      </Header>
       {/* FORM BODY */}
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           {/* LEFT DIV */}
-          <div>
-            <section>
-              <InputField
-                name="employee_number"
-                label="Employee Number"
-                placeholder="Employee Number"
-              />
-              <InputField name="last_name" label="Last Name" placeholder="Last Name" />
+          <LeftContainer>
+            <Section>
+              <SubSection>
+                <InputField name="employee_number" label="Employee Number" />
+                <InputField name="last_name" label="Last Name" />
+                <InputField name="first_name" label="First Name" />
+                <InputField name="middle_name" label="Middle Name" />
+                <Text size="sm">SEX</Text>
+                <RadioGroup>
+                  {/* TODO - KAILANGAN PA IDOUBLE CLICK YUNG RADIO*/}
+                  <RadioInput checked="checked" value="MALE" name="sex" label="MALE" />
+                  <RadioInput value="FEMALE" name="sex" label="FEMALE" />
+                </RadioGroup>
+              </SubSection>
+              <SubSection>
+                <InputField type="date" name="birth_date" label="Birth Date" />
+                <InputField name="street" label="Street" />
+                <InputField name="city" label="City" />
+                <InputField name="province" label="Province" />
+                <InputField name="postal_code" label="Postal Code" />
+                <InputField name="email" label="Email Address" />
+                <InputField type="tel" name="contact_no" label="Contact Number" />
+              </SubSection>
+            </Section>
+            <HeaderText>EMPLOYMENT STATUS</HeaderText>
+            <Section>
+              <SubSection>
+                <SelectField label="Employment Type" name="employment_type" id="employment_type">
+                  <option value="1">ET 1 </option>
+                  <option value="2">ET 2 </option>
+                </SelectField>
+                <SelectField label="Company" name="company_id" id="company_id">
+                  {companies.map((company) => (
+                    <option value={company.id} key={company.id}>
+                      {company.name}
+                    </option>
+                  ))}
+                </SelectField>
+                <SelectField label="Department" name="department_id" id="department_id">
+                  {departments.map((department) => (
+                    <option value={department.id} key={department.id}>
+                      {department.name}
+                    </option>
+                  ))}
+                </SelectField>
+                <SelectField label="Position" name="position_id" id="position_id">
+                  {positions.map((position) => (
+                    <option value={position.id} key={position.id}>
+                      {position.name}
+                    </option>
+                  ))}
+                </SelectField>
+              </SubSection>
+              <SubSection>
+                <InputField
+                  value={0.0}
+                  step="any"
+                  type="number"
+                  name="basic_pay"
+                  label="Basic Pay"
+                />
 
-              <InputField name="first_name" label="First Name" placeholder="First Name" />
-
-              <InputField name="middle_name" label="Middle Name" placeholder="Middle Name" />
-
-              <RadioInput
-                checked="checked"
-                value="MALE"
-                name="sex"
-                label="MALE"
-                placeholder="MALE"
-              />
-              <RadioInput value="FEMALE" name="sex" label="FEMALE" placeholder="FEMALE" />
-              <InputField
-                type="date"
-                name="birth_date"
-                label="Birth Date"
-                placeholder="Birth Date"
-              />
-              <InputField name="street" label="Street" placeholder="Street" />
-              <InputField name="city" label="City" placeholder="City" />
-              <InputField name="province" label="Province" placeholder="Province" />
-              <InputField name="postal_code" label="Postal Code" placeholder="Postal Code" />
-              <InputField name="email" label="Email Address" placeholder="Email Address" />
-              <InputField
-                type="tel"
-                name="contact_no"
-                label="Contact Number"
-                placeholder="Contact Number"
-              />
-            </section>
-            <section>
-              <h1>Employment Status</h1>
-              <SelectField
-                label="Employment Type"
-                placeholder="Employment Type"
-                name="employment_type"
-                id="employment_type"
-              >
-                <option value="1">ET 1 </option>
-                <option value="2">ET 2 </option>
-              </SelectField>
-
-              <SelectField label="Company" placeholder="Company" name="company_id" id="company_id">
-                {companies.map((company) => (
-                  <option value={company.id} key={company.id}>
-                    {company.name}
-                  </option>
-                ))}
-              </SelectField>
-
-              <SelectField
-                label="Department"
-                placeholder="Department"
-                name="department_id"
-                id="department_id"
-              >
-                {departments.map((department) => (
-                  <option value={department.id} key={department.id}>
-                    {department.name}
-                  </option>
-                ))}
-              </SelectField>
-
-              <SelectField
-                label="Position"
-                placeholder="Position"
-                name="position_id"
-                id="position_id"
-              >
-                {positions.map((position) => (
-                  <option value={position.id} key={position.id}>
-                    {position.name}
-                  </option>
-                ))}
-              </SelectField>
-
-              <InputField
-                type="number"
-                name="basic_pay"
-                label="Basic Pay"
-                placeholder="Basic Pay"
-              />
-
-              <InputField
-                type="date"
-                name="date_hired"
-                label="Date Hired"
-                placeholder="Date Hired"
-              />
-              <SelectField
-                label="Time Shift"
-                placeholder="Time Shift"
-                name="time_shift"
-                id="time_shift"
-              >
-                <option value="1">TIME 1 </option>
-                <option value="2">TIME 2 </option>
-              </SelectField>
-            </section>
-            <section>
-              <h1>Legal Documents</h1>
+                <InputField type="date" name="date_hired" label="Date Hired" />
+                <SelectField label="Time Shift" name="time_shift" id="time_shift">
+                  <option value="1">TIME 1 </option>
+                  <option value="2">TIME 2 </option>
+                </SelectField>
+              </SubSection>
+            </Section>
+            <HeaderText>LEGAL DOCUMENTS</HeaderText>
+            <Section>
               {/* TODO FILEINPUT COMPONENT */}
               {/* <FileInput name="nbi_clearance" label="NBI Clearance" placeholder="NBI Clearance" /> */}
               {/* <FileInput name="nso" label="NSO" placeholder="NSO" /> */}
               {/* <FileInput name="sss" label="SSS" placeholder="SSS" /> */}
-            </section>
-          </div>
+            </Section>
+          </LeftContainer>
           {/* RIGHT DIV */}
-          <div>
-            {/* <FileInput name="photo" label="Add Photo" placeholder="Add Photo" /> */}
-            <button>Import</button>
-            <button type="submit">Save Record</button>
-            <button onClick={onClose}>Cancel</button>
-          </div>
-        </form>
+          <RightContainer>
+            <div>{/* <FileInput name="photo" label="Add Photo" placeholder="Add Photo" /> */}</div>
+            <ButtonsContainer>
+              <Button>Import</Button>
+              <Button type="submit">Save Record</Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </ButtonsContainer>
+          </RightContainer>
+        </Form>
       </FormProvider>
     </ReactModal>
   );

@@ -90,6 +90,7 @@ const employeeSlice = createSlice({
       state.isFetching = true;
     },
     [addEmployee.fulfilled]: (state, { payload }) => {
+      // TODO - Di ko alam kung tama tong pinag gagagawa ko haha
       state.data = [...state.data, payload];
       state.isFetching = false;
       state.isSuccess = true;

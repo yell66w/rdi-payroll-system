@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 // NOTE: properties are on theme.js
 
@@ -14,14 +15,7 @@ export const Container = styled.button`
   cursor: pointer;
   user-select: none;
   color: ${(props) => (props.color === 'secondary' ? color.default : color.secondary)};
-  background-color: ${(props) =>
-    props.color === 'secondary'
-      ? color.secondary
-      : props.color === 'red'
-      ? color.red
-      : props.color === 'green'
-      ? color.green
-      : color.default};
+
   border: ${(props) =>
     props.color === 'secondary' ? `2px solid ${props.theme.colors.violet}` : 'none'};
   outline: none;
@@ -34,6 +28,7 @@ export const Container = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${(props) => (props.bg ? props.bg : theme.colors.violet)};
 
   &:active {
     background: #440099;

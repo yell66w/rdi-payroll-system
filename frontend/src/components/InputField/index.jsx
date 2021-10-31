@@ -1,5 +1,7 @@
 import { Container, Input, Wrapper, Label } from './styles.js';
 import { useFormContext } from 'react-hook-form';
+import { ErrorText } from 'styles/index.js';
+import { theme } from 'theme.js';
 
 const InputField = ({
   type = 'text',
@@ -14,20 +16,25 @@ const InputField = ({
     formState: { errors }
   } = useFormContext();
   return (
-    <Wrapper>
-      {label && <Label>{label}</Label>}
-      <Container disabled={disabled}>
-        <Input
-          placeholder={placeholder}
-          type={type}
-          disabled={disabled}
-          {...register(name)}
-          {...rest}
-        />
-      </Container>
-      {/* TODO ERROR STYLE */}
-      <p style={{ color: 'red' }}>{errors[name]?.message}</p>
-    </Wrapper>
+    <>
+      <Wrapper>
+        {label && <Label>{label}</Label>}
+        <Container disabled={disabled}>
+          <Input
+            bg={errors[name] ? theme.colors.violet : 'silver'}
+            placeholder={placeholder}
+            type={type}
+            disabled={disabled}
+            {...register(name)}
+            {...rest}
+          />
+        </Container>
+        {/* TODO ERROR STYLE */}
+        {errors[name] ? (
+          <ErrorText style={{ color: 'red' }}>{errors[name].message}</ErrorText>
+        ) : null}
+      </Wrapper>
+    </>
   );
 };
 

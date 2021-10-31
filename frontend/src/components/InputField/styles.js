@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 const colors = {
   default: (props) => props.theme.colors.violet,
@@ -18,8 +19,6 @@ export const Container = styled.div`
   min-width: 15rem;
   width: 100%;
   height: 3rem;
-  box-shadow: 0pt 0pt 0pt 1.5pt ${(props) => (props.disabled ? colors.default : 'silver')};
-  /* border: 1.5px solid ${(props) => (props.disabled ? colors.default : 'silver')}; */
   border-radius: 10px;
   background: ${(props) => (props.disabled ? colors.lightViolet : colors.white)};
   span {
@@ -32,26 +31,28 @@ export const Container = styled.div`
       width: 1rem;
     }
   }
-
-  &:focus-within {
-    /* border: 2px solid ${(props) => props.theme.colors.violet}; */
-    box-shadow: 0pt 0pt 0pt 2pt ${(props) => props.theme.colors.violet};
-  }
 `;
 
 export const Input = styled.input`
   width: 100%;
-  padding: 0 1rem 0 0;
-  height: 2rem;
-  border: none;
+  padding: 0 1rem 0 1rem;
+  border: 1.5px solid ${(props) => (props.bg ? props.bg : 'silver')};
+  height: inherit;
+  border-radius: 5px;
   outline: none;
   font-size: ${(props) => props.theme.fontSizes.md};
   font-family: ${(props) => props.theme.fontSizes.avenirRoman};
   background: ${(props) => (props.disabled ? colors.lightViolet : colors.white)};
+
+  &:focus-within {
+    /* border: 2px solid ${(props) => props.theme.colors.violet}; */
+    box-shadow: 0pt 0pt 0pt 1pt ${(props) => props.theme.colors.violet};
+  }
 `;
 
 export const Label = styled.label`
   text-transform: uppercase;
   margin-left: 0.2rem;
+  font-size: ${theme.fontSizes.sm};
   font-family: ${(props) => props.theme.fontSizes.avenirRoman};
 `;

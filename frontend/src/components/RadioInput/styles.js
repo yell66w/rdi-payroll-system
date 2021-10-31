@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 const color = {
   default: (props) => props.theme.colors.violet,
@@ -7,22 +8,31 @@ const color = {
 
 export const Container = styled.div`
   background-color: ${color.secondary};
-  width: 7rem;
-  border-radius: 65px;
+  border: 1.5px solid ${(props) => (props.bg ? props.bg : 'silver')};
+  width: 100%;
+  overflow: hidden;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
 `;
 
 export const Input = styled.input`
   opacity: 0;
   width: 0;
   height: 0;
+  border-radius: 5px;
 `;
 
 export const Label = styled.label`
-  display: grid;
-  grid-template-columns: min-content auto;
-  grid-gap: 0.5rem;
+  display: flex;
+  align-items: center;
   line-height: 1;
   padding: 0.5rem 0.3rem;
+  font-size: ${theme.fontSizes.sm};
+  width: inherit;
+  height: 100%;
+  gap: 1rem;
 
   .radio__control {
     display: block;
