@@ -84,7 +84,7 @@ const employeeSlice = createSlice({
       state.data = [];
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = payload.message;
+      state.errorMessage = payload;
     },
     [addEmployee.pending]: (state) => {
       state.isFetching = true;
@@ -98,8 +98,8 @@ const employeeSlice = createSlice({
     [addEmployee.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = payload.message;
-      toast.error(`Something went wrong`);
+      state.errorMessage = payload;
+      toast.error(payload);
     }
   }
 });
