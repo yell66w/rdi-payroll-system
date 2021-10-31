@@ -141,6 +141,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
                   <option value="1">ET 1 </option>
                   <option value="2">ET 2 </option>
                 </SelectField>
+                {/* TODO - DAPAT NAKA HIDE MUNA YUNG DEPT TAS POSITION KUNG WALA PANG COMPANY NA NAPILI */}
                 <SelectField label="Company" name="company_id" id="company_id">
                   {companies.map((company) => (
                     <option value={company.id} key={company.id}>
@@ -164,13 +165,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 </SelectField>
               </SubSection>
               <SubSection>
-                <InputField
-                  value={0.0}
-                  step="any"
-                  type="number"
-                  name="basic_pay"
-                  label="Basic Pay"
-                />
+                <InputField step="any" type="number" name="basic_pay" label="Basic Pay" />
 
                 <InputField type="date" name="date_hired" label="Date Hired" />
                 <SelectField label="Time Shift" name="time_shift" id="time_shift">
@@ -189,7 +184,10 @@ const AddEmployee = ({ isOpen, onClose }) => {
           </LeftContainer>
           {/* RIGHT DIV */}
           <RightContainer>
-            <div>{/* <FileInput name="photo" label="Add Photo" placeholder="Add Photo" /> */}</div>
+            <div>
+              <Text>TODO ADD PHOTO</Text>
+              {/* <FileInput name="photo" label="Add Photo" placeholder="Add Photo" /> */}
+            </div>
             <ButtonsContainer>
               <Button>Import</Button>
               <Button type="submit">Save Record</Button>
