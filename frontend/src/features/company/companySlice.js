@@ -14,6 +14,7 @@ export const findAllCompanies = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await API.get(`company`);
+      console.log(res.data);
       if (res.status === 200) {
         return res.data;
       } else {
