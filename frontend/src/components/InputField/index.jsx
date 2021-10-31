@@ -26,7 +26,7 @@ const InputField = ({
         />
       </Container>
       {/* TODO ERROR STYLE */}
-      <p>{errors[name]?.message}</p>
+      <p style={{ color: 'red' }}>{errors[name]?.message}</p>
     </Wrapper>
   );
 };

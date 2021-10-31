@@ -16,7 +16,7 @@ const RadioInput = ({ children, label, name, ...rest }) => {
         </span>
         <span className="radio__label">{children ? children : label}</span>
       </Label>
-      <p>{errors[name]?.message}</p>
+      <p style={{ color: 'red' }}>{errors[name]?.message}</p>
     </Container>
   );
 };
