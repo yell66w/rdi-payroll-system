@@ -8,32 +8,38 @@ import { FormProvider, useForm } from 'react-hook-form';
 import RadioInput from 'components/RadioInput';
 import SelectField from 'components/SelectField';
 import { useDispatch } from 'react-redux';
-import { addEmployee } from 'features/employee/employeeSlice';
+import { addEmployee, clearState } from 'features/employee/employeeSlice';
+import { useEffect } from 'react';
+import { findAllCompanies } from 'features/company/companySlice';
+import { findAllDepartments } from 'features/department/departmentSlice';
+import { findAllPositions } from 'features/position/positionSlice';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
 const employeeSchema = yup
   .object()
   .shape({
-    employee_number: yup.string().required(),
-    last_name: yup.string().required(),
-    first_name: yup.string().required(),
-    middle_name: yup.string().required(),
-    birth_date: yup.string().required(),
-    street: yup.string().required(),
-    city: yup.string().required(),
-    province: yup.string().required(),
-    postal_code: yup.string().required(),
-    sex: yup.string().required(),
-    email: yup.string().email().required(),
-    contact_no: yup.string().required(),
-    employment_type: yup.string().required(),
-    company: yup.string().required(),
-    department: yup.string().required(),
-    position: yup.string().required(),
-    basic_pay: yup.number().required(),
-    date_hired: yup.string().required(),
-    time_shift: yup.string().required()
+    employee_number: yup.string().required('Employee number is required.'),
+    last_name: yup.string().required('Last name is required.'),
+    first_name: yup.string().required('First name is required.'),
+    middle_name: yup.string().required('Middle name is required.'),
+    birth_date: yup.string().required('Birth date is required.'),
+    street: yup.string().required('Street is required.'),
+    city: yup.string().required('City is required.'),
+    province: yup.string().required('Province is required.'),
+    postal_code: yup.string().required('Postal code is required.'),
+    sex: yup.string().required('Sex is required.'),
+    email: yup.string().email().required('Email is required.'),
+    contact_no: yup.string().required('Contact number is required.'),
+    employment_type: yup.string().required('Employment type is required.'),
+    company_id: yup.string().required('Company is required.'),
+    department_id: yup.string().required('Department is required.'),
+    position_id: yup.string().required('Position is required.'),
+    basic_pay: yup.number().required('Basic Pay is required.'),
+    date_hired: yup.string().required('Date hired is required.'),
+    time_shift: yup.string().required('Time shift is required.')
     // nbi_clearance: yup.mixed().required(),
     // nso: yup.mixed().required(),
     // sss: yup.mixed().required(),
@@ -45,13 +51,24 @@ const AddEmployee = ({ isOpen, onClose }) => {
   const methods = useForm({ resolver: yupResolver(employeeSchema) });
   const { handleSubmit } = methods;
   const dispatch = useDispatch();
+  const companies = useSelector((state) => state.companies.data);
+  const departments = useSelector((state) => state.departments.data);
+  const positions = useSelector((state) => state.positions.data);
+  // const { isFetching, isSuccess, isError } = useSelector((state) => state.employees);
   const onSubmit = (data) => {
     //TODO
     data.address = `${data.street} ${data.city} ${data.province}`;
     data.time_shift_to = data.time_shift;
     data.time_shift_from = data.time_shift;
     dispatch(addEmployee(data));
+    onClose();
   };
+  useEffect(() => {
+    dispatch(findAllCompanies());
+    dispatch(findAllDepartments());
+    dispatch(findAllPositions());
+  }, []);
+
   return (
     <ReactModal
       contentElement={(props, children) => <ModalStyle {...props}>{children}</ModalStyle>}
@@ -83,7 +100,13 @@ const AddEmployee = ({ isOpen, onClose }) => {
 
               <InputField name="middle_name" label="Middle Name" placeholder="Middle Name" />
 
-              <RadioInput value="MALE" name="sex" label="MALE" placeholder="MALE" />
+              <RadioInput
+                checked="checked"
+                value="MALE"
+                name="sex"
+                label="MALE"
+                placeholder="MALE"
+              />
               <RadioInput value="FEMALE" name="sex" label="FEMALE" placeholder="FEMALE" />
               <InputField
                 type="date"
@@ -115,24 +138,38 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 <option value="2">ET 2 </option>
               </SelectField>
 
-              <SelectField label="Company" placeholder="Company" name="company" id="company">
-                <option value="1">COMPANY 1 </option>
-                <option value="2">COMPANY 2 </option>
+              <SelectField label="Company" placeholder="Company" name="company_id" id="company_id">
+                {companies.map((company) => (
+                  <option value={company.id} key={company.id}>
+                    {company.name}
+                  </option>
+                ))}
               </SelectField>
 
               <SelectField
                 label="Department"
                 placeholder="Department"
-                name="department"
-                id="department"
+                name="department_id"
+                id="department_id"
               >
-                <option value="1">DEPT 1 </option>
-                <option value="2">DEPT 2 </option>
+                {departments.map((department) => (
+                  <option value={department.id} key={department.id}>
+                    {department.name}
+                  </option>
+                ))}
               </SelectField>
 
-              <SelectField label="Position" placeholder="Position" name="position" id="position">
-                <option value="1">POSITION 1 </option>
-                <option value="2">POSITION 2 </option>
+              <SelectField
+                label="Position"
+                placeholder="Position"
+                name="position_id"
+                id="position_id"
+              >
+                {positions.map((position) => (
+                  <option value={position.id} key={position.id}>
+                    {position.name}
+                  </option>
+                ))}
               </SelectField>
 
               <InputField
@@ -171,7 +208,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
             {/* <FileInput name="photo" label="Add Photo" placeholder="Add Photo" /> */}
             <button>Import</button>
             <button type="submit">Save Record</button>
-            <button>Cancel</button>
+            <button onClick={onClose}>Cancel</button>
           </div>
         </form>
       </FormProvider>

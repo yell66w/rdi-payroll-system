@@ -13,7 +13,7 @@ export const findAllCompanies = createAsyncThunk(
   '/companies/all',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await API.get(`companies`);
+      const res = await API.get(`company`);
       if (res.status === 200) {
         return res.data;
       } else {

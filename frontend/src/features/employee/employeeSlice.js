@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import API from 'utils/API';
 import { getAllEmployees } from 'utils/employee.routes';
 import download from 'downloadjs';
+import { toast } from 'react-toastify';
 
 const initialState = {
   data: [],
@@ -69,7 +70,7 @@ export const exportEmployeesToCSV = createAsyncThunk(
 const employeeSlice = createSlice({
   name: 'employee',
   initialState,
-  reducers: {},
+
   extraReducers: {
     [findAllEmployees.pending]: (state) => {
       state.isFetching = true;
@@ -88,17 +89,20 @@ const employeeSlice = createSlice({
     [addEmployee.pending]: (state) => {
       state.isFetching = true;
     },
-    [addEmployee.fulfilled]: (state) => {
+    [addEmployee.fulfilled]: (state, { payload }) => {
+      state.data = [...state.data, payload];
       state.isFetching = false;
       state.isSuccess = true;
+      toast.success(`Successfully added an employee.`);
     },
     [addEmployee.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload.message;
+      toast.error(`Something went wrong`);
     }
   }
 });
 
-// export const {} = employeeSlice.actions;
+// export const {  } = employeeSlice.actions;
 export default employeeSlice.reducer;
