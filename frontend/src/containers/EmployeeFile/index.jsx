@@ -11,7 +11,6 @@ import { useTable } from 'react-table';
 import { Wrapper, TextLink, Container, Flex, TableContainer } from './styles';
 import AddEmployee from 'components/Modals/AddEmployee';
 import Button from 'components/Button/';
-import { theme } from 'theme';
 
 const EmployeeFile = () => {
   const dispatch = useDispatch();
