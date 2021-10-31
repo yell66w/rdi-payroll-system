@@ -7,7 +7,8 @@ import InputField from 'components/InputField';
 import { FormProvider, useForm } from 'react-hook-form';
 import RadioInput from 'components/RadioInput';
 import SelectField from 'components/SelectField';
-import FileInput from 'components/FileInput';
+import { useDispatch } from 'react-redux';
+import { addEmployee } from 'features/employee/employeeSlice';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
@@ -43,7 +44,14 @@ const employeeSchema = yup
 const AddEmployee = ({ isOpen, onClose }) => {
   const methods = useForm({ resolver: yupResolver(employeeSchema) });
   const { handleSubmit } = methods;
-  const onSubmit = (data) => console.log(data);
+  const dispatch = useDispatch();
+  const onSubmit = (data) => {
+    //TODO
+    data.address = `${data.street} ${data.city} ${data.province}`;
+    data.time_shift_to = data.time_shift;
+    data.time_shift_from = data.time_shift;
+    dispatch(addEmployee(data));
+  };
   return (
     <ReactModal
       contentElement={(props, children) => <ModalStyle {...props}>{children}</ModalStyle>}
@@ -88,7 +96,6 @@ const AddEmployee = ({ isOpen, onClose }) => {
               <InputField name="province" label="Province" placeholder="Province" />
               <InputField name="postal_code" label="Postal Code" placeholder="Postal Code" />
               <InputField name="email" label="Email Address" placeholder="Email Address" />
-              <InputField name="postal_code" label="Postal Code" placeholder="Postal Code" />
               <InputField
                 type="tel"
                 name="contact_no"

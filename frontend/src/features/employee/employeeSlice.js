@@ -30,6 +30,22 @@ export const findAllEmployees = createAsyncThunk(
   }
 );
 
+export const addEmployee = createAsyncThunk('/employees/add', async (data, { rejectWithValue }) => {
+  try {
+    const res = await API.post(`employees`, data);
+    if (res.status === 200) {
+      return res.data;
+    } else {
+      throw new Error(res.data);
+    }
+  } catch (error) {
+    if (!error.response) {
+      throw error;
+    }
+    return rejectWithValue(error.response.data);
+  }
+});
+
 export const exportEmployeesToCSV = createAsyncThunk(
   '/employees/export-to-csv',
   async (_, { rejectWithValue }) => {
@@ -65,6 +81,18 @@ const employeeSlice = createSlice({
     },
     [findAllEmployees.rejected]: (state, { payload }) => {
       state.data = [];
+      state.isFetching = false;
+      state.isError = true;
+      state.errorMessage = payload.message;
+    },
+    [addEmployee.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [addEmployee.fulfilled]: (state) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+    },
+    [addEmployee.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload.message;
