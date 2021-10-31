@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-
-const colors = {
-  white: (props) => props.theme.colors.white,
-  lightViolet: (props) => props.theme.colors.lightViolet
-};
+import { theme } from 'theme';
 
 export const Wrapper = styled.div`
   cursor: pointer;
@@ -12,7 +8,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  background: ${colors.white};
+  background: ${theme.colors.white};
   padding: 1rem;
   border-radius: 20px;
   display: flex;
@@ -29,7 +25,7 @@ export const Label = styled.div`
 export const Options = styled.div`
   position: absolute;
   width: inherit;
-  background: ${colors.white};
+  background: ${theme.colors.white};
   border-radius: 20px;
   padding: 0.5rem 0;
   margin-top: 1rem;
@@ -43,6 +39,6 @@ export const List = styled.li`
   font-family: ${(props) => props.theme.fonts.avenirRoman};
 
   &:hover {
-    background: ${colors.lightViolet};
+    background: ${theme.colors.lightViolet};
   }
 `;
