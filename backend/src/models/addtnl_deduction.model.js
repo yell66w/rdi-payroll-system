@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize, DataTypes) => {
-  const addntlDeduction = sequelize.define(
+  const AddtnlDeduction = sequelize.define(
     "addtnl_deduction", // Model name
     {
       // Attributes
@@ -38,5 +38,5 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
     }
   );
 
-  return addntlDeduction;
+  return AddtnlDeduction;
 };

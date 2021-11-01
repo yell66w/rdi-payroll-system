@@ -1,9 +1,9 @@
 const db = require("../models");
-const Deduction = db.addtnl_deduction;
+const AddtnlDeduction  = db.addtnl_deduction;
 
 exports.create = async (req, res) => {
   try {
-    const new_deduction = await Deduction.create(req.body);
+    const new_deduction = await AddtnlDeduction.create(req.body);
     return res.status(200).send(new_deduction);
   } catch (error) {
     return res.status(400).send(error.message);
@@ -12,7 +12,7 @@ exports.create = async (req, res) => {
 
 exports.findAll = async (req, res) => {
   try {
-    const deduction = await Deduction.findAll();
+    const deduction = await AddtnlDeduction.findAll();
     return res.status(200).send(deduction);
   } catch (error) {
     return res.status(400).send(error.message);
@@ -20,13 +20,13 @@ exports.findAll = async (req, res) => {
 };
 
 exports.findOne = async (req, res) => {
-  const deduction = await Deduction.findByPk(req.params.id);
+  const deduction = await AddtnlDeduction.findByPk(req.params.id);
   return res.status(200).send(deduction);
 };
 
 exports.update = async (req, res) => {
   try {
-    await Deduction.update(req.body, {
+    await AddtnlDeduction.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -39,7 +39,7 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    await Deduction.destroy({
+    await AddtnlDeduction.destroy({
       where: {
         id: req.params.id,
       },
