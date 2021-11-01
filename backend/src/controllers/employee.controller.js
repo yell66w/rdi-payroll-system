@@ -59,9 +59,17 @@ exports.findAll = async (req, res) => {
   const date_hired_to = req.query.date_hired_to;
   const sex = req.query.sex;
   const time_shift = req.query.time_shift;
+
+  // TODO - REFACTOR TIME SHIFT
+  const MORNING = req.query.MORNING;
+  const MID_MORNING = req.query.MID_MORNING;
+  const NOON = req.query.NOON;
+  const AFTERNOON = req.query.AFTERNOON;
+
   const search = req.query.search;
 
   let andItems = [];
+  let orItems = [];
 
   if (company) andItems.push({ company_id: company });
   if (department) andItems.push({ department_id: department });
@@ -69,6 +77,19 @@ exports.findAll = async (req, res) => {
   if (sex) andItems.push({ sex: sex });
   if (time_shift) {
     andItems.push({ time_shift: { [Op.in]: time_shift } });
+  }
+  // TODO - REFACTOR
+  if (MORNING) {
+    orItems.push({ time_shift: "MORNING" });
+  }
+  if (MID_MORNING) {
+    orItems.push({ time_shift: "MID_MORNING" });
+  }
+  if (NOON) {
+    orItems.push({ time_shift: "NOON" });
+  }
+  if (AFTERNOON) {
+    orItems.push({ time_shift: "AFTERNOON" });
   }
 
   if (search) {
@@ -114,6 +135,7 @@ exports.findAll = async (req, res) => {
   let options = {
     where: {
       [Op.and]: andItems,
+      [Op.or]: orItems,
     },
   };
 
