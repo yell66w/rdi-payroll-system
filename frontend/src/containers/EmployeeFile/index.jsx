@@ -51,7 +51,8 @@ const EmployeeFile = () => {
         Cell: (props) => {
           return (
             <div>
-              {props.row.original.first_name} {props.row.original.last_name}
+              {props.row.original.first_name} {props.row.original.middle_name}{' '}
+              {props.row.original.last_name}
             </div>
           );
         }

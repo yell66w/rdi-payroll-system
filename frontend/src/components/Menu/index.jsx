@@ -27,7 +27,7 @@ import { findAllFilteredEmployees } from 'features/employee/employeeSlice.js';
 
 const Menu = () => {
   const methods = useForm();
-  const { handleSubmit } = methods;
+  const { handleSubmit, reset } = methods;
 
   const [checkboxValue, setCheckboxValue] = useState(false);
   const dispatch = useDispatch();
