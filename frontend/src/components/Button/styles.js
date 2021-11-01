@@ -24,7 +24,13 @@ export const Container = styled.button`
   background-color: ${(props) => (props.bg ? props.bg : theme.colors.violet)};
 
   &:active {
-    background: #440099;
+    background-color: #440099;
+    color: ${theme.colors.white};
     transition: 0.1s ease-in-out;
+  }
+  &:hover {
+    background-color: #440099;
+    color: ${theme.colors.white};
+    transition: 0.3s ease-in-out;
   }
 `;
