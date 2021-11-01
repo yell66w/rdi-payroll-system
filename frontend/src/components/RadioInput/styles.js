@@ -5,7 +5,11 @@ const color = {
   default: (props) => props.theme.colors.violet,
   secondary: (props) => props.theme.colors.white
 };
-
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 export const Container = styled.div`
   background-color: ${color.secondary};
   border: 1.5px solid ${(props) => (props.bg ? props.bg : 'silver')};
