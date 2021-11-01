@@ -25,7 +25,7 @@ module.exports = {
       {
         id: uuidv4(),
         first_name: "John",
-        middle_name: "Margarita",
+        middle_name: "Margo",
         last_name: "Doe",
         birth_date: new Date(),
         email: "john@gmail.com",
@@ -63,7 +63,7 @@ module.exports = {
       {
         id: uuidv4(),
         first_name: "Juana",
-        middle_name: "Margarita",
+        middle_name: "Margi",
         last_name: "Doe",
         birth_date: new Date(),
         email: "juana@gmail.com",
@@ -82,7 +82,7 @@ module.exports = {
       {
         id: uuidv4(),
         first_name: "Jonnah",
-        middle_name: "Margarita",
+        middle_name: "Mariaju",
         last_name: "Doe",
         birth_date: new Date(),
         email: "jonnah@gmail.com",
