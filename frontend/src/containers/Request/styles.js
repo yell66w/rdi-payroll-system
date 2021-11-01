@@ -8,13 +8,25 @@ export const Wrapper = styled.div`
 `;
 
 export const TextArea = styled.textarea`
+  border: none;
+  resize: none;
+  width: 70rem;
+  height: 15rem;
+  font-family: ${(props) => props.theme.fonts.avenirRoman};
+  outline: none;
+`;
+
+export const GhostArea = styled.div`
   border: solid black 1px;
+  padding: 1rem 1rem 4rem 1rem;
+  border-radius: 0.5rem;
+  /* border: solid black 1px;
   border-radius: 0.5rem;
   resize: none;
   width: 70rem;
   height: 15rem;
   font-family: ${(props) => props.theme.fonts.avenirRoman};
-  padding: 1rem;
+  padding: 1rem 1rem 3rem 1rem; */
 `;
 
 export const FlexDrop = styled.div`
