@@ -27,6 +27,7 @@ import { findAllPositions } from 'features/position/positionSlice';
 import { useSelector } from 'react-redux';
 import { HeaderText, Text } from 'styles';
 import Button from 'components/Button';
+import Radio from 'components/Radio';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
@@ -89,11 +90,6 @@ const AddEmployee = ({ isOpen, onClose }) => {
       overlayElement={(props, contentElement) => (
         <OverlayStyle {...props}>{contentElement}</OverlayStyle>
       )}
-      // style={{
-      //   overlay: {
-      //     zIndex: 1000
-      //   }
-      // }}
       isOpen={isOpen}
       contentLabel="Add Employee Modal"
       onRequestClose={onClose}
@@ -119,8 +115,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 <InputField name="middle_name" label="Middle Name" />
                 <Text size="sm">SEX</Text>
                 <RadioGroup>
-                  {/* TODO - KAILANGAN PA IDOUBLE CLICK YUNG RADIO*/}
-                  <RadioInput checked="checked" value="MALE" name="sex" label="MALE" />
+                  <RadioInput checked={true} value="MALE" name="sex" label="MALE" />
                   <RadioInput value="FEMALE" name="sex" label="FEMALE" />
                 </RadioGroup>
               </SubSection>

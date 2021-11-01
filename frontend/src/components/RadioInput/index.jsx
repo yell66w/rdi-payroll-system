@@ -12,12 +12,12 @@ const RadioInput = ({ children, label, name, ...rest }) => {
     <Container>
       <Label>
         <span className="radio__input">
-          <Input {...register(name)} {...rest} type="radio" name={name} />
+          <Input {...register(name)} {...rest} type="radio" />
           <span className="radio__control"></span>
         </span>
         <span className="radio__label">{children ? children : label}</span>
       </Label>
-      {errors[name] ? <ErrorText style={{ color: 'red' }}>{errors[name].message}</ErrorText> : null}
+      {/* {errors[name] ? <ErrorText style={{ color: 'red' }}>{errors[name].message}</ErrorText> : null} */}
     </Container>
   );
 };
