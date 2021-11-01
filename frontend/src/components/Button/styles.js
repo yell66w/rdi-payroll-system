@@ -1,30 +1,23 @@
 import styled from 'styled-components';
 import { theme } from 'theme';
 
-// NOTE: properties are on theme.js
-
-const color = {
-  default: (props) => props.theme.colors.violet,
-  darkViolet: (props) => props.theme.colors.darkViolet,
-  secondary: (props) => props.theme.colors.white,
-  red: (props) => props.theme.colors.red,
-  green: (props) => props.theme.colors.green
-};
-
 export const Container = styled.button`
   cursor: pointer;
   user-select: none;
-  color: ${(props) => (props.color === 'secondary' ? color.default : color.secondary)};
-
+  color: ${(props) => (props.color ? theme.colors[props.color] : theme.colors.white)};
   border: ${(props) =>
-    props.color === 'secondary' ? `2px solid ${props.theme.colors.violet}` : 'none'};
+    props.border && props.borderColor
+      ? `${props.border ? props.border : '2px'} solid ${theme.colors[props.borderColor]}`
+      : 'none'};
   outline: none;
   min-width: 15rem;
   width: 100%;
   height: 3rem;
   border-radius: 10px;
   text-transform: uppercase;
-  font-family: ${(props) => props.theme.fonts.avenirRoman};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
+  font-family: ${(props) =>
+    props.fontFamily ? theme.fonts[props.fontFamily] : theme.fonts.avenirRoman};
   display: flex;
   align-items: center;
   justify-content: center;

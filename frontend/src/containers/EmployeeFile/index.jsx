@@ -12,6 +12,7 @@ import { Wrapper, TextLink, Container, Flex, TableContainer } from './styles';
 import AddEmployee from 'components/Modals/AddEmployee';
 import Button from 'components/Button/';
 import getTimeDuration from 'helpers/getTimeDuration';
+import Toolbar from 'components/Toolbar';
 
 const EmployeeFile = () => {
   const dispatch = useDispatch();
@@ -85,14 +86,14 @@ const EmployeeFile = () => {
     <Wrapper>
       <Container>
         {/* NOTE: Gayahin nalang tong flex sa ibang components */}
-        <Flex flex={8}>
+        <Flex justify="space-between" direction="column" flex={8}>
           <TableContainer>
             {/* TODO - Component kung alang laman data */}
-
             {/* NOTE: To use Settings Component set parent div to position relative*/}
             <Settings />
             {data.length > 0 ? <Table tableInstance={tableInstance} /> : 'Wow, such empty'}
           </TableContainer>
+          <Toolbar />
         </Flex>
         <Flex bg="gray" flex={1}>
           {isOpen && (
