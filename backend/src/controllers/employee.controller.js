@@ -67,7 +67,9 @@ exports.findAll = async (req, res) => {
   if (department) andItems.push({ department_id: department });
   if (position) andItems.push({ position_id: position });
   if (sex) andItems.push({ sex: sex });
-  if (time_shift) andItems.push({ time_shift: time_shift });
+  if (time_shift) {
+    andItems.push({ time_shift: { [Op.in]: time_shift } });
+  }
 
   if (search) {
     andItems.push({
@@ -100,9 +102,6 @@ exports.findAll = async (req, res) => {
     });
   } else if (date_hired_to) {
     const end_date = new Date(date_hired_to);
-    options.where.date_hired = {
-      [Op.between]: [new Date(1900), end_date],
-    };
     andItems.push({
       date_hired: { [Op.between]: [new Date(1900), end_date] },
     });
