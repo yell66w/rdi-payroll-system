@@ -82,9 +82,17 @@ export const Section = styled.section`
 
 export const SubSection = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.direction ? props.direction : 'column')};
   width: 100%;
   gap: 1rem;
+`;
+
+export const FilesContainer = styled.div`
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  gap: 1rem;
+  // border-spacing: 20px 0;
 `;
 
 export const RadioGroup = styled.div`
