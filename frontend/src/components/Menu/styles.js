@@ -1,16 +1,11 @@
 import styled from 'styled-components';
-
-const colors = {
-  gray: (props) => props.theme.colors.gray,
-  white: (props) => props.theme.colors.white,
-  violet: (props) => props.theme.colors.violet
-};
+import { theme } from 'theme';
 
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
-  background-color: ${colors.gray};
+  background-color: ${theme.colors.gray};
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
@@ -25,7 +20,7 @@ export const Heading = styled.div`
 `;
 
 export const Tab = styled.h3`
-  color: ${colors.violet};
+  color: ${theme.colors.violet};
 `;
 
 export const SettingsButton = styled.button`
@@ -34,7 +29,7 @@ export const SettingsButton = styled.button`
   top: 20px;
   right: -20px;
   border: none;
-  background-color: ${colors.gray};
+  background-color: ${theme.colors.gray};
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
@@ -46,7 +41,7 @@ export const SettingsButton = styled.button`
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
-    background-color: ${colors.white};
+    background-color: ${theme.colors.white};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,7 +78,7 @@ export const FormContainer = styled.div`
 `;
 
 export const Text = styled.p`
-  color: ${colors.violet};
+  color: ${theme.colors.violet};
   font-family: ${(props) => props.theme.fonts.avenirRoman};
 `;
 

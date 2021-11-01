@@ -4,15 +4,9 @@ import { theme } from 'theme';
 export const Container = styled.button`
   cursor: pointer;
   user-select: none;
-  color: ${(props) => (props.color === 'secondary' ? theme.colors.violet : theme.colors.white)};
-  background-color: ${(props) =>
-    props.color === 'secondary'
-      ? theme.colors.white
-      : props.color === 'red'
-      ? theme.colors.red
-      : props.color === 'green'
-      ? theme.colors.green
-      : theme.colors.violet};
+  color: ${(props) => (props.color ? theme.colors[props.color] : theme.colors.white)};
+  background-color: ${(props) => (props.bg ? theme.colors[props.bg] : theme.colors.default)};
+
   border: ${(props) =>
     props.color === 'secondary'
       ? `2px solid ${theme.colors.violet}`

@@ -76,7 +76,6 @@ const Menu = () => {
               onClick={() => {
                 dispatch(exportEmployeesToCSV());
               }}
-              color="darkViolet"
             >
               Export
             </Button> */}
