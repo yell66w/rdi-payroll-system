@@ -37,6 +37,7 @@ export const Input = styled.input`
   width: 100%;
   padding: 0 1rem 0 1rem;
   border: 1.5px solid ${(props) => (props.bg ? props.bg : 'silver')};
+  // box-shadow: 0pt 0pt 0pt 1pt ${(props) => (props.bg ? props.bg : 'silver')};
   height: inherit;
   border-radius: 5px;
   outline: none;

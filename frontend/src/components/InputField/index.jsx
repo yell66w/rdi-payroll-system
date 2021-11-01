@@ -21,7 +21,7 @@ const InputField = ({
         {label && <Label>{label}</Label>}
         <Container disabled={disabled}>
           <Input
-            bg={errors[name] ? theme.colors.violet : 'silver'}
+            // bg={errors[name] ? theme.colors.violet : 'silver'}
             placeholder={placeholder}
             type={type}
             disabled={disabled}
