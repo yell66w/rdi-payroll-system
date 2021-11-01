@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-
-const colors = {
-  white: (props) => props.theme.colors.white,
-  lightViolet: (props) => props.theme.colors.lightViolet
-};
+import { theme } from 'theme';
 
 export const Wrapper = styled.div`
   cursor: pointer;
@@ -13,9 +9,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  background: ${colors.white};
+  background: ${theme.colors.white};
   padding: 0.75rem;
-  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,10 +25,11 @@ export const Label = styled.div`
 export const Options = styled.div`
   position: absolute;
   width: inherit;
+
+  background: ${theme.colors.white};
   max-height: 12rem;
   overflow-x: hidden;
   overflow-y: auto;
-  background: ${colors.white};
   border-radius: 10px;
   padding: 0.5rem 0;
   margin-top: 0.5rem;
@@ -48,6 +44,6 @@ export const List = styled.li`
   font-family: ${(props) => props.theme.fonts.avenirRoman};
 
   &:hover {
-    background: ${colors.lightViolet};
+    background: ${theme.colors.lightViolet};
   }
 `;
