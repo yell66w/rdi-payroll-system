@@ -69,27 +69,29 @@ exports.findAll = async (req, res) => {
   const search = req.query.search;
 
   let andItems = [];
-  let orItems = [];
+  let time_shift = [];
 
   if (company) andItems.push({ company_id: company });
   if (department) andItems.push({ department_id: department });
   if (position) andItems.push({ position_id: position });
   if (sex) andItems.push({ sex: sex });
-  // if (time_shift) {
-  //   andItems.push({ time_shift: { [Op.in]: time_shift } });
-  // }
+
   // TODO - REFACTOR
   if (MORNING) {
-    orItems.push({ time_shift: "MORNING" });
+    time_shift.push("MORNING");
   }
   if (MID_MORNING) {
-    orItems.push({ time_shift: "MID_MORNING" });
+    time_shift.push("MID_MORNING");
   }
   if (NOON) {
-    orItems.push({ time_shift: "NOON" });
+    time_shift.push("NOON");
   }
   if (AFTERNOON) {
-    orItems.push({ time_shift: "AFTERNOON" });
+    time_shift.push("AFTERNOON");
+  }
+
+  if (time_shift.length > 0) {
+    andItems.push({ time_shift: { [Op.in]: time_shift } });
   }
 
   if (search) {
@@ -135,7 +137,6 @@ exports.findAll = async (req, res) => {
   let options = {
     where: {
       [Op.and]: andItems,
-      [Op.or]: orItems,
     },
   };
 
