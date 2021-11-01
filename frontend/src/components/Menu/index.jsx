@@ -5,7 +5,7 @@ import Dropdown from 'components/Dropdown/index.jsx';
 import Input from 'components/Input';
 import Radio from 'components/Radio/index.jsx';
 import Toggle from 'components/Toggle/index.jsx';
-import { useForm, FormProvider, Controller } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import {
   Wrapper,
   Heading,
@@ -46,11 +46,10 @@ const Menu = () => {
   }, []);
 
   const onSubmit = (data) => {
-    // TODO - REFACTOR
+    // TODO - REFACTOR DROPDOWN
     data.company = selectedCompany;
     data.department = selectedDepartment;
     data.position = selectedPosition;
-    console.log(data);
     dispatch(findAllFilteredEmployees(data));
   };
 
