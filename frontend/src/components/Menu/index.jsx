@@ -68,15 +68,6 @@ const Menu = () => {
               </div>
             </FormContainer>
             <Button type="reset">Reset Selection</Button>
-            {/* FIX: Move nalang to sa baba ng table */}
-            {/* <Button
-              onClick={() => {
-                dispatch(exportEmployeesToCSV());
-              }}
-              color="darkViolet"
-            >
-              Export
-            </Button> */}
           </Form>
         </FormProvider>
       </Wrapper>
