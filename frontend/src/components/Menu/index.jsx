@@ -5,7 +5,7 @@ import Dropdown from 'components/Dropdown/index.jsx';
 import Input from 'components/Input';
 import Radio from 'components/Radio/index.jsx';
 import Toggle from 'components/Toggle/index.jsx';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, Controller } from 'react-hook-form';
 import {
   Wrapper,
   Heading,
@@ -30,7 +30,9 @@ const filterSchema = yup.object().shape({
   company: yup.string(),
   department: yup.string(),
   position: yup.string(),
-  search: yup.string()
+  search: yup.string(),
+  sex: yup.string(),
+  time_shift: yup.array().of(yup.string())
 });
 
 const Menu = () => {
@@ -54,9 +56,11 @@ const Menu = () => {
   }, []);
 
   const onSubmit = (data) => {
+    // TODO - REFACTOR
     data.company = selectedCompany;
     data.department = selectedDepartment;
     data.position = selectedPosition;
+    console.log(data);
     dispatch(findAllFilteredEmployees(data));
   };
 
@@ -96,7 +100,7 @@ const Menu = () => {
                   label="Position"
                   options={positions}
                 />
-                <Dropdown name="level" label="Level" options={['a', 'b', 'c', 'd', 'e']} />
+                {/* <Dropdown name="level" label="Level" options={['a', 'b', 'c', 'd', 'e']} /> */}
               </DropdownWrapper>
               <div>
                 <Text>Time Duration</Text>
@@ -113,10 +117,10 @@ const Menu = () => {
                   onChange={() => setCheckboxValue(!checkboxValue)}
                 />
                 <Grid col={2}>
-                  <Checkbox label="Morning" disabled={!checkboxValue} />
-                  <Checkbox label="Noon" disabled={!checkboxValue} />
-                  <Checkbox label="Mid-morning" disabled={!checkboxValue} />
-                  <Checkbox label="Afternoon" disabled={!checkboxValue} />
+                  <Checkbox name="MORNING" label="Morning" disabled={!checkboxValue} />
+                  <Checkbox name="NOON" label="Noon" disabled={!checkboxValue} />
+                  <Checkbox name="MID_MORNING" label="Mid-morning" disabled={!checkboxValue} />
+                  <Checkbox name="AFTERNOON" label="Afternoon" disabled={!checkboxValue} />
                 </Grid>
               </div>
             </FormContainer>

@@ -34,31 +34,10 @@ export const findAllEmployees = createAsyncThunk(
 export const findAllFilteredEmployees = createAsyncThunk(
   '/employees/all',
   async (data, { rejectWithValue }) => {
-    let params_string = `employees?`;
-    if (data.company) {
-      params_string += `company=${data.company}&`;
-    }
-    if (data.position) {
-      params_string += `position=${data.position}&`;
-    }
-    if (data.department) {
-      params_string += `department=${data.department}&`;
-    }
-    if (data.department) {
-      params_string += `department=${data.department}&`;
-    }
-    if (data.date_hired_from) {
-      params_string += `date_hired_from=${data.date_hired_from}&`;
-    }
-    if (data.date_hired_to) {
-      params_string += `date_hired_to=${data.date_hired_to}&`;
-    }
-    if (data.search) {
-      params_string += `search=${data.search}&`;
-    }
-
     try {
-      const res = await API.get(params_string);
+      const res = await API.get(`employees`, {
+        params: data
+      });
       if (res.status === 200) {
         return res.data;
       } else {
