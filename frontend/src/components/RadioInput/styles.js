@@ -15,7 +15,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   border-radius: 5px;
-  cursor: pointer;
 `;
 
 export const Input = styled.input`
@@ -27,6 +26,7 @@ export const Input = styled.input`
 
 export const Label = styled.label`
   display: flex;
+  cursor: pointer;
   align-items: center;
   line-height: 1;
   padding: 0.5rem 0.3rem;
