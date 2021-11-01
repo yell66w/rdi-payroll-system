@@ -13,10 +13,9 @@ export const SubWrapper = styled.div`
   background-color: #f6f6f6;
   border-radius: 0.5rem;
   position: relative;
-  cursor: pointer;
   margin-top: 0.3rem;
-  height: 2.5rem;
   overflow: hidden;
+  cursor: pointer;
 `;
 export const Input = styled.input`
   opacity: 0;
@@ -25,7 +24,6 @@ export const Input = styled.input`
 `;
 export const InpButton = styled.div`
   width: 1.5rem;
-  height: 2.5rem;
   color: #fff;
   padding: 0.2em 0.5em;
   background-color: ${Color.violet};
