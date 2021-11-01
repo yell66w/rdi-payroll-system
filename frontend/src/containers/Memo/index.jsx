@@ -1,7 +1,12 @@
 import React from 'react';
-
+import FileInput from 'components/FileInput';
 function Memo() {
-  return <div>This is Memo</div>;
+  return (
+    <>
+      Hello
+      <FileInput />
+    </>
+  );
 }
 
 export default Memo;
