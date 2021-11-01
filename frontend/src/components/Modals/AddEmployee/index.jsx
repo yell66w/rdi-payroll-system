@@ -53,11 +53,11 @@ const employeeSchema = yup
     position_id: yup.string().required('Position is required.'),
     basic_pay: yup.number('Basic Pay must be a number.').required('Basic Pay is required.'),
     date_hired: yup.string().required('Date hired is required.'),
-    time_shift: yup.string().required('Time shift is required.')
-    // nbi_clearance: yup.mixed().required(),
-    // nso: yup.mixed().required(),
-    // sss: yup.mixed().required(),
-    // photo: yup.mixed().required()
+    time_shift: yup.string().required('Time shift is required.'),
+    nbi_clearance: yup.mixed(),
+    nso: yup.mixed(),
+    sss: yup.mixed(),
+    photo: yup.mixed()
   })
   .required();
 

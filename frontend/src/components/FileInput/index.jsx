@@ -11,7 +11,8 @@ const FileInput = ({ placeholder = '', label, disabled = false, name, ...rest })
         <Input
           placeholder={placeholder}
           type="file"
-          {...register(name)}
+          //BUGGY REGISTER
+          // {...register(name)}
           disabled={disabled}
           {...rest}
         />
