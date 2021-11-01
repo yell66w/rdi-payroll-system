@@ -83,7 +83,7 @@ export const Section = styled.section`
 export const SubSection = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  width: 100%;
   gap: 1rem;
 `;
 
