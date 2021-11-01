@@ -9,9 +9,13 @@ export const Box = styled.span`
   width: 20px;
   background-color: ${theme.colors.white};
   border-radius: 3px;
-
-  &:hover {
-    background-color: ${theme.colors.violet};
+  
+  ${(props) =>
+    !props.disabled &&
+    ` 
+    &:hover {
+      background-color: ${theme.colors.violet};
+  }`}
   }
 `;
 
@@ -51,4 +55,5 @@ export const Wrapper = styled.div`
   span {
     user-select: none;
   }
+  color: ${(props) => props.disabled && 'gray'};
 `;

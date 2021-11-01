@@ -3,10 +3,10 @@ import Check from 'assets/icons/Check';
 
 const Checkbox = ({ label = 'Morning', disabled = false }) => {
   return (
-    <Wrapper>
+    <Wrapper disabled={disabled}>
       <Container>
         <input type="checkbox" name="checkbox" disabled={disabled} />
-        <Box />
+        <Box disabled={disabled} />
         <Check />
       </Container>
       <span>{label}</span>
