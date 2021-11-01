@@ -27,7 +27,6 @@ import { findAllPositions } from 'features/position/positionSlice';
 import { useSelector } from 'react-redux';
 import { HeaderText, Text } from 'styles';
 import Button from 'components/Button';
-import Radio from 'components/Radio';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS

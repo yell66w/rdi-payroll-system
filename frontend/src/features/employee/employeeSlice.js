@@ -89,7 +89,7 @@ const employeeSlice = createSlice({
     [addEmployee.pending]: (state) => {
       state.isFetching = true;
     },
-    [addEmployee.fulfilled]: (state, { payload }) => {
+    [addEmployee.fulfilled]: (state) => {
       // TODO - Di ko alam kung tama tong pinag gagagawa ko haha
       // state.data = [...state.data, payload];
       state.isFetching = false;
