@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { findAllCompanies } from 'features/company/companySlice.js';
 import { findAllDepartments } from 'features/department/departmentSlice.js';
 import { findAllPositions } from 'features/position/positionSlice.js';
-import { findAllFilteredEmployees } from 'features/employee/employeeSlice.js';
+import { findAllEmployees, findAllFilteredEmployees } from 'features/employee/employeeSlice.js';
 
 const Menu = () => {
   const methods = useForm();
@@ -38,6 +38,7 @@ const Menu = () => {
   const [selectedCompany, setSelectedCompany] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
+  const [isReset, setIsReset] = useState(false);
 
   useEffect(() => {
     dispatch(findAllCompanies);
@@ -47,10 +48,20 @@ const Menu = () => {
 
   const onSubmit = (data) => {
     // TODO - REFACTOR DROPDOWN
+    setIsReset(false);
     data.company = selectedCompany;
     data.department = selectedDepartment;
     data.position = selectedPosition;
     dispatch(findAllFilteredEmployees(data));
+  };
+
+  const onReset = () => {
+    reset({});
+    setSelectedCompany('');
+    setSelectedDepartment('');
+    setSelectedPosition('');
+    setIsReset(true);
+    dispatch(findAllEmployees());
   };
 
   return (
@@ -76,18 +87,21 @@ const Menu = () => {
               <DropdownWrapper>
                 {/* TODO: Dropdown options */}
                 <Dropdown
+                  isReset={isReset}
                   setValue={setSelectedCompany}
                   name="company"
                   label="Company"
                   options={companies}
                 />
                 <Dropdown
+                  isReset={isReset}
                   setValue={setSelectedDepartment}
                   name="department"
                   label="Department"
                   options={departments}
                 />
                 <Dropdown
+                  isReset={isReset}
                   setValue={setSelectedPosition}
                   name="position"
                   label="Position"
@@ -121,7 +135,9 @@ const Menu = () => {
             <ButtonGroup>
               {/* TODO - TEMPORARY FILTER BUTTO */}
               <Button type="submit">FILTER</Button>
-              <Button type="reset">Reset Selection</Button>
+              <Button type="submit" onClick={onReset}>
+                Reset Selection
+              </Button>
             </ButtonGroup>
           </Form>
         </FormProvider>
