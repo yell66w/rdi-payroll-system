@@ -93,14 +93,22 @@ const EmployeeFile = () => {
             <Settings />
             {data.length > 0 ? <Table tableInstance={tableInstance} /> : 'Wow, such empty'}
           </TableContainer>
-          <Toolbar />
+          <Toolbar>
+            {/* TEMPORARY ADD RECORD */}
+            <Button
+              onClick={onModalOpen}
+              fontWeight="bold"
+              borderColor="darkViolet"
+              border="2px"
+              bg="transparent"
+              color="darkViolet"
+            >
+              Add Record
+            </Button>
+          </Toolbar>
         </Flex>
         <Flex bg="gray" flex={1}>
-          {isOpen && (
-            <Menu>
-              <Button onClick={onModalOpen}>Add Record</Button>
-            </Menu>
-          )}
+          {isOpen && <Menu />}
         </Flex>
       </Container>
       <AddEmployee isOpen={isModalOpen} onClose={onModalClose} />

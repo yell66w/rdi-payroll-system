@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Box, Wrapper } from './styles';
 
-const Toolbar = () => {
+const Toolbar = ({ children }) => {
   const dispatch = useDispatch();
   return (
     <Wrapper>
@@ -14,6 +14,7 @@ const Toolbar = () => {
         </Button>
       </Box>
       <Box>
+        {children}
         <Button
           fontWeight="bold"
           borderColor="darkViolet"
