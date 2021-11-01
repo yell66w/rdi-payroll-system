@@ -4,6 +4,7 @@ import Dropdown from 'components/Dropdown';
 import Button from 'components/Button';
 import {
   Wrapper,
+  GhostArea,
   TextArea,
   WordTools,
   SetOne,
@@ -33,8 +34,9 @@ function Request() {
         <Dropdown label="CLASSIFICATION"></Dropdown>
       </FlexDrop>
 
-      <TextArea />
-
+      <GhostArea>
+        <TextArea />
+      </GhostArea>
       <WordTools>
         <Tools>
           <SetOne>
