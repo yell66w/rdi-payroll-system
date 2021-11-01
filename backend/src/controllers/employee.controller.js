@@ -1,4 +1,4 @@
-const { Op, sequelize } = require("../models");
+const { Op, sequelize, Sequelize } = require("../models");
 const db = require("../models");
 const Employee = db.employee;
 const fs = require("fs");
@@ -57,12 +57,31 @@ exports.findAll = async (req, res) => {
   const position = req.query.position;
   const date_hired_from = req.query.date_hired_from;
   const date_hired_to = req.query.date_hired_to;
+  const search = req.query.search;
 
   let options = { where: {} };
 
   if (company) options.where.company_id = company;
   if (department) options.where.department_id = department;
   if (position) options.where.position_id = position;
+
+  if (search) {
+    options = {
+      where: Sequelize.where(
+        Sequelize.fn(
+          "concat",
+          Sequelize.col("first_name"),
+          " ",
+          Sequelize.col("middle_name"),
+          " ",
+          Sequelize.col("last_name")
+        ),
+        {
+          [Op.like]: `%${search}%`,
+        }
+      ),
+    };
+  }
 
   if (date_hired_from && date_hired_to) {
     const start_date = new Date(date_hired_from);
@@ -71,6 +90,9 @@ exports.findAll = async (req, res) => {
       [Op.between]: [start_date, end_date],
     };
   }
+  // TODO MALE/FEMALE
+  //TIME SHIFT
+  //Search by name
 
   options.include = [
     "company",
