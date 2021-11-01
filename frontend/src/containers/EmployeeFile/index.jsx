@@ -73,7 +73,7 @@ const EmployeeFile = () => {
     <Wrapper>
       <Container>
         {/* NOTE: Gayahin nalang tong flex sa ibang components */}
-        <Flex flex={isOpen ? 2 : 8}>
+        <Flex flex={8}>
           <TableContainer>
             {/* TODO - Component kung alang laman data */}
 

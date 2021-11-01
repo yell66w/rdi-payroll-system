@@ -53,7 +53,7 @@ const LoginPage = () => {
             <Form onSubmit={methods.handleSubmit(onSubmit)}>
               <Header>Login</Header>
               <InputField uname name="username" required />
-              <InputField pwd name="password" required />
+              <InputField pwd name="password" type="password" required />
               <Button type="submit">Log in</Button>
             </Form>
           </FormProvider>
