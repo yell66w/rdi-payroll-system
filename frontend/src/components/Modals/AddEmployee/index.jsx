@@ -115,7 +115,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 <InputField name="middle_name" label="Middle Name" />
                 <Text size="sm">SEX</Text>
                 <RadioGroup>
-                  <RadioInput checked={true} value="MALE" name="sex" label="MALE" />
+                  <RadioInput value="MALE" name="sex" label="MALE" />
                   <RadioInput value="FEMALE" name="sex" label="FEMALE" />
                 </RadioGroup>
               </SubSection>
