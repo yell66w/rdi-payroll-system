@@ -77,8 +77,12 @@ const Menu = () => {
             <FormContainer>
               <Input name="search" type="search" placeholder="Search" menu />
               <RadioWrapper>
-                <Radio>Male</Radio>
-                <Radio>Female</Radio>
+                <Radio value="MALE" name="sex">
+                  Male
+                </Radio>
+                <Radio value="FEMALE" name="sex">
+                  Female
+                </Radio>
               </RadioWrapper>
               <DropdownWrapper>
                 {/* TODO: Dropdown options */}
