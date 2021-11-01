@@ -77,16 +77,16 @@ exports.findAll = async (req, res) => {
   if (sex) andItems.push({ sex: sex });
 
   // TODO - REFACTOR
-  if (MORNING) {
+  if (MORNING === "true") {
     time_shift.push("MORNING");
   }
-  if (MID_MORNING) {
+  if (MID_MORNING === "true") {
     time_shift.push("MID_MORNING");
   }
-  if (NOON) {
+  if (NOON === "true") {
     time_shift.push("NOON");
   }
-  if (AFTERNOON) {
+  if (AFTERNOON === "true") {
     time_shift.push("AFTERNOON");
   }
 
