@@ -15,28 +15,18 @@ import {
   Text,
   FormContainer,
   Grid,
-  Form
+  Form,
+  ButtonGroup
 } from './styles.js';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { findAllCompanies } from 'features/company/companySlice.js';
 import { findAllDepartments } from 'features/department/departmentSlice.js';
 import { findAllPositions } from 'features/position/positionSlice.js';
-import * as yup from 'yup';
 import { findAllFilteredEmployees } from 'features/employee/employeeSlice.js';
-import { yupResolver } from '@hookform/resolvers/yup';
-
-const filterSchema = yup.object().shape({
-  company: yup.string(),
-  department: yup.string(),
-  position: yup.string(),
-  search: yup.string(),
-  sex: yup.string(),
-  time_shift: yup.array().of(yup.string())
-});
 
 const Menu = () => {
-  const methods = useForm({ resolver: yupResolver(filterSchema) });
+  const methods = useForm();
   const { handleSubmit } = methods;
 
   const [checkboxValue, setCheckboxValue] = useState(false);
@@ -128,8 +118,12 @@ const Menu = () => {
                 </Grid>
               </div>
             </FormContainer>
-            <Button type="submit">FILTER</Button>
-            <Button type="reset">Reset Selection</Button>
+
+            <ButtonGroup>
+              {/* TODO - TEMPORARY FILTER BUTTO */}
+              <Button type="submit">FILTER</Button>
+              <Button type="reset">Reset Selection</Button>
+            </ButtonGroup>
           </Form>
         </FormProvider>
       </Wrapper>

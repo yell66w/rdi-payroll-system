@@ -58,9 +58,9 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  button {
-    margin: 1rem 0;
-  }
+  // button {
+  //   margin: 1rem 0;
+  // }
 `;
 
 export const FormContainer = styled.div`
@@ -99,4 +99,11 @@ export const Grid = styled.div`
   grid-template-columns: repeat(${(props) => props.col}, minmax(0, 1fr));
   gap: 0.5rem;
   margin-top: 1rem;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
 `;
