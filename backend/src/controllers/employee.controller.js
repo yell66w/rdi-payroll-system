@@ -57,6 +57,8 @@ exports.findAll = async (req, res) => {
   const position = req.query.position;
   const date_hired_from = req.query.date_hired_from;
   const date_hired_to = req.query.date_hired_to;
+  const sex = req.query.sex;
+  const time_shift = req.query.time_shift;
   const search = req.query.search;
 
   let andItems = [];
@@ -64,6 +66,8 @@ exports.findAll = async (req, res) => {
   if (company) andItems.push({ company_id: company });
   if (department) andItems.push({ department_id: department });
   if (position) andItems.push({ position_id: position });
+  if (sex) andItems.push({ sex: sex });
+  if (time_shift) andItems.push({ time_shift: time_shift });
 
   if (search) {
     andItems.push({
