@@ -19,7 +19,7 @@ const Toolbar = ({ children }) => {
           fontWeight="bold"
           borderColor="darkViolet"
           border="2px"
-          bg="transparent"
+          bg="white"
           color="darkViolet"
         >
           View All
@@ -31,7 +31,7 @@ const Toolbar = ({ children }) => {
           fontWeight="bold"
           borderColor="darkViolet"
           border="2px"
-          bg="transparent"
+          bg="white"
           color="darkViolet"
         >
           Export All
