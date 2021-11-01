@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { theme } from 'theme';
 
+// TODO - variant or colorScheme
+
 export const Container = styled.button`
   cursor: pointer;
   user-select: none;
   color: ${(props) => (props.color ? theme.colors[props.color] : theme.colors.white)};
+  background-color: ${(props) => (props.bg ? theme.colors[props.bg] : theme.colors.default)};
   border: ${(props) =>
     props.border && props.borderColor
       ? `${props.border ? props.border : '2px'} solid ${theme.colors[props.borderColor]}`
@@ -21,8 +24,6 @@ export const Container = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => (props.bg ? props.bg : theme.colors.violet)};
-
   &:active {
     background-color: #440099;
     color: ${theme.colors.white};
