@@ -100,7 +100,7 @@ const EmployeeFile = () => {
               fontWeight="bold"
               borderColor="darkViolet"
               border="2px"
-              bg="transparent"
+              bg="white"
               color="darkViolet"
             >
               Add Record
