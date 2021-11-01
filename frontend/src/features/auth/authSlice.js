@@ -18,18 +18,19 @@ export const signinUser = createAsyncThunk('/auth/signin', async (data, { reject
     return rejectWithValue(error.response.data);
   }
 });
+
+const initialState = {
+  username: '',
+  role: '',
+  isFetching: false,
+  isError: false,
+  isSuccess: false,
+  errorMessage: ''
+};
+
 export const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    username: '',
-    role: '',
-    params: '',
-    isFetching: false,
-    isError: false,
-    isSuccess: false,
-    errorMessage: ''
-  },
-
+  initialState: initialState,
   reducers: {
     clearState: (state) => {
       state.isSuccess = false;
@@ -37,7 +38,8 @@ export const authSlice = createSlice({
       state.isError = false;
 
       return state;
-    }
+    },
+    logout: () => initialState
   },
   extraReducers: {
     [signinUser.pending]: (state) => {
@@ -61,5 +63,5 @@ export const authSlice = createSlice({
   }
 });
 
-export const { clearState } = authSlice.actions;
+export const { clearState, logout } = authSlice.actions;
 export const authSelector = (state) => state.auth;

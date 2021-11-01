@@ -1,36 +1,31 @@
 import styled from 'styled-components';
-
-// NOTE: properties are on theme.js
-
-const color = {
-  default: (props) => props.theme.colors.violet,
-  darkViolet: (props) => props.theme.colors.darkViolet,
-  secondary: (props) => props.theme.colors.white,
-  red: (props) => props.theme.colors.red,
-  green: (props) => props.theme.colors.green
-};
+import { theme } from 'theme';
 
 export const Container = styled.button`
   cursor: pointer;
   user-select: none;
-  color: ${(props) => (props.color === 'secondary' ? color.default : color.secondary)};
+  color: ${(props) => (props.color === 'secondary' ? theme.colors.violet : theme.colors.white)};
   background-color: ${(props) =>
     props.color === 'secondary'
-      ? color.secondary
+      ? theme.colors.white
       : props.color === 'red'
-      ? color.red
+      ? theme.colors.red
       : props.color === 'green'
-      ? color.green
-      : color.default};
+      ? theme.colors.green
+      : theme.colors.violet};
   border: ${(props) =>
-    props.color === 'secondary' ? `2px solid ${props.theme.colors.violet}` : 'none'};
+    props.color === 'secondary'
+      ? `2px solid ${theme.colors.violet}`
+      : props.outline
+      ? `1px solid ${theme.colors.gray}`
+      : 'none'};
   outline: none;
   min-width: 15rem;
   width: 100%;
   height: 3rem;
   border-radius: 10px;
   text-transform: uppercase;
-  font-family: ${(props) => props.theme.fonts.avenirRoman};
+  font-family: ${theme.fonts.avenirRoman};
   display: flex;
   align-items: center;
   justify-content: center;
