@@ -59,14 +59,14 @@ exports.findAll = async (req, res) => {
   const date_hired_to = req.query.date_hired_to;
   const search = req.query.search;
 
-  let options = { where: {} };
+  let andItems = [];
 
-  if (company) options.where.company_id = company;
-  if (department) options.where.department_id = department;
-  if (position) options.where.position_id = position;
+  if (company) andItems.push({ company_id: company });
+  if (department) andItems.push({ department_id: department });
+  if (position) andItems.push({ position_id: position });
 
   if (search) {
-    options = {
+    andItems.push({
       where: Sequelize.where(
         Sequelize.fn(
           "concat",
@@ -80,19 +80,39 @@ exports.findAll = async (req, res) => {
           [Op.like]: `%${search}%`,
         }
       ),
-    };
+    });
   }
 
   if (date_hired_from && date_hired_to) {
     const start_date = new Date(date_hired_from);
     const end_date = new Date(date_hired_to);
+    andItems.push({
+      date_hired: { [Op.between]: [start_date, end_date] },
+    });
+  } else if (date_hired_from) {
+    const start_date = new Date(date_hired_from);
+    andItems.push({
+      date_hired: { [Op.between]: [start_date, new Date()] },
+    });
+  } else if (date_hired_to) {
+    const end_date = new Date(date_hired_to);
     options.where.date_hired = {
-      [Op.between]: [start_date, end_date],
+      [Op.between]: [new Date(1900), end_date],
     };
+    andItems.push({
+      date_hired: { [Op.between]: [new Date(1900), end_date] },
+    });
   }
+
   // TODO MALE/FEMALE
   //TIME SHIFT
   //Search by name
+
+  let options = {
+    where: {
+      [Op.and]: andItems,
+    },
+  };
 
   options.include = [
     "company",
