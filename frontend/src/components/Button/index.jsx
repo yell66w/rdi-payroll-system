@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { authSelector } from 'features/auth/authSlice';
 import Loader from 'components/Loader/index.jsx';
 
-const Button = ({ children, color, outline = false, ...rest }) => {
+const Button = ({ children, color, ...rest }) => {
   const { isFetching } = useSelector(authSelector);
   return (
-    <Container {...rest} color={color} outline={outline}>
+    <Container {...rest} color={color}>
       {isFetching ? <Loader /> : children}
     </Container>
   );
