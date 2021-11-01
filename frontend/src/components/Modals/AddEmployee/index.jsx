@@ -2,6 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import {
   ButtonsContainer,
+  FilesContainer,
   Form,
   Header,
   LeftContainer,
@@ -27,6 +28,7 @@ import { findAllPositions } from 'features/position/positionSlice';
 import { useSelector } from 'react-redux';
 import { HeaderText, Text } from 'styles';
 import Button from 'components/Button';
+import FileInput from 'components/FileInput';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
@@ -170,10 +172,12 @@ const AddEmployee = ({ isOpen, onClose }) => {
             </Section>
             <HeaderText>LEGAL DOCUMENTS</HeaderText>
             <Section>
+              <FilesContainer>
+                <FileInput name="nbi_clearance" label="NBI CLEARANCE" placeholder="NBI CLEARANCE" />
+                <FileInput name="nso" label="NSO" placeholder="NSO" />
+                <FileInput name="sss" label="SSS" placeholder="SSS" />
+              </FilesContainer>
               {/* TODO FILEINPUT COMPONENT */}
-              {/* <FileInput name="nbi_clearance" label="NBI Clearance" placeholder="NBI Clearance" /> */}
-              {/* <FileInput name="nso" label="NSO" placeholder="NSO" /> */}
-              {/* <FileInput name="sss" label="SSS" placeholder="SSS" /> */}
             </Section>
           </LeftContainer>
           {/* RIGHT DIV */}

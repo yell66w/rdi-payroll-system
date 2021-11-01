@@ -5,20 +5,27 @@ const Color = {
 };
 
 export const Wrapper = styled.div`
-  display: flex;
+  display: table-cell;
+  padding-right: 2rem;
 `;
 export const SubWrapper = styled.div`
   display: flex;
   background-color: #f6f6f6;
   border-radius: 0.5rem;
   position: relative;
+  cursor: pointer;
+  margin-top: 0.3rem;
+  height: 2.5rem;
+  overflow: hidden;
 `;
 export const Input = styled.input`
   opacity: 0;
   padding: 0.5em 1em;
+  cursor: pointer;
 `;
 export const InpButton = styled.div`
   width: 1.5rem;
+  height: 2.5rem;
   color: #fff;
   padding: 0.2em 0.5em;
   background-color: ${Color.violet};

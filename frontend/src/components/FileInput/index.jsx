@@ -1,16 +1,17 @@
 import { useFormContext } from 'react-hook-form';
+import { Text } from 'styles/index.js';
 import { Wrapper, SubWrapper, Input, InpButton } from './styles.js';
 
-const FileInput = ({ placeholder = '', disabled = false, name, ...rest }) => {
+const FileInput = ({ placeholder = '', label, disabled = false, name, ...rest }) => {
   const { register } = useFormContext();
   return (
     <Wrapper>
+      <Text size="sm">{label}</Text>
       <SubWrapper>
         <Input
           placeholder={placeholder}
           type="file"
-          ref={register}
-          name={name}
+          {...register(name)}
           disabled={disabled}
           {...rest}
         />
