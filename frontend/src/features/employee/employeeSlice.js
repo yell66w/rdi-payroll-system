@@ -31,6 +31,48 @@ export const findAllEmployees = createAsyncThunk(
   }
 );
 
+export const findAllFilteredEmployees = createAsyncThunk(
+  '/employees/all',
+  async (data, { rejectWithValue }) => {
+    let params_string = `employees?`;
+    if (data.company) {
+      params_string += `company=${data.company}&`;
+    }
+    if (data.position) {
+      params_string += `position=${data.position}&`;
+    }
+    if (data.department) {
+      params_string += `department=${data.department}&`;
+    }
+    if (data.department) {
+      params_string += `department=${data.department}&`;
+    }
+    if (data.date_hired_from) {
+      params_string += `date_hired_from=${data.date_hired_from}&`;
+    }
+    if (data.date_hired_to) {
+      params_string += `date_hired_to=${data.date_hired_to}&`;
+    }
+    if (data.search) {
+      params_string += `search=${data.search}&`;
+    }
+
+    try {
+      const res = await API.get(params_string);
+      if (res.status === 200) {
+        return res.data;
+      } else {
+        throw new Error(res.data);
+      }
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const addEmployee = createAsyncThunk('/employees/add', async (data, { rejectWithValue }) => {
   try {
     const res = await API.post(`employees`, data);
@@ -81,6 +123,20 @@ const employeeSlice = createSlice({
       state.isSuccess = true;
     },
     [findAllEmployees.rejected]: (state, { payload }) => {
+      state.data = [];
+      state.isFetching = false;
+      state.isError = true;
+      state.errorMessage = payload;
+    },
+    [findAllFilteredEmployees.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [findAllFilteredEmployees.fulfilled]: (state, { payload }) => {
+      state.data = payload;
+      state.isFetching = false;
+      state.isSuccess = true;
+    },
+    [findAllFilteredEmployees.rejected]: (state, { payload }) => {
       state.data = [];
       state.isFetching = false;
       state.isError = true;

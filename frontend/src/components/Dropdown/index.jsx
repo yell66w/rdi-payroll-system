@@ -3,7 +3,7 @@ import useComponentIsVisible from 'context/useComponentIsVisible';
 import { Container, Label, List, Options, Wrapper } from './styles.js';
 import { ReactComponent as DropdownIcon } from 'assets/icons/dropdown.svg';
 
-const Dropdown = ({ label, options = [] }) => {
+const Dropdown = ({ label, options = [], setValue = () => {} }) => {
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentIsVisible(false);
   const [labelState, setLabelState] = useState(label || options[0]);
 
@@ -15,9 +15,15 @@ const Dropdown = ({ label, options = [] }) => {
       </Container>
       {isComponentVisible && (
         <Options>
-          {options.map((item, index) => (
-            <List key={index} onClick={() => setLabelState(item)}>
-              {item}
+          {options.map((item) => (
+            <List
+              key={item.id}
+              onClick={() => {
+                setValue(item.id);
+                setLabelState(item.name);
+              }}
+            >
+              {item.name}
             </List>
           ))}
         </Options>
