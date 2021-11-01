@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 export const Heading = styled.div`
@@ -61,15 +62,24 @@ export const Form = styled.form`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+  overflow-y: auto;
+  button {
+    margin: 1rem 0;
+  }
 `;
 
 export const FormContainer = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  flex: 1;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
 `;
 
 export const Text = styled.p`
