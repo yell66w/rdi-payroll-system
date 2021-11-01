@@ -17,3 +17,20 @@ export const WrapperRight = styled.div`
   width: 100%;
   overflow-y: auto;
 `;
+
+export const LinksWrapper = styled.span`
+  flex: 1;
+`;
+
+export const ButtonWrapper = styled.span`
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 50%;
+    svg {
+      margin-right: 1rem;
+    }
+  }
+`;
