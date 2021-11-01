@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Button from 'components/Button/index.jsx';
 import Checkbox from 'components/Checkbox/index.jsx';
 import Dropdown from 'components/Dropdown/index.jsx';
@@ -22,6 +23,7 @@ import {
 const Menu = () => {
   const methods = useForm();
   const dispatch = useDispatch();
+  const [checkboxValue, setCheckboxValue] = useState(false);
 
   return (
     <>
@@ -49,18 +51,22 @@ const Menu = () => {
               <div>
                 <Text>Time Duration</Text>
                 <Grid col={1}>
-                  <Input name="timeFrom" type="time" menu />
-                  <Input name="timeTo" type="time" menu />
+                  <Input name="dateFrom" type="date" menu />
+                  <Input name="dateTo" type="date" menu />
                 </Grid>
               </div>
               <div>
                 <Text>Schedule</Text>
-                <Toggle label="All" />
+                <Toggle
+                  label="All"
+                  checked={checkboxValue}
+                  onChange={() => setCheckboxValue(!checkboxValue)}
+                />
                 <Grid col={2}>
-                  <Checkbox label="Morning" />
-                  <Checkbox label="Noon" />
-                  <Checkbox label="Mid-morning" />
-                  <Checkbox label="Afternoon" />
+                  <Checkbox label="Morning" disabled={!checkboxValue} />
+                  <Checkbox label="Noon" disabled={!checkboxValue} />
+                  <Checkbox label="Mid-morning" disabled={!checkboxValue} />
+                  <Checkbox label="Afternoon" disabled={!checkboxValue} />
                 </Grid>
               </div>
             </FormContainer>

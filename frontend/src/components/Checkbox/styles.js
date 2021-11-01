@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-
-const colors = {
-  white: (props) => props.theme.colors.white,
-  violet: (props) => props.theme.colors.violet
-};
+import { theme } from 'theme';
 
 export const Box = styled.span`
   position: absolute;
@@ -11,11 +7,11 @@ export const Box = styled.span`
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: ${colors.white};
+  background-color: ${theme.colors.white};
   border-radius: 3px;
 
   &:hover {
-    background-color: ${colors.violet};
+    background-color: ${theme.colors.violet};
   }
 `;
 
@@ -36,13 +32,13 @@ export const Container = styled.label`
     cursor: pointer;
 
     &:checked ~ ${Box} {
-      background-color: ${colors.violet};
+      background-color: ${theme.colors.violet};
     }
 
     &:checked ~ ${Box} + svg {
       display: block;
       path {
-        fill: ${colors.white};
+        fill: ${theme.colors.white};
       }
     }
   }
