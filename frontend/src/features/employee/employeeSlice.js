@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import API from 'utils/API';
 import { getAllEmployees } from 'utils/employee.routes';
 import download from 'downloadjs';
+import { toast } from 'react-toastify';
 
 const initialState = {
   data: [],
@@ -30,6 +31,22 @@ export const findAllEmployees = createAsyncThunk(
   }
 );
 
+export const addEmployee = createAsyncThunk('/employees/add', async (data, { rejectWithValue }) => {
+  try {
+    const res = await API.post(`employees`, data);
+    if (res.status === 200) {
+      return res.data;
+    } else {
+      throw new Error(res.data);
+    }
+  } catch (error) {
+    if (!error.response) {
+      throw error;
+    }
+    return rejectWithValue(error.response.data);
+  }
+});
+
 export const exportEmployeesToCSV = createAsyncThunk(
   '/employees/export-to-csv',
   async (_, { rejectWithValue }) => {
@@ -53,7 +70,7 @@ export const exportEmployeesToCSV = createAsyncThunk(
 const employeeSlice = createSlice({
   name: 'employee',
   initialState,
-  reducers: {},
+
   extraReducers: {
     [findAllEmployees.pending]: (state) => {
       state.isFetching = true;
@@ -67,10 +84,26 @@ const employeeSlice = createSlice({
       state.data = [];
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = payload.message;
+      state.errorMessage = payload;
+    },
+    [addEmployee.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [addEmployee.fulfilled]: (state) => {
+      // TODO - Di ko alam kung tama tong pinag gagagawa ko haha
+      // state.data = [...state.data, payload];
+      state.isFetching = false;
+      state.isSuccess = true;
+      toast.success(`Successfully added an employee.`);
+    },
+    [addEmployee.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.errorMessage = payload;
+      toast.error(payload);
     }
   }
 });
 
-// export const {} = employeeSlice.actions;
+// export const {  } = employeeSlice.actions;
 export default employeeSlice.reducer;

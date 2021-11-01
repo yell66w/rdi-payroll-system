@@ -6,8 +6,6 @@ import Input from 'components/Input';
 import Radio from 'components/Radio/index.jsx';
 import Toggle from 'components/Toggle/index.jsx';
 import { useForm, FormProvider } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { exportEmployeesToCSV } from 'features/employee/employeeSlice';
 import {
   Wrapper,
   Heading,
@@ -22,7 +20,6 @@ import {
 
 const Menu = () => {
   const methods = useForm();
-  const dispatch = useDispatch();
   const [checkboxValue, setCheckboxValue] = useState(false);
 
   return (
@@ -71,14 +68,6 @@ const Menu = () => {
               </div>
             </FormContainer>
             <Button type="reset">Reset Selection</Button>
-            {/* FIX: Move nalang to sa baba ng table */}
-            {/* <Button
-              onClick={() => {
-                dispatch(exportEmployeesToCSV());
-              }}
-            >
-              Export
-            </Button> */}
           </Form>
         </FormProvider>
       </Wrapper>
