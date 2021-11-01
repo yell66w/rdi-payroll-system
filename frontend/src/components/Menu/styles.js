@@ -78,7 +78,7 @@ export const FormContainer = styled.div`
 `;
 
 export const Text = styled.p`
-  color: ${colors.violet};
+  color: ${theme.colors.violet};
   font-family: ${(props) => props.theme.fonts.avenirRoman};
 `;
 

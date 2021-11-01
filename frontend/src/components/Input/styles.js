@@ -15,7 +15,8 @@ export const Container = styled.div`
   /* border: 1.5px solid ${(props) => (props.disabled ? theme.colors.default : 'silver')}; */
   height: ${(props) => (props.menu ? '2.5rem' : '3rem')};
   box-shadow: 0pt 0pt 0pt 1.5pt
-    ${(props) => (props.disabled ? theme.colors.default : props.menu ? theme.colors.white : 'silver')};
+    ${(props) =>
+      props.disabled ? theme.colors.default : props.menu ? theme.colors.white : 'silver'};
   border-radius: 10px;
   background: ${(props) => (props.disabled ? theme.colors.lightViolet : theme.colors.white)};
   span {
