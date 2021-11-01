@@ -4,7 +4,7 @@ function Memo() {
   return (
     <>
       Hello
-      <FileInput />
+      {/* <FileInput /> */}
     </>
   );
 }
