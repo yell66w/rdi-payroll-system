@@ -1,7 +1,6 @@
 import { Container, Input, Wrapper, Label } from './styles.js';
 import { useFormContext } from 'react-hook-form';
 import { ErrorText } from 'styles/index.js';
-import { theme } from 'theme.js';
 
 const InputField = ({
   type = 'text',

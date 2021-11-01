@@ -3,7 +3,6 @@ import Sidebar from 'components/Sidebar';
 import { MainCan, MainRight, WrapperRight } from './styles';
 import Link from 'components/Link';
 import { useLocation } from 'react-router';
-import routes from 'routes';
 
 const MainWrapper = ({ children }) => {
   const location = useLocation();
