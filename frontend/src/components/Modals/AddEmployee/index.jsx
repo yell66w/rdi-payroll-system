@@ -29,6 +29,7 @@ import { useSelector } from 'react-redux';
 import { HeaderText, Text } from 'styles';
 import Button from 'components/Button';
 import FileInput from 'components/FileInput';
+import PhotoInput from 'components/PhotoInput';
 ReactModal.setAppElement('#root');
 
 //TODO MOVE TO UTILS/HELPERS
@@ -194,7 +195,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
           <RightContainer>
             <div>
               {/* <Text>TODO ADD PHOTO</Text> */}
-              <FileInput name="photo" label="Add Photo" placeholder="Add Photo" />
+              <PhotoInput name="photo" label="Add Photo" placeholder="Add Photo" />
             </div>
             <ButtonsContainer>
               <Button>Import</Button>
