@@ -23,6 +23,7 @@ export const Container = styled.button`
     props.fontFamily ? theme.fonts[props.fontFamily] : theme.fonts.avenirRoman};
   display: flex;
   align-items: center;
+  float: left;
   justify-content: center;
   &:active {
     background-color: #440099;

@@ -107,4 +107,5 @@ export const ButtonGroup = styled.div`
   gap: 0.5rem;
   padding-bottom: 1rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
 `;
