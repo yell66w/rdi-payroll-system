@@ -13,10 +13,12 @@ import getTimeDuration from 'helpers/getTimeDuration';
 import Toolbar from 'components/Toolbar';
 import Button from 'components/Button';
 import { VStack } from 'styles';
+import { ROLES } from 'constants/constants';
 const Payroll = () => {
   const dispatch = useDispatch();
   const { data, isFetching } = useSelector((state) => state.employees);
   const { isOpen } = useSelector(settingsSelector);
+  const authRole = useSelector((state) => state.auth.role);
 
   useEffect(() => {
     dispatch(findAllEmployees());
@@ -90,20 +92,22 @@ const Payroll = () => {
         <Flex bg="gray" flex={1}>
           {isOpen && (
             <Menu>
-              <>
-                <VStack>
-                  <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
-                    RECORD DEDUCTION
-                  </Button>
+              {authRole === ROLES.ENCODER ? (
+                <>
+                  <VStack>
+                    <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
+                      RECORD DEDUCTION
+                    </Button>
 
-                  <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
-                    RECORD EARNINGS
+                    <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
+                      RECORD EARNINGS
+                    </Button>
+                  </VStack>
+                  <Button minW="13rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
+                    REQUEST FOR APPROVAL
                   </Button>
-                </VStack>
-                <Button minW="13rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
-                  REQUEST FOR APPROVAL
-                </Button>
-              </>
+                </>
+              ) : null}
             </Menu>
           )}
         </Flex>
