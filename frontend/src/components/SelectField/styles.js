@@ -27,7 +27,7 @@ export const Container = styled.div`
 
 export const Select = styled.select`
   width: 100%;
-  padding: 0 1rem 0 1rem;
+  padding: 0 1rem 0 0.5rem;
   height: inherit;
   outline: none;
   border: 0;

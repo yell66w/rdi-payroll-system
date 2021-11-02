@@ -141,7 +141,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 <InputField type="tel" name="contact_no" label="Contact Number" />
               </SubSection>
             </Section>
-            <HeaderText>EMPLOYMENT STATUS</HeaderText>
+            <HeaderText size="lg">EMPLOYMENT STATUS</HeaderText>
             <Section>
               <SubSection>
                 <SelectField label="Employment Type" name="employment_type" id="employment_type">
@@ -176,12 +176,14 @@ const AddEmployee = ({ isOpen, onClose }) => {
 
                 <InputField type="date" name="date_hired" label="Date Hired" />
                 <SelectField label="Time Shift" name="time_shift" id="time_shift">
-                  <option value="1">TIME 1 </option>
-                  <option value="2">TIME 2 </option>
+                  <option value="MORNING">Morning</option>
+                  <option value="MID_MORNING">Mid Morning </option>
+                  <option value="NOON">Noon</option>
+                  <option value="AFTERNOON">Afternoon</option>
                 </SelectField>
               </SubSection>
             </Section>
-            <HeaderText>LEGAL DOCUMENTS</HeaderText>
+            <HeaderText size="lg">LEGAL DOCUMENTS</HeaderText>
             <Section>
               <FilesContainer>
                 <FileInput name="nbi_clearance" label="NBI CLEARANCE" placeholder="NBI CLEARANCE" />

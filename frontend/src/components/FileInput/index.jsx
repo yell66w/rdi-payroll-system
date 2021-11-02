@@ -6,7 +6,7 @@ const FileInput = ({ placeholder = '', label, disabled = false, name, ...rest })
   const { register } = useFormContext();
   return (
     <Wrapper>
-      <Text size="sm">{label}</Text>
+      <Text size="xs">{label}</Text>
       <SubWrapper>
         <Input
           placeholder={placeholder}

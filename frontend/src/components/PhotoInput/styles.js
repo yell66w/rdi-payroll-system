@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
 `;
 export const SubWrapper = styled.div`
   display: flex;
-  cursor: pointer;
   background-color: white;
   border-radius: 0.5rem;
   position: relative;
