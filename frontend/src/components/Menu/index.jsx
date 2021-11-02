@@ -27,7 +27,7 @@ import { findAllEmployees, findAllFilteredEmployees } from 'features/employee/em
 
 const Menu = () => {
   const methods = useForm();
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit, reset, setValue } = methods;
 
   const [checkboxValue, setCheckboxValue] = useState(false);
   const dispatch = useDispatch();
@@ -121,7 +121,16 @@ const Menu = () => {
                 <Toggle
                   label="All"
                   checked={checkboxValue}
-                  onChange={() => setCheckboxValue(!checkboxValue)}
+                  onChange={() => {
+                    setCheckboxValue(!checkboxValue);
+                    console.log(checkboxValue);
+                    if (checkboxValue) {
+                      setValue('MORNING', null);
+                      setValue('NOON', null);
+                      setValue('MID_MORNING', null);
+                      setValue('AFTERNOON', null);
+                    }
+                  }}
                 />
                 <Grid col={2}>
                   <Checkbox name="MORNING" label="Morning" disabled={!checkboxValue} />
