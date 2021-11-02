@@ -125,7 +125,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
                 <InputField name="last_name" label="Last Name" />
                 <InputField name="first_name" label="First Name" />
                 <InputField name="middle_name" label="Middle Name" />
-                <Text size="sm">SEX</Text>
+                <Text size="xs">SEX</Text>
                 <RadioGroup>
                   <RadioInput value="MALE" name="sex" label="MALE" />
                   <RadioInput value="FEMALE" name="sex" label="FEMALE" />

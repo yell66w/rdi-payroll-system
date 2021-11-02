@@ -14,6 +14,5 @@ export const ErrorText = styled.small`
 
 export const Text = styled.small`
   font-family: ${(props) => props.theme.fontSizes.avenirRoman};
-
   font-size: ${(props) => (props.size ? theme.fontSizes[props.size] : theme.fontSizes.md)};
 `;
