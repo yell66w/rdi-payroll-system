@@ -31,9 +31,8 @@ function Request() {
   return (
     <Wrapper>
       <FlexDrop>
-        <Dropdown label="CLASSIFICATION"></Dropdown>
+        <Dropdown bg="gray" label="CLASSIFICATION"></Dropdown>
       </FlexDrop>
-
       <GhostArea>
         <TextArea />
       </GhostArea>
