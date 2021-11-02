@@ -100,9 +100,11 @@ const EmployeeFile = () => {
               'Wow, such empty'
             )}
           </TableContainer>
+          {/* TEMPORARY ADD RECORD */}
           <Toolbar>
-            {/* TEMPORARY ADD RECORD */}
             <Button
+              h="2rem"
+              minW="10rem"
               onClick={onModalOpen}
               fontWeight="bold"
               borderColor="darkViolet"

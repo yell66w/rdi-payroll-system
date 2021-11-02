@@ -13,10 +13,10 @@ export const Container = styled.button`
       ? `${props.border ? props.border : '2px'} solid ${theme.colors[props.borderColor]}`
       : 'none'};
   outline: none;
-  min-width: 15rem;
-  width: 100%;
-  height: 3rem;
-  border-radius: 10px;
+  min-width: ${(props) => (props.minW ? props.minW : '13rem')};
+  width: ${(props) => (props.w ? props.w : '100%')};
+  height: ${(props) => (props.h ? props.h : '3rem')};
+  border-radius: 5px;
   text-transform: uppercase;
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
   font-family: ${(props) =>

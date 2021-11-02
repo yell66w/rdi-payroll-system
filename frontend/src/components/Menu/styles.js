@@ -106,4 +106,5 @@ export const ButtonGroup = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   padding-bottom: 1rem;
+  margin-top: 1rem;
 `;

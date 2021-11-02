@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 1em 2em;
+  gap: 1rem;
 `;
 
 export const Box = styled.div`

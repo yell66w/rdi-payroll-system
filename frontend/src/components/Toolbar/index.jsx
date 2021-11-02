@@ -9,13 +9,15 @@ const Toolbar = ({ children }) => {
   return (
     <Wrapper>
       <Box>
-        <Button fontWeight="bold" fontFamily="avenirRoman">
+        <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
           Generate All
         </Button>
       </Box>
       <Box>
         {children}
         <Button
+          minW="10rem"
+          h="2rem"
           fontWeight="bold"
           borderColor="darkViolet"
           border="2px"
@@ -25,6 +27,8 @@ const Toolbar = ({ children }) => {
           View All
         </Button>
         <Button
+          minW="10rem"
+          h="2rem"
           onClick={() => {
             dispatch(exportEmployeesToCSV());
           }}

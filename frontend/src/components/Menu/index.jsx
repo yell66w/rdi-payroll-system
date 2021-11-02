@@ -123,7 +123,7 @@ const Menu = () => {
                   checked={checkboxValue}
                   onChange={() => {
                     setCheckboxValue(!checkboxValue);
-                    console.log(checkboxValue);
+                    // TODO - REFACTOR
                     if (checkboxValue) {
                       setValue('MORNING', null);
                       setValue('NOON', null);
@@ -140,11 +140,12 @@ const Menu = () => {
                 </Grid>
               </div>
             </FormContainer>
-
             <ButtonGroup>
               {/* TODO - TEMPORARY FILTER BUTTO */}
-              <Button type="submit">FILTER</Button>
-              <Button type="submit" onClick={onReset}>
+              <Button minW="10rem" h="2.5rem" type="submit">
+                FILTER
+              </Button>
+              <Button minW="10rem" h="2.5rem" type="submit" onClick={onReset}>
                 Reset Selection
               </Button>
             </ButtonGroup>
