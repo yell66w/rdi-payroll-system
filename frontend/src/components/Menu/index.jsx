@@ -113,7 +113,7 @@ const Menu = () => {
                   setValue={setSelectedPosition}
                   name="position"
                   label="Position"
-                  options={isFetchingCompanies ? [{ id: 0, name: 'Loading Positions' }] : positions}
+                  options={isFetchingPositions ? [{ id: 0, name: 'Loading Positions' }] : positions}
                 />
                 {/* <Dropdown name="level" label="Level" options={['a', 'b', 'c', 'd', 'e']} /> */}
               </DropdownWrapper>
