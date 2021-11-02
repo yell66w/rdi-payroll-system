@@ -101,6 +101,7 @@ Yup Validation: https://github.com/jquense/yup
 **UI**
 
 Styled Components: https://styled-components.com/
+<br/>
 React Table: https://react-table.tanstack.com/
 <br/>
 React Modal: https://github.com/reactjs/react-modal
