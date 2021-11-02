@@ -33,7 +33,7 @@ const FileInput = ({ placeholder = '', label, disabled = false, name, ...rest })
           </svg>
         </InpButton>
       </SubWrapper>
-      {errors[name] ? <ErrorText style={{ color: 'red' }}>{errors[name].message}</ErrorText> : null}
+      {errors[name] ? <ErrorText>{errors[name].message}</ErrorText> : null}
     </Wrapper>
   );
 };
