@@ -151,27 +151,25 @@ const Menu = ({ children }) => {
             </FormContainer>
             <ButtonGroup>
               {/* TODO - TEMPORARY FILTER BUTTO */}
-              <VStack>
-                <Button
-                  minW="10rem"
-                  h="2rem"
-                  fontWeight="bold"
-                  fontFamily="avenirRoman"
-                  type="submit"
-                >
-                  FILTER
-                </Button>
-                <Button
-                  minW="10rem"
-                  h="2rem"
-                  fontWeight="bold"
-                  fontFamily="avenirRoman"
-                  type="submit"
-                  onClick={onReset}
-                >
-                  Reset Selection
-                </Button>
-              </VStack>
+              <Button
+                minW="10rem"
+                h="2rem"
+                fontWeight="bold"
+                fontFamily="avenirRoman"
+                type="submit"
+              >
+                FILTER
+              </Button>
+              <Button
+                minW="10rem"
+                h="2rem"
+                fontWeight="bold"
+                fontFamily="avenirRoman"
+                type="submit"
+                onClick={onReset}
+              >
+                Reset Selection
+              </Button>
               {children}
             </ButtonGroup>
           </Form>

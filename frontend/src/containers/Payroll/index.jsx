@@ -94,15 +94,12 @@ const Payroll = () => {
             <Menu>
               {authRole === ROLES.ENCODER ? (
                 <>
-                  <VStack>
-                    <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
-                      RECORD DEDUCTION
-                    </Button>
-
-                    <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
-                      RECORD EARNINGS
-                    </Button>
-                  </VStack>
+                  <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
+                    RECORD DEDUCTION
+                  </Button>
+                  <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
+                    RECORD EARNINGS
+                  </Button>
                   <Button minW="13rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
                     REQUEST FOR APPROVAL
                   </Button>
