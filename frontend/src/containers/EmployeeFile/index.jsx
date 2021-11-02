@@ -13,12 +13,13 @@ import AddEmployee from 'components/Modals/AddEmployee';
 import Button from 'components/Button/';
 import getTimeDuration from 'helpers/getTimeDuration';
 import Toolbar from 'components/Toolbar';
+import { ROLES } from 'constants/constants';
 
 const EmployeeFile = () => {
   const dispatch = useDispatch();
   const { data, isFetching } = useSelector((state) => state.employees);
   const { isOpen } = useSelector(settingsSelector);
-
+  const authRole = useSelector((state) => state.auth.role);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onModalOpen = () => {
@@ -101,8 +102,22 @@ const EmployeeFile = () => {
             )}
           </TableContainer>
           {/* TEMPORARY ADD RECORD */}
-          <Toolbar>
-            <Button
+          <Toolbar
+            leftChildren={
+              authRole === ROLES.ENCODER ? (
+                <Button
+                  onClick={onModalOpen}
+                  minW="10rem"
+                  h="2rem"
+                  fontWeight="bold"
+                  fontFamily="avenirRoman"
+                >
+                  Add Record
+                </Button>
+              ) : null
+            }
+          >
+            {/* <Button
               h="2rem"
               minW="10rem"
               onClick={onModalOpen}
@@ -113,7 +128,7 @@ const EmployeeFile = () => {
               color="darkViolet"
             >
               Add Record
-            </Button>
+            </Button> */}
           </Toolbar>
         </Flex>
         <Flex bg="gray" flex={1}>
