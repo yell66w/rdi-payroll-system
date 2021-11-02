@@ -51,7 +51,8 @@ const EmployeeFile = () => {
         Cell: (props) => {
           return (
             <div>
-              {props.row.original.first_name} {props.row.original.last_name}
+              {props.row.original.first_name} {props.row.original.middle_name}{' '}
+              {props.row.original.last_name}
             </div>
           );
         }
@@ -76,12 +77,12 @@ const EmployeeFile = () => {
 
   const tableInstance = useTable({ columns, data });
 
-  if (isFetching) {
-    /**
-     * TODO - Loading Component
-     */
-    return <div>Loading</div>;
-  }
+  // if (isFetching) {
+  //   /**
+  //    * TODO - Loading Component
+  //    */
+  //   return <div>Loading</div>;
+  // }
   return (
     <Wrapper>
       <Container>
@@ -91,11 +92,19 @@ const EmployeeFile = () => {
             {/* TODO - Component kung alang laman data */}
             {/* NOTE: To use Settings Component set parent div to position relative*/}
             <Settings />
-            {data.length > 0 ? <Table tableInstance={tableInstance} /> : 'Wow, such empty'}
+            {isFetching ? (
+              <div>Loading</div>
+            ) : data.length > 0 ? (
+              <Table tableInstance={tableInstance} />
+            ) : (
+              'Wow, such empty'
+            )}
           </TableContainer>
+          {/* TEMPORARY ADD RECORD */}
           <Toolbar>
-            {/* TEMPORARY ADD RECORD */}
             <Button
+              h="2rem"
+              minW="10rem"
               onClick={onModalOpen}
               fontWeight="bold"
               borderColor="darkViolet"

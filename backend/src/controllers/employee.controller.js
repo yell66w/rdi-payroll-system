@@ -1,4 +1,4 @@
-const { Op, sequelize } = require("../models");
+const { Op, sequelize, Sequelize } = require("../models");
 const db = require("../models");
 const Employee = db.employee;
 const fs = require("fs");
@@ -57,20 +57,88 @@ exports.findAll = async (req, res) => {
   const position = req.query.position;
   const date_hired_from = req.query.date_hired_from;
   const date_hired_to = req.query.date_hired_to;
+  const sex = req.query.sex;
+  // const time_shift = req.query.time_shift;
 
-  let options = { where: {} };
+  // TODO - REFACTOR TIME SHIFT
+  const MORNING = req.query.MORNING;
+  const MID_MORNING = req.query.MID_MORNING;
+  const NOON = req.query.NOON;
+  const AFTERNOON = req.query.AFTERNOON;
 
-  if (company) options.where.company_id = company;
-  if (department) options.where.department_id = department;
-  if (position) options.where.position_id = position;
+  const search = req.query.search;
+
+  let andItems = [];
+  let time_shift = [];
+
+  if (company) andItems.push({ company_id: company });
+  if (department) andItems.push({ department_id: department });
+  if (position) andItems.push({ position_id: position });
+  if (sex) andItems.push({ sex: sex });
+
+  // TODO - REFACTOR
+  if (MORNING === "true") {
+    time_shift.push("MORNING");
+  }
+  if (MID_MORNING === "true") {
+    time_shift.push("MID_MORNING");
+  }
+  if (NOON === "true") {
+    time_shift.push("NOON");
+  }
+  if (AFTERNOON === "true") {
+    time_shift.push("AFTERNOON");
+  }
+
+  if (time_shift.length > 0) {
+    andItems.push({ time_shift: { [Op.in]: time_shift } });
+  }
+
+  if (search) {
+    andItems.push({
+      where: Sequelize.where(
+        Sequelize.fn(
+          "concat",
+          Sequelize.col("first_name"),
+          " ",
+          Sequelize.col("middle_name"),
+          " ",
+          Sequelize.col("last_name")
+        ),
+        {
+          [Op.like]: `%${search}%`,
+        }
+      ),
+    });
+  }
 
   if (date_hired_from && date_hired_to) {
     const start_date = new Date(date_hired_from);
     const end_date = new Date(date_hired_to);
-    options.where.date_hired = {
-      [Op.between]: [start_date, end_date],
-    };
+    andItems.push({
+      date_hired: { [Op.between]: [start_date, end_date] },
+    });
+  } else if (date_hired_from) {
+    const start_date = new Date(date_hired_from);
+    andItems.push({
+      date_hired: { [Op.between]: [start_date, new Date()] },
+    });
+  } else if (date_hired_to) {
+    const end_date = new Date(date_hired_to);
+    andItems.push({
+      date_hired: { [Op.between]: [new Date(1900), end_date] },
+    });
   }
+
+  // TODO MALE/FEMALE
+  //TIME SHIFT
+  //Search by name
+
+  let options = {
+    where: {
+      [Op.and]: andItems,
+    },
+  };
 
   options.include = [
     "company",
