@@ -62,8 +62,10 @@ const employeeSchema = yup
   .required();
 
 const AddEmployee = ({ isOpen, onClose }) => {
-  const methods = useForm({ resolver: yupResolver(employeeSchema) });
-  const { handleSubmit } = methods;
+  const methods = useForm({
+    resolver: yupResolver(employeeSchema)
+  });
+  const { handleSubmit, reset } = methods;
   const dispatch = useDispatch();
   const companies = useSelector((state) => state.companies.data);
   const departments = useSelector((state) => state.departments.data);
@@ -75,6 +77,7 @@ const AddEmployee = ({ isOpen, onClose }) => {
     data.time_shift_to = data.time_shift;
     data.time_shift_from = data.time_shift;
     dispatch(addEmployee(data));
+    reset({});
     onClose();
   };
   useEffect(() => {
@@ -82,6 +85,13 @@ const AddEmployee = ({ isOpen, onClose }) => {
     dispatch(findAllDepartments());
     dispatch(findAllPositions());
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      console.log('called');
+      reset({ sex: 'MALE', basic_pay: 0.0 });
+    }
+  }, [onClose, reset, isOpen]);
 
   return (
     <ReactModal
@@ -183,8 +193,8 @@ const AddEmployee = ({ isOpen, onClose }) => {
           {/* RIGHT DIV */}
           <RightContainer>
             <div>
-              <Text>TODO ADD PHOTO</Text>
-              {/* <FileInput name="photo" label="Add Photo" placeholder="Add Photo" /> */}
+              {/* <Text>TODO ADD PHOTO</Text> */}
+              <FileInput name="photo" label="Add Photo" placeholder="Add Photo" />
             </div>
             <ButtonsContainer>
               <Button>Import</Button>

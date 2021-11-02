@@ -12,7 +12,7 @@ const FileInput = ({ placeholder = '', label, disabled = false, name, ...rest })
           placeholder={placeholder}
           type="file"
           //BUGGY REGISTER
-          // {...register(name)}
+          {...register(name)}
           disabled={disabled}
           {...rest}
         />
