@@ -31,9 +31,15 @@ const Menu = () => {
 
   const [checkboxValue, setCheckboxValue] = useState(false);
   const dispatch = useDispatch();
-  const companies = useSelector((state) => state.companies.data);
-  const departments = useSelector((state) => state.departments.data);
-  const positions = useSelector((state) => state.positions.data);
+  const { data: companies, isFetching: isFetchingCompanies } = useSelector(
+    (state) => state.companies
+  );
+  const { data: departments, isFetching: isFetchingDepartments } = useSelector(
+    (state) => state.departments
+  );
+  const { data: positions, isFetching: isFetchingPositions } = useSelector(
+    (state) => state.positions
+  );
 
   const [selectedCompany, setSelectedCompany] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
@@ -41,9 +47,9 @@ const Menu = () => {
   const [isReset, setIsReset] = useState(false);
 
   useEffect(() => {
-    dispatch(findAllCompanies);
-    dispatch(findAllDepartments);
-    dispatch(findAllPositions);
+    dispatch(findAllCompanies());
+    dispatch(findAllDepartments());
+    dispatch(findAllPositions());
   }, []);
 
   const onSubmit = (data) => {
@@ -91,21 +97,23 @@ const Menu = () => {
                   setValue={setSelectedCompany}
                   name="company"
                   label="Company"
-                  options={companies}
+                  options={isFetchingCompanies ? [{ id: 0, name: 'Loading Companies' }] : companies}
                 />
                 <Dropdown
                   isReset={isReset}
                   setValue={setSelectedDepartment}
                   name="department"
                   label="Department"
-                  options={departments}
+                  options={
+                    isFetchingDepartments ? [{ id: 0, name: 'Loading Departments' }] : departments
+                  }
                 />
                 <Dropdown
                   isReset={isReset}
                   setValue={setSelectedPosition}
                   name="position"
                   label="Position"
-                  options={positions}
+                  options={isFetchingCompanies ? [{ id: 0, name: 'Loading Positions' }] : positions}
                 />
                 {/* <Dropdown name="level" label="Level" options={['a', 'b', 'c', 'd', 'e']} /> */}
               </DropdownWrapper>
