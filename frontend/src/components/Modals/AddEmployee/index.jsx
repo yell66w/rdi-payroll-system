@@ -71,12 +71,9 @@ const AddEmployee = ({ isOpen, onClose }) => {
   const companies = useSelector((state) => state.companies.data);
   const departments = useSelector((state) => state.departments.data);
   const positions = useSelector((state) => state.positions.data);
-  // const { isFetching, isSuccess, isError } = useSelector((state) => state.employees);
   const onSubmit = (data) => {
-    //TODO
-    data.address = `${data.street} ${data.city} ${data.province}`;
-    data.time_shift_to = data.time_shift;
-    data.time_shift_from = data.time_shift;
+    //TODO - ADDRESS IN DB??
+    console.log(data);
     dispatch(addEmployee(data));
     reset({});
     onClose();
@@ -88,8 +85,9 @@ const AddEmployee = ({ isOpen, onClose }) => {
   }, []);
 
   useEffect(() => {
+    // TODO - REFACTOR
+    //BUGGY CODE
     if (!isOpen) {
-      console.log('called');
       reset({ sex: 'MALE', basic_pay: 0.0 });
     }
   }, [onClose, reset, isOpen]);
