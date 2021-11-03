@@ -1,18 +1,17 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'features/auth/authSlice';
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
 import { MainCan, MainRight, WrapperRight, LinkWrapper, ButtonContainer } from './styles';
 import Link from 'components/Link';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Button from 'components/Button';
 import { ROLES } from 'constants/constants';
 
 const MainWrapper = ({ children }) => {
   const location = useLocation();
-  const history = useHistory();
   const dispatch = useDispatch();
-  const { role } = JSON.parse(localStorage.getItem('rdi-auth'));
+  const { role } = useSelector((state) => state.auth);
 
   // encoder based sidebar
   const routesMap = new Map();
@@ -30,8 +29,6 @@ const MainWrapper = ({ children }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    window.localStorage.removeItem('rdi-auth');
-    history.replace('/login');
   };
 
   return (

@@ -1,7 +1,9 @@
+import { useSelector } from 'react-redux';
 import { Route, Redirect, useLocation } from 'react-router-dom';
 
-const PublicRoute = ({ children, isAuth, ...rest }) => {
+const PublicRoute = ({ children, ...rest }) => {
   const path = useLocation();
+  const { isAuth } = useSelector((state) => state.auth);
 
   return (
     <Route
