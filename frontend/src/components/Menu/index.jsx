@@ -24,8 +24,9 @@ import { findAllCompanies } from 'features/company/companySlice.js';
 import { findAllDepartments } from 'features/department/departmentSlice.js';
 import { findAllPositions } from 'features/position/positionSlice.js';
 import { findAllEmployees, findAllFilteredEmployees } from 'features/employee/employeeSlice.js';
+import { VStack } from 'styles/index.js';
 
-const Menu = () => {
+const Menu = ({ children }) => {
   const methods = useForm();
   const { handleSubmit, reset, setValue } = methods;
 
@@ -150,12 +151,26 @@ const Menu = () => {
             </FormContainer>
             <ButtonGroup>
               {/* TODO - TEMPORARY FILTER BUTTO */}
-              <Button minW="10rem" h="2.5rem" type="submit">
+              <Button
+                minW="10rem"
+                h="2rem"
+                fontWeight="bold"
+                fontFamily="avenirRoman"
+                type="submit"
+              >
                 FILTER
               </Button>
-              <Button minW="10rem" h="2.5rem" type="submit" onClick={onReset}>
+              <Button
+                minW="10rem"
+                h="2rem"
+                fontWeight="bold"
+                fontFamily="avenirRoman"
+                type="submit"
+                onClick={onReset}
+              >
                 Reset Selection
               </Button>
+              {children}
             </ButtonGroup>
           </Form>
         </FormProvider>

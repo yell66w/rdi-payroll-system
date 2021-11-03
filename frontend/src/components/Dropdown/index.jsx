@@ -9,7 +9,6 @@ const Dropdown = ({ label, isReset, options = [], setValue = () => {} }) => {
 
   useEffect(() => {
     if (isReset) {
-      console.log('hereIn', isReset);
       setLabelState(label || options[0]);
     }
   }, [isReset]);

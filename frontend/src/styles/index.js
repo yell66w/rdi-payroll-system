@@ -17,3 +17,14 @@ export const Text = styled.small`
 
   font-size: ${(props) => (props.size ? theme.fontSizes[props.size] : theme.fontSizes.md)};
 `;
+
+export const VStack = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+export const HStack = styled.div`
+  display: flex;
+  flex-direction:column
+  gap: 0.5rem;
+`;

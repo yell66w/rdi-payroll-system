@@ -1,17 +1,23 @@
 import Button from 'components/Button';
+import { ROLES } from 'constants/constants';
 import { exportEmployeesToCSV } from 'features/employee/employeeSlice';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Box, Wrapper } from './styles';
 
-const Toolbar = ({ children }) => {
+const Toolbar = ({ children, leftChildren }) => {
   const dispatch = useDispatch();
+  const authRole = useSelector((state) => state.auth.role);
   return (
     <Wrapper>
       <Box>
-        <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
-          Generate All
-        </Button>
+        {authRole === ROLES.AUDITOR ? (
+          <Button minW="10rem" h="2rem" fontWeight="bold" fontFamily="avenirRoman">
+            Generate All
+          </Button>
+        ) : null}
+        {leftChildren}
       </Box>
       <Box>
         {children}
