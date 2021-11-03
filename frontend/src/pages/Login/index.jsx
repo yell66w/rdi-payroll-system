@@ -14,7 +14,6 @@ const LoginPage = () => {
   const methods = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-
   const { isError, isSuccess } = useSelector(authSelector);
 
   const onSubmit = (data) => {
