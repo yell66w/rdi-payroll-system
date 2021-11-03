@@ -1,7 +1,7 @@
 import { Route, Redirect, useLocation } from 'react-router-dom';
 
 const PublicRoute = ({ children, isAuth, ...rest }) => {
-  const _location = useLocation();
+  const path = useLocation();
 
   return (
     <Route
@@ -13,7 +13,7 @@ const PublicRoute = ({ children, isAuth, ...rest }) => {
           <>
             <Redirect
               to={{
-                pathname: `${_location?.state?.from?.pathname || _location.pathname}`,
+                pathname: `${path?.state?.from?.pathname || path.pathname}`,
                 state: { from: location }
               }}
             />

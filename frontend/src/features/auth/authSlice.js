@@ -6,7 +6,8 @@ export const signinUser = createAsyncThunk('/auth/signin', async (data, { reject
   try {
     const res = await signin(JSON.stringify(data));
     if (res.status === 200) {
-      localStorage.setItem('token', res.data.accessToken);
+      data = { token: res.data.accessToken, role: res.data.role };
+      localStorage.setItem('rdi-auth', JSON.stringify(data));
       return res.data;
     } else {
       return rejectWithValue(res.data);
@@ -52,8 +53,6 @@ export const authSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       toast?.success(`Welcome ${payload.username}`);
-
-      return state;
     },
     [signinUser.rejected]: (state, { payload }) => {
       state.isFetching = false;
