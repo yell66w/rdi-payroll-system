@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux';
-import { Route, Redirect, useLocation } from 'react-router-dom';
+import { Route, Redirect, useLocation, useHistory } from 'react-router-dom';
 
 const PublicRoute = ({ children, ...rest }) => {
-  const path = useLocation();
+  // const history = useHistory();
   const { isAuth } = useSelector((state) => state.auth);
-
   return (
     <Route
       {...rest}
@@ -14,10 +13,11 @@ const PublicRoute = ({ children, ...rest }) => {
         ) : (
           <>
             <Redirect
-              to={{
-                pathname: `${path?.state?.from?.pathname || path.pathname}`,
-                state: { from: location }
-              }}
+              // to={{
+              //   pathname: `${history.location.state.from.pathname}`,
+              //   state: { from: location }
+              // }}
+              to="/"
             />
           </>
         )

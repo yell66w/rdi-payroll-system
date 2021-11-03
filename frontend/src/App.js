@@ -1,5 +1,5 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,7 @@ import PublicRoute from 'routes/PublicRoute';
 import PrivateRoute from 'routes/PrivateRoute';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelector, verifyAuth } from 'features/auth/authSlice';
+import { verifyAuth } from 'features/auth/authSlice';
 import Loader from 'components/Loader';
 
 const LoginPage = lazy(() => import('pages/Login'));
@@ -19,6 +19,7 @@ toast.configure({ limit: 3 });
 
 function App() {
   const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(verifyAuth());
@@ -28,6 +29,7 @@ function App() {
     <>
       <Suspense fallback={<Loader primary />}>
         <Switch>
+          {/* MAY BUG ATA SA PUBLIC ROUTES */}
           <PublicRoute path="/login">
             <LoginPage />
           </PublicRoute>

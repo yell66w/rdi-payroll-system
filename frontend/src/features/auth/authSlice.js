@@ -73,6 +73,7 @@ export const authSlice = createSlice({
       state.role = payload.role;
       state.isFetching = false;
       state.isSuccess = true;
+      state.isAuth = true;
       toast?.success(`Welcome ${payload.username}`);
     },
     [signinUser.rejected]: (state, { payload }) => {
@@ -90,14 +91,12 @@ export const authSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.isAuth = true;
-      toast?.success(`Welcome ${payload.username}`);
     },
     [verifyAuth.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload;
       state.isAuth = false;
-      toast?.error(state.errorMessage);
     }
   }
 });
