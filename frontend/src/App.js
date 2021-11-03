@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,6 +20,7 @@ toast.configure({ limit: 3 });
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const { isFetching } = useSelector(authSelector);
+  const location = useLocation();
 
   const token = localStorage.getItem('token');
   useEffect(() => {

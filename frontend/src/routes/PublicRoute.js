@@ -1,8 +1,8 @@
-import { Route, Redirect, useHistory } from 'react-router-dom';
+import { Route, Redirect, useLocation } from 'react-router-dom';
 
 const PublicRoute = ({ children, isAuth, ...rest }) => {
-  const history = useHistory();
-  console.log(history.location);
+  const _location = useLocation();
+
   return (
     <Route
       {...rest}
@@ -13,7 +13,7 @@ const PublicRoute = ({ children, isAuth, ...rest }) => {
           <>
             <Redirect
               to={{
-                pathname: `${history.location.state.from.pathname}`,
+                pathname: `${_location?.state?.from?.pathname || _location.pathname}`,
                 state: { from: location }
               }}
             />
