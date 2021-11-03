@@ -35,3 +35,17 @@ exports.signin = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 };
+
+exports.verifyToken = async (req, res) => {
+  const token = req.headers["auth"];
+  let jwtPayload;
+  try {
+    jwtPayload = jwt.verify(token, config.auth.secret);
+    res.locals.user = jwtPayload;
+    res.status(200).send(res.locals.user);
+  } catch (error) {
+    res.status(401).send("Unauthorized");
+    res.locals.user = null;
+    return;
+  }
+};
