@@ -1,34 +1,34 @@
 const db = require("../models");
-const Earning = db.earning;
+const CashAdvance = db.cash_advance;
 
 exports.create = async (req, res) => {
   try {
-    const new_earning = await Earning.create(req.body);
-    return res.status(200).send(new_earning);
+    const new_cash_advance = await CashAdvance.create(req.body);
+    return res.status(200).send(new_cash_advance);
   } catch (error) {
     return res.status(400).send(error.message);
   }
 };
 
 exports.findAll = async (req, res) => {
-  const earning = await Earning.findAll();
-  return res.status(200).send(earning);
+  const cash_advance = await CashAdvance.findAll();
+  return res.status(200).send(cash_advance);
 };
 
 exports.findOne = async (req, res) => {
-  const earning = await Earning.findByPk(req.params.id);
-  return res.status(200).send(earning);
+  const cash_advance = await CashAdvance.findByPk(req.params.id);
+  return res.status(200).send(cash_advance);
 };
 
 //TODO ADD EARNING TOTAL LOGIC
 exports.update = async (req, res) => {
   try {
-    await Earning.update(req.body, {
+    await CashAdvance.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).send("Earning updated successfully");
+    return res.status(200).send("Cash advance updated successfully");
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -36,12 +36,12 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    await Earning.destroy({
+    await CashAdvance.destroy({
       where: {
         id: req.params.id,
       },
     });
-    return res.status(200).send("Earning deleted successfully.");
+    return res.status(200).send("Cash advance deleted successfully.");
   } catch (error) {
     return res.status(400).send(error.message);
   }
