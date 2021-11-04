@@ -2,33 +2,21 @@ import Menu from 'components/Menu';
 import Settings from 'components/Menu/settings';
 import Table from 'components/Table';
 import { settingsSelector } from 'features/settings/settingsSlice';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { findAllEmployees } from 'features/employee/employeeSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTable } from 'react-table';
-import { Wrapper, TextLink, Container, Flex, TableContainer } from './styles';
-import AddEmployee from 'components/Modals/AddEmployee';
-import Button from 'components/Button/';
-import getTimeDuration from 'helpers/getTimeDuration';
+import { Wrapper, Container, Flex, TableContainer } from './styles';
 import Toolbar from 'components/Toolbar';
-import { ROLES } from 'constants/constants';
 import { findAllCashAdvance } from 'features/cash_advance/cashAdvanceSlice';
+import { theme } from 'theme';
+import colorPicker from 'helpers/colorPicker';
 
 const CashAdvance = () => {
   const dispatch = useDispatch();
   const { data, isFetching } = useSelector((state) => state.cash_advance);
   const { isOpen } = useSelector(settingsSelector);
-  const authRole = useSelector((state) => state.auth.role);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const onModalOpen = () => {
-    setIsModalOpen(true);
-  };
-  const onModalClose = () => {
-    setIsModalOpen(false);
-  };
 
   useEffect(() => {
     dispatch(findAllCashAdvance());
@@ -60,11 +48,33 @@ const CashAdvance = () => {
       },
       {
         Header: 'STATUS',
-        accessor: 'status'
+        accessor: 'status',
+        Cell: (props) => {
+          return (
+            <p
+              style={{
+                color: `${colorPicker(props.value, 'STATUS')}`
+              }}
+            >
+              {props.value}
+            </p>
+          );
+        }
       },
       {
         Header: 'APPROVAL STATUS',
-        accessor: 'approval_status'
+        accessor: 'approval_status',
+        Cell: (props) => {
+          return (
+            <p
+              style={{
+                color: `${colorPicker(props.value, 'APPROVAL_STATUS')}`
+              }}
+            >
+              {props.value}
+            </p>
+          );
+        }
       }
     ],
     []
@@ -85,27 +95,12 @@ const CashAdvance = () => {
               'Wow, such empty'
             )}
           </TableContainer>
-          <Toolbar
-            leftChildren={
-              authRole === ROLES.ENCODER ? (
-                <Button
-                  onClick={onModalOpen}
-                  minW="10rem"
-                  h="2rem"
-                  fontWeight="bold"
-                  fontFamily="avenirRoman"
-                >
-                  Add Record
-                </Button>
-              ) : null
-            }
-          ></Toolbar>
+          <Toolbar></Toolbar>
         </Flex>
         <Flex bg="gray" flex={1}>
           {isOpen && <Menu />}
         </Flex>
       </Container>
-      <AddEmployee isOpen={isModalOpen} onClose={onModalClose} />
     </Wrapper>
   );
 };
