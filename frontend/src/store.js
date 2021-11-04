@@ -6,6 +6,7 @@ import departmentSlice from 'features/department/departmentSlice';
 import positionSlice from 'features/position/positionSlice';
 import companySlice from 'features/company/companySlice';
 import requestSlice from 'features/request/requestSlice';
+import cashAdvanceSlice from 'features/cash_advance/cashAdvanceSlice';
 
 export default configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export default configureStore({
     departments: departmentSlice,
     positions: positionSlice,
     companies: companySlice,
-    requests: requestSlice
+    requests: requestSlice,
+    cash_advance: cashAdvanceSlice
   }
 });
