@@ -30,7 +30,7 @@ exports.create = async (req, res) => {
       late_timeOut.setHours(16,0,0);
 
 
-      //!!!!!  AUTOMATIC INPUTS.
+      //-------AUTOMATIC INPUTS.---------------
 
       //accuracy(PARTIAL)
       attendanceDetails.accuracy = null;
