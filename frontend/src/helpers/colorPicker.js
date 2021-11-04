@@ -18,7 +18,7 @@ export default (value, category) => {
         case 'INCOMPLETE':
           return theme.colors.red;
         case 'DELAYED':
-          return 'orange';
+          return theme.colors.orange;
         default:
           return theme.colors.gray;
       }

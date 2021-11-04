@@ -25,19 +25,7 @@ const CashAdvance = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'COMPANY',
-        accessor: 'employee.company.name' // accessor is the "key" in the data
-      },
-      {
-        Header: 'DEPARTMENT',
-        accessor: 'employee.department.name'
-      },
-      {
-        Header: 'POSITION',
-        accessor: 'employee.position.name'
-      },
-      {
-        Header: 'EMPLOYEE',
+        Header: 'NAME OF EMPLOYEE',
         Cell: (props) => {
           return (
             <div>
@@ -45,6 +33,10 @@ const CashAdvance = () => {
             </div>
           );
         }
+      },
+      {
+        Header: 'DEPARTMENT',
+        accessor: 'employee.department.name'
       },
       {
         Header: 'STATUS',
