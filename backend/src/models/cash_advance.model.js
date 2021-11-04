@@ -27,16 +27,16 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       },
       status: {
         type: DataTypes.ENUM({
-          values: ["STATUS 1", "STATUS 2"],
+          values: ["PROCESSED", "UNPROCESSED"],
         }),
-        defaultValue: "STATUS 1",
+        defaultValue: "UNPROCESSED",
         allowNull: false,
       },
       approval_status: {
         type: DataTypes.ENUM({
-          values: ["STATUS 1", "STATUS 2"],
+          values: ["PAID", "INCOMPLETE", "DELAYED"],
         }),
-        defaultValue: "STATUS 1",
+        defaultValue: "PAID",
         allowNull: false,
       },
     },
