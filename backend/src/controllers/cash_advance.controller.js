@@ -1,4 +1,4 @@
-const { Op } = require("../models");
+const { Op, employee } = require("../models");
 const db = require("../models");
 const CashAdvance = db.cash_advance;
 
@@ -27,7 +27,13 @@ exports.findAll = async (req, res) => {
       [Op.and]: andItems,
     },
   };
-  options.include = ["employee"];
+
+  options.include = [
+    {
+      model: employee,
+      include: ["company", "department", "position"],
+    },
+  ];
   const cash_advance = await CashAdvance.findAll(options);
   return res.status(200).send(cash_advance);
 };
