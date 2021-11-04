@@ -11,7 +11,8 @@ export const theme = {
     darkViolet: '#440099',
     default: '#4c00aa',
     secondary: '#ffffff',
-    orange: '#EF8B16'
+    orange: '#EF8B16',
+    darkGray: '#575757'
   },
   fonts: {
     avenirBlack: 'Avenir-Black',

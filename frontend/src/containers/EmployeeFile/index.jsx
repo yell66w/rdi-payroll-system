@@ -30,6 +30,7 @@ const EmployeeFile = () => {
   };
 
   useEffect(() => {
+    console.log('read');
     dispatch(findAllEmployees());
   }, []);
 

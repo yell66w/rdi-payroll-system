@@ -9,51 +9,48 @@ import { useDispatch } from 'react-redux';
 import { useTable } from 'react-table';
 import { Wrapper, Container, Flex, TableContainer } from './styles';
 import Toolbar from 'components/Toolbar';
-import { findAllEmployees } from 'features/employee/employeeSlice';
+import { findAllCashAdvance } from 'features/cash_advance/cashAdvanceSlice';
 import { theme } from 'theme';
 import colorPicker from 'helpers/colorPicker';
-import { Route } from 'react-router-dom';
-import getTimeDuration from 'helpers/getTimeDuration';
 
-const CashAdvance = () => {
+const ProcessedCA = () => {
   const dispatch = useDispatch();
-  const { data, isFetching } = useSelector((state) => state.employees);
+  const { data, isFetching } = useSelector((state) => state.cash_advance);
   const { isOpen } = useSelector(settingsSelector);
 
   useEffect(() => {
-    dispatch(findAllEmployees());
+    dispatch(findAllCashAdvance());
   }, []);
 
   const columns = React.useMemo(
     () => [
       {
-        Header: 'COMPANY',
-        accessor: 'company.name' // accessor is the "key" in the data
-      },
-      {
-        Header: 'DEPARTMENT',
-        accessor: 'department.name'
-      },
-      {
-        Header: 'POSITION',
-        accessor: 'position.name'
-      },
-      {
-        Header: 'EMPLOYEE',
+        Header: 'NAME OF EMPLOYEE',
         Cell: (props) => {
           return (
             <div>
-              {props.row.original.first_name} {props.row.original.middle_name}{' '}
-              {props.row.original.last_name}
+              {props.row.original.employee.first_name} {props.row.original.employee.last_name}
             </div>
           );
         }
       },
       {
-        Header: 'TIME DURATION',
-        accessor: 'date_hired',
+        Header: 'DEPARTMENT',
+        accessor: 'employee.department.name'
+      },
+      {
+        Header: 'STATUS',
+        accessor: 'approval_status',
         Cell: (props) => {
-          return <div>{getTimeDuration(props.value)} years</div>;
+          return (
+            <p
+              style={{
+                color: `${colorPicker(props.value, 'APPROVAL_STATUS')}`
+              }}
+            >
+              {props.value}
+            </p>
+          );
         }
       }
     ],
@@ -86,4 +83,4 @@ const CashAdvance = () => {
   );
 };
 
-export default CashAdvance;
+export default ProcessedCA;

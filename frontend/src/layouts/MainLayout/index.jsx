@@ -4,7 +4,7 @@ import { MainCan, MainRight, WrapperRight } from './styles';
 import Link from 'components/Link';
 import { useLocation } from 'react-router';
 
-const MainWrapper = ({ children }) => {
+const MainLayout = ({ children }) => {
   const location = useLocation();
   // encoder based sidebar
   const routesMap = new Map();
@@ -14,6 +14,7 @@ const MainWrapper = ({ children }) => {
   routesMap.set('/employee-file', 'EMPLOYEE FILE');
   routesMap.set('/memo', 'MEMO');
   routesMap.set('/cash-advance', 'CASH ADVANCE');
+  routesMap.set('/cash-advance/processed', 'CASH PROCESSED');
   routesMap.set('/request', 'REQUESTS');
 
   const headerName = routesMap.get(location.pathname);
@@ -30,7 +31,6 @@ const MainWrapper = ({ children }) => {
           <Link to={`/cash-advance`}>CASH ADVANCE</Link>
           <Link to={`/request`}>REQUEST</Link>
         </Sidebar>
-
         <MainRight>
           <Header headerName={headerName} />
           <WrapperRight>{children}</WrapperRight>
@@ -40,4 +40,4 @@ const MainWrapper = ({ children }) => {
   );
 };
 
-export default MainWrapper;
+export default MainLayout;

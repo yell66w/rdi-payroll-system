@@ -3,7 +3,7 @@ import { theme } from 'theme';
 // REUSABLE GLOBAL STYLES ONLY
 export const HeaderText = styled.p`
   font-size: ${(props) => (props.size ? theme.fontSizes[props.size] : theme.fontSizes.xl2)};
-  color: ${theme.colors.violet};
+  color: ${(props) => (props.color ? theme.colors[props.color] : theme.colors.violet)};
   font-weight: bold;
   font-family: ${theme.fonts.avenirBlack};
 `;
@@ -14,6 +14,7 @@ export const ErrorText = styled.small`
 
 export const Text = styled.small`
   font-family: ${(props) => props.theme.fontSizes.avenirRoman};
+  color: ${(props) => (props.color ? theme.colors[props.color] : theme.colors.violet)};
   font-size: ${(props) => (props.size ? theme.fontSizes[props.size] : theme.fontSizes.md)};
 `;
 
