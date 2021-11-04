@@ -32,7 +32,11 @@ db.employee = require("./employee.model.js")(sequelize, Sequelize, DataTypes);
 db.company = require("./company.model.js")(sequelize, Sequelize, DataTypes);
 db.file = require("./file.model.js")(sequelize, Sequelize, DataTypes);
 db.deduction = require("./deduction.model.js")(sequelize, Sequelize, DataTypes);
-db.addtnl_deduction = require("./addtnl_deduction.model")(sequelize, Sequelize, DataTypes);
+db.addtnl_deduction = require("./addtnl_deduction.model")(
+  sequelize,
+  Sequelize,
+  DataTypes
+);
 db.earning = require("./earning.model.js")(sequelize, Sequelize, DataTypes);
 db.department = require("./department.model.js")(
   sequelize,
@@ -41,6 +45,11 @@ db.department = require("./department.model.js")(
 );
 db.position = require("./position.model.js")(sequelize, Sequelize, DataTypes);
 db.request = require("./request.model.js")(sequelize, Sequelize, DataTypes);
+db.cash_advance = require("./cash_advance.model")(
+  sequelize,
+  Sequelize,
+  DataTypes
+);
 
 /**
  * Relationships
@@ -133,6 +142,17 @@ db.addtnl_deduction.belongsTo(db.deduction, {
 db.deduction.hasOne(db.addtnl_deduction, {
   as: "additional_deduction",
   foreignKey: "deduction_id",
+});
+
+//TODO - 1 - * or 1 - 1
+//OneToMany (One employee  ---> Many cash advance)
+db.cash_advance.belongsTo(db.employee, {
+  foreignKey: { name: "employee_id", allowNull: false },
+  foreignKeyConstraint: true,
+});
+db.employee.hasMany(db.cash_advance, {
+  as: "cash_advances",
+  foreignKey: "employee_id",
 });
 
 module.exports = db;
