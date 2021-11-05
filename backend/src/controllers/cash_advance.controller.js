@@ -1,12 +1,12 @@
 const { Op, employee } = require("../models");
 const db = require("../models");
 const CashAdvance = db.cash_advance;
-
 const { addDays } = require("../helpers/date.helper");
+
+const default_payout_days = 15;
 
 exports.create = async (req, res) => {
   try {
-    const default_payout_days = 15;
     const { amount_borrowed, no_of_payments, employee_id } = req.body;
     const date_now = Date.now();
 
@@ -34,7 +34,6 @@ exports.findAll = async (req, res) => {
   // const date_to = req.query.date_to;
   const status = req.query.status;
   const approval_status = req.query.approval_status;
-
   let andItems = [];
 
   if (status) andItems.push({ status: status });
@@ -64,11 +63,28 @@ exports.findOne = async (req, res) => {
 //TODO ADD EARNING TOTAL LOGIC
 exports.update = async (req, res) => {
   try {
-    await CashAdvance.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
+    const { status, ca_status, no_of_payments } = req.body;
+    if (no_of_payments) {
+      const cash_advance = await CashAdvance.findByPk(req.params.id);
+      cash_advance.date_to = addDays(
+        cash_advance.date_from,
+        default_payout_days * no_of_payments
+      );
+      cash_advance.no_of_payments = no_of_payments;
+      cash_advance.status = status || cash_advance.status;
+      cash_advance.ca_status = ca_status || cash_advance.ca_status;
+      cash_advance.save();
+    } else {
+      await CashAdvance.update(
+        { status, ca_status },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      );
+    }
+
     return res.status(200).send("Cash advance updated successfully");
   } catch (error) {
     return res.status(400).send(error.message);
