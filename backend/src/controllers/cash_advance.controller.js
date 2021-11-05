@@ -6,7 +6,7 @@ const { addDays } = require("../helpers/date.helper");
 
 exports.create = async (req, res) => {
   try {
-    const payout_days = 15;
+    const default_payout_days = 15;
     const { amount_borrowed, no_of_payments, employee_id } = req.body;
     const date_now = Date.now();
 
@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
     cash_advance_details.date_from = date_now;
     cash_advance_details.date_to = addDays(
       date_now,
-      payout_days * no_of_payments
+      default_payout_days * no_of_payments
     );
 
     const new_cash_advance = await CashAdvance.create(cash_advance_details);
