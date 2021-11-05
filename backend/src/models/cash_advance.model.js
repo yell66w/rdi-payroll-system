@@ -9,32 +9,34 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      basic_pay: {
+      amount_borrowed: {
         type: DataTypes.DECIMAL(19, 4),
         allowNull: false,
       },
-      overtime_rate: {
-        type: DataTypes.DECIMAL(5, 2),
+      no_of_payments: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      night_differential: {
-        type: DataTypes.DECIMAL(19, 4),
+      date_from: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
-      sunday_pay: {
-        type: DataTypes.DECIMAL(19, 4),
+      date_to: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
-      legal_holiday: {
-        type: DataTypes.DECIMAL(19, 4),
+      status: {
+        type: DataTypes.ENUM({
+          values: ["PROCESSED", "UNPROCESSED"],
+        }),
+        defaultValue: "UNPROCESSED",
         allowNull: false,
       },
-      special_holiday: {
-        type: DataTypes.DECIMAL(19, 4),
-        allowNull: false,
-      },
-      total: {
-        type: DataTypes.DECIMAL(19, 4),
+      approval_status: {
+        type: DataTypes.ENUM({
+          values: ["PAID", "INCOMPLETE", "DELAYED"],
+        }),
+        defaultValue: "PAID",
         allowNull: false,
       },
     },
