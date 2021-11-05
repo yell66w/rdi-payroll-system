@@ -10,9 +10,9 @@ module.exports = function (app) {
     next();
   });
 
-  app.post("/cash_advance", controller.create);
-  app.get("/cash_advance/:id", controller.findOne);
-  app.get("/cash_advance", controller.findAll);
-  app.delete("/cash_advance/:id", controller.delete);
-  app.patch("/cash_advance/:id", controller.update);
+  app.post("/cash-advance", controller.create);
+  app.get("/cash-advance/:id", controller.findOne);
+  app.get("/cash-advance", controller.findAll);
+  app.delete("/cash-advance/:id", controller.delete);
+  app.patch("/cash-advance/:id", controller.update);
 };
