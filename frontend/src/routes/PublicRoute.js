@@ -1,22 +1,18 @@
-import { Route, Redirect, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
 
-const PublicRoute = ({ children, isAuth, ...rest }) => {
-  const path = useLocation();
+const PublicRoute = ({ children, ...rest }) => {
+  const { isAuth } = useSelector((state) => state.auth);
 
   return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={() =>
         !isAuth ? (
           children
         ) : (
           <>
-            <Redirect
-              to={{
-                pathname: `${path?.state?.from?.pathname || path.pathname}`,
-                state: { from: location }
-              }}
-            />
+            <Redirect to="/" />
           </>
         )
       }
