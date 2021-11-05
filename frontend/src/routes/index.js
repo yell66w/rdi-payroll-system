@@ -24,7 +24,7 @@ const routes = [
   },
   {
     path: 'cash-advance',
-    component: lazy(() => import('containers/CashAdvance/index.routes'))
+    component: lazy(() => import('containers/CashAdvance'))
   },
   {
     path: 'request',
