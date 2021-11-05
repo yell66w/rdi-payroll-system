@@ -10,9 +10,9 @@ module.exports = function (app) {
     next();
   });
 
-app.post("/attendances", controller.create);
-app.get("/attendances/:id", controller.findOne);
-app.get("/attendances", controller.findAll);
-app.delete("/attendances/:id", controller.delete);
-app.patch("/attendances/:id", controller.update);
+  app.post("/attendances", controller.create);
+  app.get("/attendances/:id", controller.findOne);
+  app.get("/attendances", controller.findAll);
+  app.delete("/attendances/:id", controller.delete);
+  app.patch("/attendances/:id", controller.update);
 };

@@ -38,7 +38,11 @@ db.addtnl_deduction = require("./addtnl_deduction.model")(
   DataTypes
 );
 db.earning = require("./earning.model.js")(sequelize, Sequelize, DataTypes);
-db.attendance = require("./attendance.model.js")(sequelize, Sequelize, DataTypes);
+db.attendance = require("./attendance.model.js")(
+  sequelize,
+  Sequelize,
+  DataTypes
+);
 
 db.department = require("./department.model.js")(
   sequelize,
@@ -100,19 +104,14 @@ db.department.hasMany(db.position, {
   foreignKey: "department_id",
 });
 
-
-
 //OneToMany - (One Employee ----> MANY attendnace)
-db.attendance.belongsTo(db.employee,{
-  foreignKey:{name: "employee_id", allowNull: false},
+db.attendance.belongsTo(db.employee, {
+  foreignKey: { name: "employee_id", allowNull: false },
 });
 db.employee.hasMany(db.attendance, {
-  as:"attendance",
+  as: "attendances",
   foreignKey: "employee_id",
 });
-
-
-
 
 //TODO - prone to error (add (after create) listener on employee model)
 //OneAndOnlyONE (One Employee  ---> One File)
@@ -154,9 +153,5 @@ db.deduction.hasOne(db.addtnl_deduction, {
   as: "additional_deduction",
   foreignKey: "deduction_id",
 });
-
-
-
-
 
 module.exports = db;
