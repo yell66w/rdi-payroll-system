@@ -2,9 +2,27 @@ const { Op, employee } = require("../models");
 const db = require("../models");
 const CashAdvance = db.cash_advance;
 
+const { addDays } = require("../helpers/date.helper");
+
 exports.create = async (req, res) => {
   try {
-    const new_cash_advance = await CashAdvance.create(req.body);
+    const payout_days = 15;
+    const { amount_borrowed, no_of_payments, employee_id } = req.body;
+    const date_now = Date.now();
+
+    const cash_advance_details = {
+      amount_borrowed,
+      no_of_payments,
+      employee_id,
+    };
+
+    cash_advance_details.date_from = date_now;
+    cash_advance_details.date_to = addDays(
+      date_now,
+      payout_days * no_of_payments
+    );
+
+    const new_cash_advance = await CashAdvance.create(cash_advance_details);
     return res.status(200).send(new_cash_advance);
   } catch (error) {
     return res.status(400).send(error.message);
