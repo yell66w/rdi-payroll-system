@@ -16,7 +16,9 @@ exports.create = async (req, res) => {
       employee_id,
     };
 
-    cash_advance_details.salary_deduction = amount_borrowed / no_of_payments;
+    cash_advance_details.salary_deduction = formatterPeso.format(
+      amount_borrowed / no_of_payments
+    );
     cash_advance_details.date_from = date_now;
     cash_advance_details.date_to = addDays(
       date_now,
@@ -71,8 +73,9 @@ exports.update = async (req, res) => {
         cash_advance.date_from,
         default_payout_days * no_of_payments
       );
-      cash_advance.salary_deduction =
-        cash_advance.amount_borrowed / no_of_payments;
+      cash_advance.salary_deduction = formatterPeso.format(
+        cash_advance.amount_borrowed / no_of_payments
+      );
       cash_advance.no_of_payments = no_of_payments;
       cash_advance.status = status || cash_advance.status;
       cash_advance.ca_status = ca_status || cash_advance.ca_status;
