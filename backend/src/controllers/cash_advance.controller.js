@@ -59,7 +59,11 @@ exports.findAll = async (req, res) => {
 };
 
 exports.findOne = async (req, res) => {
-  const cash_advance = await CashAdvance.findByPk(req.params.id);
+  const cash_advance = await CashAdvance.findByPk(req.params.id, {
+    include: [
+      { model: employee, include: ["company", "department", "position"] },
+    ],
+  });
   return res.status(200).send(cash_advance);
 };
 
