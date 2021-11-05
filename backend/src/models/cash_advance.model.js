@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         type: DataTypes.DECIMAL(19, 4),
         allowNull: false,
       },
+      salary_deduction: {
+        type: DataTypes.DECIMAL(19, 4),
+        allowNull: false,
+      },
       no_of_payments: {
         type: DataTypes.INTEGER,
         allowNull: false,

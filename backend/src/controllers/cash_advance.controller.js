@@ -2,7 +2,7 @@ const { Op, employee } = require("../models");
 const db = require("../models");
 const CashAdvance = db.cash_advance;
 const { addDays } = require("../helpers/date.helper");
-
+const { formatterPeso } = require("../helpers/currency.helper");
 const default_payout_days = 15;
 
 exports.create = async (req, res) => {
@@ -16,6 +16,7 @@ exports.create = async (req, res) => {
       employee_id,
     };
 
+    cash_advance_details.salary_deduction = amount_borrowed / no_of_payments;
     cash_advance_details.date_from = date_now;
     cash_advance_details.date_to = addDays(
       date_now,
@@ -70,6 +71,8 @@ exports.update = async (req, res) => {
         cash_advance.date_from,
         default_payout_days * no_of_payments
       );
+      cash_advance.salary_deduction =
+        cash_advance.amount_borrowed / no_of_payments;
       cash_advance.no_of_payments = no_of_payments;
       cash_advance.status = status || cash_advance.status;
       cash_advance.ca_status = ca_status || cash_advance.ca_status;
