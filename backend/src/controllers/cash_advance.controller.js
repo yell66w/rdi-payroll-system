@@ -1,3 +1,4 @@
+const { Op, employee } = require("../models");
 const db = require("../models");
 const CashAdvance = db.cash_advance;
 
@@ -11,7 +12,29 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
-  const cash_advance = await CashAdvance.findAll();
+  // const date_from = req.query.date_from;
+  // const date_to = req.query.date_to;
+  const status = req.query.status;
+  const approval_status = req.query.approval_status;
+
+  let andItems = [];
+
+  if (status) andItems.push({ status: status });
+  if (approval_status) andItems.push({ approval_status: approval_status });
+
+  let options = {
+    where: {
+      [Op.and]: andItems,
+    },
+  };
+
+  options.include = [
+    {
+      model: employee,
+      include: ["company", "department", "position"],
+    },
+  ];
+  const cash_advance = await CashAdvance.findAll(options);
   return res.status(200).send(cash_advance);
 };
 
@@ -28,7 +51,7 @@ exports.update = async (req, res) => {
         id: req.params.id,
       },
     });
-    return res.status(200).send("Cash Advanceupdated successfully");
+    return res.status(200).send("Cash advance updated successfully");
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -41,7 +64,7 @@ exports.delete = async (req, res) => {
         id: req.params.id,
       },
     });
-    return res.status(200).send("Cash Advance deleted successfully.");
+    return res.status(200).send("Cash advance deleted successfully.");
   } catch (error) {
     return res.status(400).send(error.message);
   }
