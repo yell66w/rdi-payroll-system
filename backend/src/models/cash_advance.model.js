@@ -32,11 +32,11 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         defaultValue: "UNPROCESSED",
         allowNull: false,
       },
-      approval_status: {
+      ca_status: {
         type: DataTypes.ENUM({
           values: ["PAID", "INCOMPLETE", "DELAYED"],
         }),
-        defaultValue: "PAID",
+        defaultValue: "INCOMPLETE",
         allowNull: false,
       },
     },
