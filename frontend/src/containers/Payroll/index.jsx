@@ -65,8 +65,6 @@ const Payroll = () => {
     []
   );
 
-  const tableInstance = useTable({ columns, data });
-
   if (isFetching) {
     /**
      * TODO - Loading Component
@@ -85,7 +83,7 @@ const Payroll = () => {
             {/* NOTE: To use Settings Component set parent div to position relative*/}
             <Settings />
             {data.length > 0 ? (
-              <Table tableInstance={tableInstance} />
+              <Table columns={columns} data={data} />
             ) : (
               "Wow, such empty"
             )}

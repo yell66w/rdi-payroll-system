@@ -63,8 +63,6 @@ const CashAdvance = () => {
     ],
     []
   );
-
-  const tableInstance = useTable({ columns, data }, useRowSelect);
   return (
     <Wrapper>
       <Container>
@@ -74,7 +72,7 @@ const CashAdvance = () => {
             {isFetching ? (
               <div>Loading</div>
             ) : data.length > 0 ? (
-              <Table tableInstance={tableInstance} />
+              <Table columns={columns} data={data} />
             ) : (
               'Wow, such empty'
             )}
