@@ -105,7 +105,7 @@ exports.update = async (req, res) => {
         }
       );
     }
-    if (status === "PAID") {
+    if (ca_status === "PAID") {
       const employee = await Employee.findByPk(employee_id, {
         attributes: ["id", "cash_advance_eligibility"],
       });
