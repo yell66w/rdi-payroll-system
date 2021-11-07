@@ -1,6 +1,7 @@
 const { Op, employee } = require("../models");
 const db = require("../models");
 const CashAdvance = db.cash_advance;
+const Employee = db.employee;
 const { addDays } = require("../helpers/date.helper");
 const { formatterPeso } = require("../helpers/currency.helper");
 const default_payout_days = 15;
@@ -8,6 +9,14 @@ const default_payout_days = 15;
 exports.create = async (req, res) => {
   try {
     const { amount_borrowed, no_of_payments, employee_id } = req.body;
+
+    const employee = await Employee.findByPk(employee_id, {
+      attributes: ["id", "cash_advance_eligibility"],
+    });
+    if (!employee.cash_advance_eligibility) {
+      throw new Error("Employee is not eligible for cash advance.");
+    }
+
     const date_now = Date.now();
 
     const cash_advance_details = {
@@ -26,6 +35,8 @@ exports.create = async (req, res) => {
     );
 
     const new_cash_advance = await CashAdvance.create(cash_advance_details);
+    employee.cash_advance_eligibility = false;
+    await employee.save();
     return res.status(200).send(new_cash_advance);
   } catch (error) {
     return res.status(400).send(error.message);
@@ -82,7 +93,7 @@ exports.update = async (req, res) => {
       );
       cash_advance.no_of_payments = no_of_payments;
       cash_advance.status = status || cash_advance.status;
-      cash_advance.ca_status = ca_status || cash_advance.ca_status;
+      cash_advance.ca_status = "DELAYED";
       cash_advance.save();
     } else {
       await CashAdvance.update(
@@ -94,7 +105,15 @@ exports.update = async (req, res) => {
         }
       );
     }
-
+    if (status === "PAID") {
+      const employee = await Employee.findByPk(employee_id, {
+        attributes: ["id", "cash_advance_eligibility"],
+      });
+      if (!employee.cash_advance_eligibility) {
+        employee.cash_advance_eligibility = true;
+        await employee.save();
+      }
+    }
     return res.status(200).send("Cash advance updated successfully");
   } catch (error) {
     return res.status(400).send(error.message);
