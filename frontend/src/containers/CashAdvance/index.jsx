@@ -4,7 +4,7 @@ import Table from 'components/Table';
 import { settingsSelector } from 'features/settings/settingsSlice';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { findAllEmployees } from 'features/employee/employeeSlice';
+import { findAllEmployees, findAllFilteredEmployees } from 'features/employee/employeeSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTable } from 'react-table';
@@ -21,16 +21,14 @@ const CashAdvance = () => {
   const { isOpen } = useSelector(settingsSelector);
   const authRole = useSelector((state) => state.auth.role);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const onModalOpen = () => {
     setIsModalOpen(true);
   };
   const onModalClose = () => {
     setIsModalOpen(false);
   };
-
   useEffect(() => {
-    dispatch(findAllEmployees());
+    dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
   }, []);
 
   const columns = React.useMemo(
