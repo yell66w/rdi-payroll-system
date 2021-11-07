@@ -1,8 +1,8 @@
-import IndeterminateCheckbox from 'components/IndeterminateCheckbox/index.jsx';
-import React, { useEffect } from 'react';
-import { useRowSelect, useTable } from 'react-table';
-import { Text } from 'styles/index.js';
-import { TableStyles } from './styles.js';
+import IndeterminateCheckbox from "@/components/IndeterminateCheckbox/index.jsx";
+import React, { useEffect } from "react";
+import { useRowSelect, useTable } from "react-table";
+import { Text } from "@/styles";
+import { TableStyles } from "./styles.js";
 
 const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
   const {
@@ -12,11 +12,11 @@ const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
     rows,
     prepareRow,
     selectedFlatRows,
-    state: { selectedRowIds }
+    state: { selectedRowIds },
   } = useTable({ columns, data }, useRowSelect, (hooks) => {
     hooks.visibleColumns.push((columns) => [
       {
-        id: 'selection',
+        id: "selection",
         Header: ({ getToggleAllRowsSelectedProps }) => (
           <div>
             <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
@@ -27,9 +27,9 @@ const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
           <div>
             <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
           </div>
-        )
+        ),
       },
-      ...columns
+      ...columns,
     ]);
   });
 
@@ -47,7 +47,7 @@ const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
             <tr key={index} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column, index) => (
                 <th key={index} {...column.getHeaderProps()}>
-                  {column.render('Header')}
+                  {column.render("Header")}
                 </th>
               ))}
             </tr>
@@ -61,7 +61,7 @@ const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
                 {row.cells.map((cell, index) => {
                   return (
                     <td key={index} {...cell.getCellProps()}>
-                      {cell.render('Cell')}
+                      {cell.render("Cell")}
                     </td>
                   );
                 })}
@@ -73,10 +73,11 @@ const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
       {showLength ? (
         <div>
           <Text color="violet" fontFamily="avenirRoman" size="xs">
-            {selectedRowIds ? Object.keys(selectedRowIds).length : 0} employee(s)
+            {selectedRowIds ? Object.keys(selectedRowIds).length : 0}{" "}
+            employee(s)
           </Text>
           <Text fontFamily="avenirRoman" size="xs">
-            {' '}
+            {" "}
             selected
           </Text>
         </div>

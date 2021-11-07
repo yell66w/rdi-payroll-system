@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactModal from 'react-modal';
+import React from "react";
+import ReactModal from "react-modal";
 import {
   ButtonsContainer,
   Form,
@@ -8,25 +8,25 @@ import {
   OverlayStyle,
   RightContainer,
   Section,
-  SubSection
-} from './styles';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { FormProvider, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { HeaderText, SectionHeader, Text } from 'styles';
-import Table from 'components/Table';
-import { LeftContainer } from '../AddEmployee/styles';
-import PhotoInput from 'components/PhotoInput';
-import Button from 'components/Button';
-import { theme } from 'theme';
-import InputField from 'components/InputField';
+  SubSection,
+} from "./styles";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FormProvider, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { HeaderText, SectionHeader, Text } from "@/styles";
+import Table from "@/components/Table";
+import { LeftContainer } from "./styles";
+import PhotoInput from "@/components/PhotoInput";
+import Button from "@/components/Button";
+import { theme } from "@/theme";
+import InputField from "@/components/InputField";
 
-ReactModal.setAppElement('#root');
+ReactModal.setAppElement("#root");
 
 const RunCashAdvance = ({ isOpen, onClose, data }) => {
   const methods = useForm({
-    resolver: yupResolver()
+    resolver: yupResolver(),
   });
   const { handleSubmit, reset } = methods;
   const dispatch = useDispatch();
@@ -49,27 +49,30 @@ const RunCashAdvance = ({ isOpen, onClose, data }) => {
   const columns = React.useMemo(
     () => [
       {
-        accessor: 'original.employee.name',
+        accessor: "original.employee.name",
         Header: () => {
           return <div style={{ fontSize: theme.fontSizes.xs }}>EMPLOYEE</div>;
         },
         Cell: (props) => {
           return (
             <div style={{ fontSize: theme.fontSizes.xs }}>
-              {props.row.original.original.first_name} {props.row.original.original.last_name}
+              {props.row.original.original.first_name}{" "}
+              {props.row.original.original.last_name}
             </div>
           );
-        }
+        },
       },
       {
-        accessor: 'original.position.name',
+        accessor: "original.position.name",
         Header: () => {
           return <div style={{ fontSize: theme.fontSizes.xs }}>POSITION</div>;
         },
         Cell: (props) => {
-          return <div style={{ fontSize: theme.fontSizes.xs }}>{props.value}</div>;
-        }
-      }
+          return (
+            <div style={{ fontSize: theme.fontSizes.xs }}>{props.value}</div>
+          );
+        },
+      },
     ],
     []
   );
@@ -78,7 +81,9 @@ const RunCashAdvance = ({ isOpen, onClose, data }) => {
     <ReactModal
       className="_"
       overlayClassName="_"
-      contentElement={(props, children) => <ModalStyle {...props}>{children}</ModalStyle>}
+      contentElement={(props, children) => (
+        <ModalStyle {...props}>{children}</ModalStyle>
+      )}
       overlayElement={(props, contentElement) => (
         <OverlayStyle {...props}>{contentElement}</OverlayStyle>
       )}
@@ -118,10 +123,22 @@ const RunCashAdvance = ({ isOpen, onClose, data }) => {
                   <InputField disabled name="department" label="Department" />
                   <InputField name="amount_borrowed" label="Amount borrowed" />
                   <HeaderText>PAYMENT PROCEDURE</HeaderText>
-                  <InputField name="no_of_payments" label="Number of payments" />
-                  <InputField disabled type="date" name="date_from" label="From" />
+                  <InputField
+                    name="no_of_payments"
+                    label="Number of payments"
+                  />
+                  <InputField
+                    disabled
+                    type="date"
+                    name="date_from"
+                    label="From"
+                  />
                   <InputField disabled type="date" name="date_to" label="To" />
-                  <InputField disabled name="salary_deduction" label="Salary Deduction" />
+                  <InputField
+                    disabled
+                    name="salary_deduction"
+                    label="Salary Deduction"
+                  />
                 </SubSection>
               </Section>
             </RightContainer>
