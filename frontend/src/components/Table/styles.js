@@ -2,6 +2,11 @@ import styled from 'styled-components';
 
 export const TableStyles = styled.div`
   flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+  height: 100%;
   table {
     width: 100%;
     text-align: center;
