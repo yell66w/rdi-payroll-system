@@ -75,21 +75,11 @@ const CashAdvance = () => {
   );
 
   const tableInstance = useTable({ columns, data });
-
-  // if (isFetching) {
-  //   /**
-  //    * TODO - Loading Component
-  //    */
-  //   return <div>Loading</div>;
-  // }
   return (
     <Wrapper>
       <Container>
-        {/* NOTE: Gayahin nalang tong flex sa ibang components */}
         <Flex justify="space-between" direction="column" flex={8}>
           <TableContainer>
-            {/* TODO - Component kung alang laman data */}
-            {/* NOTE: To use Settings Component set parent div to position relative*/}
             <Settings />
             {isFetching ? (
               <div>Loading</div>
@@ -99,35 +89,7 @@ const CashAdvance = () => {
               'Wow, such empty'
             )}
           </TableContainer>
-          {/* TEMPORARY ADD RECORD */}
-          <Toolbar
-            leftChildren={
-              authRole === ROLES.ENCODER ? (
-                <Button
-                  onClick={onModalOpen}
-                  minW="10rem"
-                  h="2rem"
-                  fontWeight="bold"
-                  fontFamily="avenirRoman"
-                >
-                  Add Record
-                </Button>
-              ) : null
-            }
-          >
-            {/* <Button
-              h="2rem"
-              minW="10rem"
-              onClick={onModalOpen}
-              fontWeight="bold"
-              borderColor="darkViolet"
-              border="2px"
-              bg="white"
-              color="darkViolet"
-            >
-              Add Record
-            </Button> */}
-          </Toolbar>
+          <Toolbar></Toolbar>
         </Flex>
         <Flex bg="gray" flex={1}>
           {isOpen && <Menu />}
