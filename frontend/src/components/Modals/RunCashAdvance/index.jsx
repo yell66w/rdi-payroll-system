@@ -110,10 +110,10 @@ const RunCashAdvance = ({ isOpen, onClose, data }) => {
           <RightContainer>
             <RightContainer>
               <SectionHeader>
-                <Text color="lightViolet" size="xs">
+                <Text color="" size="xs">
                   TOTAL BUDGET
                 </Text>
-                <HeaderText color="violet" size="xl" m="0">
+                <HeaderText color="violet" m="0">
                   ₱100,000.00
                 </HeaderText>
               </SectionHeader>
@@ -122,7 +122,7 @@ const RunCashAdvance = ({ isOpen, onClose, data }) => {
                   <InputField disabled name="name" label="Name" />
                   <InputField disabled name="department" label="Department" />
                   <InputField name="amount_borrowed" label="Amount borrowed" />
-                  <HeaderText>PAYMENT PROCEDURE</HeaderText>
+                  <HeaderText size="xl">PAYMENT PROCEDURE</HeaderText>
                   <InputField
                     name="no_of_payments"
                     label="Number of payments"
