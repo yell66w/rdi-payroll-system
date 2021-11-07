@@ -4,9 +4,11 @@ import { theme } from "@/theme";
 export const HeaderText = styled.p`
   font-size: ${(props) =>
     props.size ? theme.fontSizes[props.size] : theme.fontSizes.xl2};
-  color: ${theme.colors.violet};
+  color: ${(props) =>
+    props.color ? theme.colors[props.color] : theme.colors.violet};
   font-weight: bold;
   font-family: ${theme.fonts.avenirBlack};
+  margin: ${(props) => (props.m ? props.m : "1rem 0rem")};
 `;
 export const ErrorText = styled.small`
   color: ${theme.colors.red};
@@ -31,4 +33,8 @@ export const HStack = styled.div`
   display: flex;
   flex-direction:column
   gap: 0.5rem;
+`;
+
+export const SectionHeader = styled.header`
+  margin-bottom: 1rem;
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 export const TableStyles = styled.div`
   flex: 0 0 100%;

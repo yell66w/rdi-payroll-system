@@ -2,21 +2,18 @@ import Menu from 'components/Menu';
 import Settings from 'components/Menu/settings';
 import Table from 'components/Table';
 import { settingsSelector } from 'features/settings/settingsSlice';
-import React, { forwardRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { findAllEmployees, findAllFilteredEmployees } from 'features/employee/employeeSlice';
+import { findAllFilteredEmployees } from 'features/employee/employeeSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTable } from 'react-table';
-import { Wrapper, TextLink, Container, Flex, TableContainer } from './styles';
-import AddEmployee from 'components/Modals/AddEmployee';
+import { Wrapper, Container, Flex, TableContainer } from './styles';
 import Button from 'components/Button/';
 import getTimeDuration from 'helpers/getTimeDuration';
 import Toolbar from 'components/Toolbar';
 import { ROLES } from 'constants/constants';
-import { Text } from 'styles';
-import { useFlexLayout, useRowSelect } from 'react-table';
-import IndeterminateCheckbox from 'components/IndeterminateCheckbox';
+import RunCashAdvance from 'components/Modals/RunCashAdvance';
 
 const CashAdvance = () => {
   const dispatch = useDispatch();
@@ -24,9 +21,16 @@ const CashAdvance = () => {
   const { isOpen } = useSelector(settingsSelector);
   const authRole = useSelector((state) => state.auth.role);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRunOpen, setIsRunOpen] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
   useEffect(() => {
     dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
   }, []);
+
+  const onRunCashAdvanceOpen = () => {
+    setIsRunOpen(true);
+    selectedRows.map((d) => console.log(d.original.id));
+  };
 
   const columns = React.useMemo(
     () => [
@@ -72,7 +76,7 @@ const CashAdvance = () => {
             {isFetching ? (
               <div>Loading</div>
             ) : data.length > 0 ? (
-              <Table columns={columns} data={data} />
+              <Table setSelectedRows={setSelectedRows} columns={columns} data={data} />
             ) : (
               'Wow, such empty'
             )}
@@ -91,7 +95,7 @@ const CashAdvance = () => {
                     ADD EMPLOYEE ON LIST
                   </Button>
                   <Button
-                    // onClick={onModalOpen}
+                    onClick={onRunCashAdvanceOpen}
                     minW="10rem"
                     h="2rem"
                     fontWeight="bold"
@@ -108,6 +112,7 @@ const CashAdvance = () => {
           {isOpen && <Menu />}
         </Flex>
       </Container>
+      <RunCashAdvance data={selectedRows} isOpen={isRunOpen} onClose={() => setIsRunOpen(false)} />
     </Wrapper>
   );
 };
