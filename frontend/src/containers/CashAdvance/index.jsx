@@ -1,19 +1,19 @@
-import Menu from 'components/Menu';
-import Settings from 'components/Menu/settings';
-import Table from 'components/Table';
-import { settingsSelector } from 'features/settings/settingsSlice';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { findAllFilteredEmployees } from 'features/employee/employeeSlice';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useTable } from 'react-table';
-import { Wrapper, Container, Flex, TableContainer } from './styles';
-import Button from 'components/Button/';
-import getTimeDuration from 'helpers/getTimeDuration';
-import Toolbar from 'components/Toolbar';
-import { ROLES } from 'constants/constants';
-import RunCashAdvance from 'components/Modals/RunCashAdvance';
+import Menu from "@/components/Menu";
+import Settings from "@/components/Menu/settings";
+import Table from "@/components/Table";
+import { settingsSelector } from "@/features/settings/settingsSlice";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { findAllFilteredEmployees } from "@/features/employee/employeeSlice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useTable } from "react-table";
+import { Wrapper, Container, Flex, TableContainer } from "./styles";
+import Button from "@/components/Button/";
+import getTimeDuration from "@/helpers/getTimeDuration";
+import Toolbar from "@/components/Toolbar";
+import { ROLES } from "@/constants/constants";
+import RunCashAdvance from "@/components/Modals/RunCashAdvance";
 
 const CashAdvance = () => {
   const dispatch = useDispatch();
@@ -35,35 +35,35 @@ const CashAdvance = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'COMPANY',
-        accessor: 'company.name' // accessor is the "key" in the data
+        Header: "COMPANY",
+        accessor: "company.name", // accessor is the "key" in the data
       },
       {
-        Header: 'DEPARTMENT',
-        accessor: 'department.name'
+        Header: "DEPARTMENT",
+        accessor: "department.name",
       },
       {
-        Header: 'POSITION',
-        accessor: 'position.name'
+        Header: "POSITION",
+        accessor: "position.name",
       },
       {
-        Header: 'EMPLOYEE',
+        Header: "EMPLOYEE",
         Cell: (props) => {
           return (
             <div>
-              {props.row.original.first_name} {props.row.original.middle_name}{' '}
+              {props.row.original.first_name} {props.row.original.middle_name}{" "}
               {props.row.original.last_name}
             </div>
           );
-        }
+        },
       },
       {
-        Header: 'TIME DURATION',
-        accessor: 'date_hired',
+        Header: "TIME DURATION",
+        accessor: "date_hired",
         Cell: (props) => {
           return <div>{getTimeDuration(props.value)} years</div>;
-        }
-      }
+        },
+      },
     ],
     []
   );
@@ -76,9 +76,13 @@ const CashAdvance = () => {
             {isFetching ? (
               <div>Loading</div>
             ) : data.length > 0 ? (
-              <Table setSelectedRows={setSelectedRows} columns={columns} data={data} />
+              <Table
+                setSelectedRows={setSelectedRows}
+                columns={columns}
+                data={data}
+              />
             ) : (
-              'Wow, such empty'
+              "Wow, such empty"
             )}
           </TableContainer>
           <Toolbar
@@ -112,7 +116,11 @@ const CashAdvance = () => {
           {isOpen && <Menu />}
         </Flex>
       </Container>
-      <RunCashAdvance data={selectedRows} isOpen={isRunOpen} onClose={() => setIsRunOpen(false)} />
+      <RunCashAdvance
+        data={selectedRows}
+        isOpen={isRunOpen}
+        onClose={() => setIsRunOpen(false)}
+      />
     </Wrapper>
   );
 };
