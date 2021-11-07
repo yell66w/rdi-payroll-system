@@ -1,14 +1,18 @@
-const { Op, employee } = require("../models");
+const { Op, employee, cash_advance } = require("../models");
 const db = require("../models");
 const CashAdvance = db.cash_advance;
 const Employee = db.employee;
 const { addDays } = require("../helpers/date.helper");
-const { formatterPeso } = require("../helpers/currency.helper");
 const default_payout_days = 15;
-
+const Dinero = require("dinero.js");
 exports.create = async (req, res) => {
   try {
-    const { amount_borrowed, no_of_payments, employee_id } = req.body;
+    let { amount_borrowed, no_of_payments, employee_id } = req.body;
+    amount_borrowed = Dinero({
+      amount: Number(amount_borrowed),
+      currency: "PHP",
+      precision: 4,
+    });
 
     const employee = await Employee.findByPk(employee_id, {
       attributes: ["id", "cash_advance_eligibility"],
@@ -20,14 +24,14 @@ exports.create = async (req, res) => {
     const date_now = Date.now();
 
     const cash_advance_details = {
-      amount_borrowed,
+      amount_borrowed: amount_borrowed.getAmount(),
       no_of_payments,
       employee_id,
     };
+    cash_advance_details.salary_deduction = amount_borrowed
+      .divide(parseInt(no_of_payments))
+      .getAmount();
 
-    cash_advance_details.salary_deduction = formatterPeso.format(
-      amount_borrowed / no_of_payments
-    );
     cash_advance_details.date_from = date_now;
     cash_advance_details.date_to = addDays(
       date_now,
@@ -82,19 +86,25 @@ exports.findOne = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const { status, ca_status, no_of_payments } = req.body;
-    if (no_of_payments) {
-      const cash_advance = await CashAdvance.findByPk(req.params.id);
+    const cash_advance = await CashAdvance.findByPk(req.params.id);
+
+    if (no_of_payments && no_of_payments !== cash_advance.no_of_payments) {
       cash_advance.date_to = addDays(
         cash_advance.date_from,
         default_payout_days * no_of_payments
       );
-      cash_advance.salary_deduction = formatterPeso.format(
-        cash_advance.amount_borrowed / no_of_payments
-      );
+      let amount_borrowed = Dinero({
+        amount: Number(cash_advance.amount_borrowed),
+        currency: "PHP",
+        precision: 4,
+      });
+      cash_advance.salary_deduction = amount_borrowed
+        .divide(no_of_payments)
+        .getAmount();
       cash_advance.no_of_payments = no_of_payments;
       cash_advance.status = status || cash_advance.status;
       cash_advance.ca_status = "DELAYED";
-      cash_advance.save();
+      await cash_advance.save();
     } else {
       await CashAdvance.update(
         { status, ca_status },
@@ -106,7 +116,7 @@ exports.update = async (req, res) => {
       );
     }
     if (ca_status === "PAID") {
-      const employee = await Employee.findByPk(employee_id, {
+      const employee = await Employee.findByPk(cash_advance.employee_id, {
         attributes: ["id", "cash_advance_eligibility"],
       });
       if (!employee.cash_advance_eligibility) {
@@ -114,7 +124,7 @@ exports.update = async (req, res) => {
         await employee.save();
       }
     }
-    return res.status(200).send("Cash advance updated successfully");
+    return res.status(200).send("Cash advance updated successfully.");
   } catch (error) {
     return res.status(400).send(error.message);
   }
