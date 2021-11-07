@@ -64,25 +64,7 @@ const CashAdvance = () => {
     []
   );
 
-  const tableInstance = useTable({ columns, data }, useRowSelect, (hooks) => {
-    hooks.visibleColumns.push((columns) => [
-      {
-        id: 'selection',
-        Header: ({ getToggleAllRowsSelectedProps }) => (
-          <div>
-            <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-          </div>
-        ),
-
-        Cell: ({ row }) => (
-          <div>
-            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-          </div>
-        )
-      },
-      ...columns
-    ]);
-  });
+  const tableInstance = useTable({ columns, data }, useRowSelect);
   return (
     <Wrapper>
       <Container>
