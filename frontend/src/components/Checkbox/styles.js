@@ -16,7 +16,7 @@ export const Box = styled.span`
     &:hover {
       background-color: ${theme.colors.violet};
   }`}
-  }
+  
 `;
 
 export const Container = styled.label`

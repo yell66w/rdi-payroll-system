@@ -1,19 +1,20 @@
-import Menu from "@/components/Menu";
-import Settings from "@/components/Menu/settings";
-import Table from "@/components/Table";
-import { settingsSelector } from "@/features/settings/settingsSlice";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { findAllEmployees } from "@/features/employee/employeeSlice";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useTable } from "react-table";
-import { Wrapper, TextLink, Container, Flex, TableContainer } from "./styles";
-import AddEmployee from "@/components/Modals/AddEmployee";
-import Button from "@/components/Button/";
-import getTimeDuration from "@/helpers/getTimeDuration";
-import Toolbar from "@/components/Toolbar";
-import { ROLES } from "@/constants/constants";
+import Menu from '@/components/Menu';
+import Settings from '@/components/Menu/settings';
+import Table from '@/components/Table';
+import { settingsSelector } from '@/features/settings/settingsSlice';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { findAllEmployees } from '@/features/employee/employeeSlice';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useTable } from 'react-table';
+import { Wrapper, TextLink, Container, Flex, TableContainer } from './styles';
+import Button from '@/components/Button/';
+import getTimeDuration from '@/helpers/getTimeDuration';
+import Toolbar from '@/components/Toolbar';
+import { ROLES } from '@/constants/constants';
+import EditEmployee from '@/components/Modals/EditEmployee';
+import AddEmployee from '@/components/Modals/AddEmployee';
 
 const EmployeeFile = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,14 @@ const EmployeeFile = () => {
   const { isOpen } = useSelector(settingsSelector);
   const authRole = useSelector((state) => state.auth.role);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const onEditModalOpen = () => {
+    setIsEditModalOpen(true);
+  };
+  const onEditModalClose = () => {
+    setIsEditModalOpen(false);
+  };
 
   const onModalOpen = () => {
     setIsModalOpen(true);
@@ -36,42 +45,42 @@ const EmployeeFile = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "COMPANY",
-        accessor: "company.name", // accessor is the "key" in the data
+        Header: 'COMPANY',
+        accessor: 'company.name' // accessor is the "key" in the data
       },
       {
-        Header: "DEPARTMENT",
-        accessor: "department.name",
+        Header: 'DEPARTMENT',
+        accessor: 'department.name'
       },
       {
-        Header: "POSITION",
-        accessor: "position.name",
+        Header: 'POSITION',
+        accessor: 'position.name'
       },
       {
-        Header: "EMPLOYEE",
+        Header: 'EMPLOYEE',
         Cell: (props) => {
           return (
             <div>
-              {props.row.original.first_name} {props.row.original.middle_name}{" "}
+              {props.row.original.first_name} {props.row.original.middle_name}{' '}
               {props.row.original.last_name}
             </div>
           );
-        },
+        }
       },
       {
-        Header: "TIME DURATION",
-        accessor: "date_hired",
+        Header: 'TIME DURATION',
+        accessor: 'date_hired',
         Cell: (props) => {
           return <div>{getTimeDuration(props.value)} years</div>;
-        },
+        }
       },
       {
-        Header: "",
-        accessor: "id",
+        Header: '',
+        accessor: 'id',
         Cell: () => {
           return <TextLink>Edit</TextLink>;
-        },
-      },
+        }
+      }
     ],
     []
   );
@@ -87,7 +96,7 @@ const EmployeeFile = () => {
   return (
     <Wrapper>
       <Container>
-        {/* NOTE: Gayahin nalang tong flex sa ibang @/components */}
+        {/* NOTE: Gayahin nalang tong flex sa ibang components */}
         <Flex justify="space-between" direction="column" flex={8}>
           <TableContainer>
             {/* TODO - Component kung alang laman data */}
@@ -98,22 +107,33 @@ const EmployeeFile = () => {
             ) : data.length > 0 ? (
               <Table tableInstance={tableInstance} />
             ) : (
-              "Wow, such empty"
+              'Wow, such empty'
             )}
           </TableContainer>
           {/* TEMPORARY ADD RECORD */}
           <Toolbar
             leftChildren={
               authRole === ROLES.ENCODER ? (
-                <Button
-                  onClick={onModalOpen}
-                  minW="10rem"
-                  h="2rem"
-                  fontWeight="bold"
-                  fontFamily="avenirRoman"
-                >
-                  Add Record
-                </Button>
+                <>
+                  <Button
+                    onClick={onModalOpen}
+                    minW="10rem"
+                    h="2rem"
+                    fontWeight="bold"
+                    fontFamily="avenirRoman"
+                  >
+                    Add Record
+                  </Button>
+                  <Button
+                    onClick={onEditModalOpen}
+                    minW="10rem"
+                    h="2rem"
+                    fontWeight="bold"
+                    fontFamily="avenirRoman"
+                  >
+                    Edit Record
+                  </Button>
+                </>
               ) : null
             }
           >
@@ -136,6 +156,7 @@ const EmployeeFile = () => {
         </Flex>
       </Container>
       <AddEmployee isOpen={isModalOpen} onClose={onModalClose} />
+      <EditEmployee isOpen={isEditModalOpen} onClose={onEditModalClose} />
     </Wrapper>
   );
 };
