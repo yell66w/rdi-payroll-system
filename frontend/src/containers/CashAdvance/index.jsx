@@ -2,7 +2,7 @@ import Menu from 'components/Menu';
 import Settings from 'components/Menu/settings';
 import Table from 'components/Table';
 import { settingsSelector } from 'features/settings/settingsSlice';
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { findAllEmployees, findAllFilteredEmployees } from 'features/employee/employeeSlice';
 import { useEffect } from 'react';
@@ -15,6 +15,8 @@ import getTimeDuration from 'helpers/getTimeDuration';
 import Toolbar from 'components/Toolbar';
 import { ROLES } from 'constants/constants';
 import { Text } from 'styles';
+import { useFlexLayout, useRowSelect } from 'react-table';
+import IndeterminateCheckbox from 'components/IndeterminateCheckbox';
 
 const CashAdvance = () => {
   const dispatch = useDispatch();
@@ -62,7 +64,28 @@ const CashAdvance = () => {
     []
   );
 
-  const tableInstance = useTable({ columns, data });
+  const tableInstance = useTable({ columns, data }, useRowSelect, (hooks) => {
+    hooks.visibleColumns.push((columns) => [
+      {
+        id: 'selection',
+        maxWidth: 20,
+        minWidth: 10,
+        width: 20,
+        Header: ({ getToggleAllRowsSelectedProps }) => (
+          <div>
+            <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+          </div>
+        ),
+
+        Cell: ({ row }) => (
+          <div>
+            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+          </div>
+        )
+      },
+      ...columns
+    ]);
+  });
   return (
     <Wrapper>
       <Container>
