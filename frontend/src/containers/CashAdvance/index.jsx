@@ -14,6 +14,7 @@ import Button from 'components/Button/';
 import getTimeDuration from 'helpers/getTimeDuration';
 import Toolbar from 'components/Toolbar';
 import { ROLES } from 'constants/constants';
+import { Text } from 'styles';
 
 const CashAdvance = () => {
   const dispatch = useDispatch();
