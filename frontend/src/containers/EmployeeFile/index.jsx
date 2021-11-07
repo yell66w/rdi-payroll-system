@@ -75,15 +75,6 @@ const EmployeeFile = () => {
     ],
     []
   );
-
-  const tableInstance = useTable({ columns, data });
-
-  // if (isFetching) {
-  //   /**
-  //    * TODO - Loading Component
-  //    */
-  //   return <div>Loading</div>;
-  // }
   return (
     <Wrapper>
       <Container>
@@ -96,7 +87,7 @@ const EmployeeFile = () => {
             {isFetching ? (
               <div>Loading</div>
             ) : data.length > 0 ? (
-              <Table tableInstance={tableInstance} />
+              <Table columns={columns} data={data} />
             ) : (
               "Wow, such empty"
             )}
