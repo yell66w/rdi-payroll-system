@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-// import { ReactComponent as Lock } from "@/assets/icons/lock.svg";
-// import { ReactComponent as Person } from "@/assets/icons/person.svg";
+import { ReactComponent as Lock } from "@/assets/icons/lock.svg";
+import { ReactComponent as Person } from "@/assets/icons/person.svg";
 
 import { Container, Input, Wrapper, Label } from "./styles.js";
 import { useFormContext } from "react-hook-form";
