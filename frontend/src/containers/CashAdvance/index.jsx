@@ -21,12 +21,6 @@ const CashAdvance = () => {
   const { isOpen } = useSelector(settingsSelector);
   const authRole = useSelector((state) => state.auth.role);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const onModalOpen = () => {
-    setIsModalOpen(true);
-  };
-  const onModalClose = () => {
-    setIsModalOpen(false);
-  };
   useEffect(() => {
     dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
   }, []);
@@ -62,13 +56,6 @@ const CashAdvance = () => {
         Cell: (props) => {
           return <div>{getTimeDuration(props.value)} years</div>;
         }
-      },
-      {
-        Header: '',
-        accessor: 'id',
-        Cell: () => {
-          return <TextLink>Edit</TextLink>;
-        }
       }
     ],
     []
@@ -89,13 +76,37 @@ const CashAdvance = () => {
               'Wow, such empty'
             )}
           </TableContainer>
-          <Toolbar></Toolbar>
+          <Toolbar
+            leftChildren={
+              authRole === ROLES.ENCODER ? (
+                <>
+                  <Button
+                    // onClick={onModalOpen}
+                    minW="12rem"
+                    h="2rem"
+                    fontWeight="bold"
+                    fontFamily="avenirRoman"
+                  >
+                    ADD EMPLOYEE ON LIST
+                  </Button>
+                  <Button
+                    // onClick={onModalOpen}
+                    minW="10rem"
+                    h="2rem"
+                    fontWeight="bold"
+                    fontFamily="avenirRoman"
+                  >
+                    RUN CASH ADVANCE
+                  </Button>
+                </>
+              ) : null
+            }
+          ></Toolbar>
         </Flex>
         <Flex bg="gray" flex={1}>
           {isOpen && <Menu />}
         </Flex>
       </Container>
-      <AddEmployee isOpen={isModalOpen} onClose={onModalClose} />
     </Wrapper>
   );
 };
