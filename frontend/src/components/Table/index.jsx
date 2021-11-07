@@ -1,10 +1,10 @@
 import IndeterminateCheckbox from 'components/IndeterminateCheckbox/index.jsx';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRowSelect, useTable } from 'react-table';
 import { Text } from 'styles/index.js';
 import { TableStyles } from './styles.js';
 
-const Table = ({ columns, data }) => {
+const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -32,6 +32,13 @@ const Table = ({ columns, data }) => {
       ...columns
     ]);
   });
+
+  useEffect(() => {
+    if (setSelectedRows) {
+      setSelectedRows(selectedFlatRows);
+    }
+  }, [selectedFlatRows]);
+
   return (
     <TableStyles>
       <table {...getTableProps()}>
@@ -63,15 +70,17 @@ const Table = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-      <div>
-        <Text color="violet" fontFamily="avenirRoman" size="xs">
-          {selectedRowIds ? Object.keys(selectedRowIds).length : 0} employee(s)
-        </Text>
-        <Text fontFamily="avenirRoman" size="xs">
-          {' '}
-          selected
-        </Text>
-      </div>
+      {showLength ? (
+        <div>
+          <Text color="violet" fontFamily="avenirRoman" size="xs">
+            {selectedRowIds ? Object.keys(selectedRowIds).length : 0} employee(s)
+          </Text>
+          <Text fontFamily="avenirRoman" size="xs">
+            {' '}
+            selected
+          </Text>
+        </div>
+      ) : null}
 
       {/* selectedIds: selectedFlatRows.map((d) => d.original.id) */}
     </TableStyles>
