@@ -14,7 +14,10 @@ export const ErrorText = styled.small`
 `;
 
 export const Text = styled.small`
-  font-family: ${(props) => props.theme.fontSizes.avenirRoman};
+  color: ${(props) => (props.color ? theme.colors[props.color] : "black")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
+  font-family: ${(props) =>
+    props.fontFamily ? theme.fonts[props.fontFamily] : theme.fonts.avenirRoman};
   font-size: ${(props) =>
     props.size ? theme.fontSizes[props.size] : theme.fontSizes.md};
 `;

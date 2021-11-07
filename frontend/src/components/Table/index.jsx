@@ -1,8 +1,17 @@
 import React from 'react';
+import { Text } from 'styles/index.js';
 import { TableStyles } from './styles.js';
 
 const Table = ({ tableInstance }) => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    selectedFlatRows,
+    state: { selectedRowIds }
+  } = tableInstance;
   return (
     <TableStyles>
       <table {...getTableProps()}>
@@ -34,6 +43,17 @@ const Table = ({ tableInstance }) => {
           })}
         </tbody>
       </table>
+      <div>
+        <Text color="violet" fontFamily="avenirRoman" size="xs">
+          {selectedRowIds ? Object.keys(selectedRowIds).length : 0} employee(s)
+        </Text>
+        <Text fontFamily="avenirRoman" size="xs">
+          {' '}
+          selected
+        </Text>
+      </div>
+
+      {/* selectedIds: selectedFlatRows.map((d) => d.original.id) */}
     </TableStyles>
   );
 };

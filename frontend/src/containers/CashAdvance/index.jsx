@@ -68,9 +68,6 @@ const CashAdvance = () => {
     hooks.visibleColumns.push((columns) => [
       {
         id: 'selection',
-        maxWidth: 20,
-        minWidth: 10,
-        width: 20,
         Header: ({ getToggleAllRowsSelectedProps }) => (
           <div>
             <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />

@@ -36,4 +36,5 @@ export const TableContainer = styled.div`
   position: relative;
   width: inherit;
   padding: 2em;
+  height: 100%;
 `;
