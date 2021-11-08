@@ -32,3 +32,14 @@ export const TableStyles = styled.div`
     }
   }
 `;
+
+export const CheckboxContainer = styled.li`
+  list-style-type: none;
+  padding-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  flex-wrap: wrap;
+`;
