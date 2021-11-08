@@ -1,8 +1,8 @@
-import IndeterminateCheckbox from "@/components/IndeterminateCheckbox/index.jsx";
 import React, { useEffect } from "react";
-import { useRowSelect, useTable } from "react-table";
+import { useTable } from "react-table";
 import { Text } from "@/styles";
 import { TableStyles } from "./styles.js";
+import { useFlexLayout } from "react-table/dist/react-table.development";
 
 const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
   const {
@@ -12,27 +12,7 @@ const Table = ({ showLength = false, columns, data, setSelectedRows }) => {
     rows,
     prepareRow,
     selectedFlatRows,
-    state: { selectedRowIds },
-  } = useTable({ columns, data }, useRowSelect, (hooks) => {
-    hooks.visibleColumns.push((columns) => [
-      {
-        id: "selection",
-        Header: ({ getToggleAllRowsSelectedProps }) => (
-          <div>
-            <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-          </div>
-        ),
-
-        Cell: ({ row }) => (
-          <div>
-            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-          </div>
-        ),
-      },
-      ...columns,
-    ]);
-  });
-
+  } = useTable({ columns, data }, useFlexLayout);
   useEffect(() => {
     if (setSelectedRows) {
       setSelectedRows(selectedFlatRows);
