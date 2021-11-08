@@ -69,9 +69,8 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
   const batchIdsToExecute = useSelector(
     (state) => state.cash_advance.batchIdsToExecute
   );
-  const { handleSubmit, reset, register, setValue, getValues } = methods;
+  const { handleSubmit, reset, setValue, getValues } = methods;
   const dispatch = useDispatch();
-  const [dateTo, setDateTo] = useState(DATE_NOW);
 
   const data = useSelector((state) => state.cash_advance.dataToRun);
   const onSubmit = (data) => {
@@ -202,12 +201,11 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
             <Section>
               <Table fontSize="xs" columns={columns} data={data} />
             </Section>
-            <Button>Run</Button>
           </LeftContainer>
           <RightContainer>
             <RightContainer>
               <SectionHeader>
-                <Text color="" size="xs">
+                <Text color="" size="xxs">
                   TOTAL BUDGET
                 </Text>
                 <HeaderText color="violet" m="0">
@@ -216,7 +214,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
               </SectionHeader>
               <Section>
                 <SubSection>
-                  <InputField
+                  {/* <InputField
                     fontSize="xxs"
                     disabled
                     name="name"
@@ -227,7 +225,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                     disabled
                     name="department"
                     label="Department"
-                  />
+                  /> */}
                   <InputField
                     onChange={onAmountBorrowedChange}
                     fontSize="xxs"
@@ -267,6 +265,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                     name="salary_deduction"
                     label="Salary Deduction"
                   />
+                  <Button>Run</Button>
                 </SubSection>
               </Section>
             </RightContainer>
