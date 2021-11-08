@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactModal from "react-modal";
 import {
   ButtonsContainer,
@@ -10,7 +10,6 @@ import {
   Section,
   SubSection,
 } from "./styles";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -21,19 +20,52 @@ import PhotoInput from "@/components/PhotoInput";
 import Button from "@/components/Button";
 import { theme } from "@/theme";
 import InputField from "@/components/InputField";
+import TableCheckbox from "@/components/TableCheckbox";
+import {
+  generateCashAdvance,
+  generateCashAdvanceByBatch,
+  resetBatchIdsToExecute,
+  toggleBatchToExecute,
+} from "@/features/cash_advance/cashAdvanceSlice";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 ReactModal.setAppElement("#root");
 
+//TODO MOVE TO UTILS/HELPERS
+const cashAdvanceSchema = yup
+  .object()
+  .shape({
+    amount_borrowed: yup
+      .number("Amount Borrowed must be a number.")
+      .required("Amount Borrowed is required."),
+    no_of_payments: yup
+      .number("Amount Borrowed must be a number.")
+      .required("Amount Borrowed is required."),
+  })
+  .required();
+
 const RunCashAdvance = ({ isOpen, onClose }) => {
   const methods = useForm({
-    resolver: yupResolver(),
+    resolver: yupResolver(cashAdvanceSchema),
   });
-  const [selectedEmployees, setSelectedEmployees] = useState([]);
-  const { handleSubmit, reset } = methods;
+  const batchIdsToExecute = useSelector(
+    (state) => state.cash_advance.batchIdsToExecute
+  );
+  const { handleSubmit, reset, register } = methods;
+  const dispatch = useDispatch();
   const data = useSelector((state) => state.cash_advance.dataToRun);
   const onSubmit = (data) => {
-    //TODO - ADDRESS IN DB??
-    console.log(data);
+    let { amount_borrowed, no_of_payments } = data;
+    // TODO - ADDRESS IN DB??
+    // DISPATCH CASH ADVANCE
+    dispatch(
+      generateCashAdvanceByBatch({
+        amount_borrowed,
+        no_of_payments,
+        batchIdsToExecute,
+      })
+    );
     reset({});
     onClose();
   };
@@ -43,8 +75,28 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
     }
   }, [onClose, reset, isOpen]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(resetBatchIdsToExecute());
+    };
+  }, []);
+
   const columns = React.useMemo(
     () => [
+      {
+        Header: (props) => {
+          return <div></div>;
+          // return <TableCheckbox onClick={onSelectAll} />;
+        },
+        accessor: "id",
+        Cell: (props) => {
+          return (
+            <TableCheckbox
+              onClick={() => dispatch(toggleBatchToExecute(props.value))}
+            />
+          );
+        },
+      },
       {
         accessor: "first_name",
         Header: () => {
@@ -102,6 +154,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
             <Section>
               <Table fontSize="xs" columns={columns} data={data} />
             </Section>
+            <Button>Run</Button>
           </LeftContainer>
           <RightContainer>
             <RightContainer>
@@ -129,12 +182,15 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                   />
                   <InputField
                     fontSize="xxs"
+                    step="any"
+                    type="number"
                     name="amount_borrowed"
                     label="Amount borrowed"
                   />
                   <HeaderText size="xl">PAYMENT PROCEDURE</HeaderText>
                   <InputField
                     fontSize="xxs"
+                    type="number"
                     name="no_of_payments"
                     label="Number of payments"
                   />
