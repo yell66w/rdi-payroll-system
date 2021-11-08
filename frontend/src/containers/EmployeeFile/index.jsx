@@ -76,6 +76,9 @@ const EmployeeFile = () => {
         },
       },
       {
+        minWidth: 100,
+        width: 100,
+        maxWidth: 100,
         Header: "",
         accessor: "id",
         Cell: () => {

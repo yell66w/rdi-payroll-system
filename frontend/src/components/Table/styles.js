@@ -19,14 +19,13 @@ export const TableStyles = styled.div`
       }
       td {
         font-family: ${(props) => props.theme.fonts.avenirRoman};
-        padding: 0.8em 2em;
+        padding: 1em 0em;
       }
     }
     th {
       color: ${(props) => props.theme.colors.violet};
       font-family: ${(props) => props.theme.fonts.avenirBlack};
       font-size: 1em;
-      padding: 0em 2em;
       align-items: center;
       justify-content: center;
       padding-bottom: 0.3em;
