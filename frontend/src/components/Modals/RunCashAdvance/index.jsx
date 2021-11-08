@@ -31,6 +31,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
 import { addDays } from "@/helpers/date.helper";
+import Dinero from "dinero.js";
 
 ReactModal.setAppElement("#root");
 
@@ -107,10 +108,22 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
         addDays(DATE_NOW, DEFAULT_PAYOUT_DAYS * parseInt(e.target.value))
       ).format("YYYY-MM-DD")
     );
-    setValue(
-      "salary_deduction",
-      getValues("amount_borrowed") / parseInt(e.target.value)
+    fixed_amount_borrowed = Number(
+      Number(getValues("amount_borrowed"))
+        .toFixed(4)
+        .toString()
+        .replace(".", "")
     );
+    amount_borrowed = Dinero({
+      amount: fixed_amount_borrowed,
+      precision: 4,
+    });
+
+    let salary_deduction = amount_borrowed
+      .divide(parseInt(e.target.value))
+      .toUnit();
+
+    setValue("salary_deduction", salary_deduction);
   };
 
   const columns = React.useMemo(
