@@ -28,9 +28,9 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
   const methods = useForm({
     resolver: yupResolver(),
   });
+  const [selectedEmployees, setSelectedEmployees] = useState([]);
   const { handleSubmit, reset } = methods;
   const data = useSelector((state) => state.cash_advance.dataToRun);
-  const dispatch = useDispatch();
   const onSubmit = (data) => {
     //TODO - ADDRESS IN DB??
     console.log(data);
