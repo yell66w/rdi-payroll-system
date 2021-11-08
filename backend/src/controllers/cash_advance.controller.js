@@ -16,36 +16,34 @@ exports.create = async (req, res) => {
       precision: 4,
     });
 
-    res.status(200).send({ amount_borrowed: amount_borrowed.toUnit() });
+    const employee = await Employee.findByPk(employee_id, {
+      attributes: ["id", "cash_advance_eligibility"],
+    });
+    if (!employee.cash_advance_eligibility) {
+      throw new Error("Employee is not eligible for cash advance.");
+    }
 
-    // const employee = await Employee.findByPk(employee_id, {
-    //   attributes: ["id", "cash_advance_eligibility"],
-    // });
-    // if (!employee.cash_advance_eligibility) {
-    //   throw new Error("Employee is not eligible for cash advance.");
-    // }
+    const date_now = Date.now();
 
-    // const date_now = Date.now();
+    const cash_advance_details = {
+      amount_borrowed: amount_borrowed.toUnit(),
+      no_of_payments,
+      employee_id,
+    };
+    cash_advance_details.salary_deduction = amount_borrowed
+      .divide(parseInt(no_of_payments))
+      .toUnit();
 
-    // const cash_advance_details = {
-    //   amount_borrowed: amount_borrowed.getAmount(),
-    //   no_of_payments,
-    //   employee_id,
-    // };
-    // cash_advance_details.salary_deduction = amount_borrowed
-    //   .divide(parseInt(no_of_payments))
-    //   .getAmount();
+    cash_advance_details.date_from = date_now;
+    cash_advance_details.date_to = addDays(
+      date_now,
+      default_payout_days * no_of_payments
+    );
 
-    // cash_advance_details.date_from = date_now;
-    // cash_advance_details.date_to = addDays(
-    //   date_now,
-    //   default_payout_days * no_of_payments
-    // );
-
-    // const new_cash_advance = await CashAdvance.create(cash_advance_details);
-    // employee.cash_advance_eligibility = false;
-    // await employee.save();
-    // return res.status(200).send(new_cash_advance);
+    const new_cash_advance = await CashAdvance.create(cash_advance_details);
+    employee.cash_advance_eligibility = false;
+    await employee.save();
+    return res.status(200).send(new_cash_advance);
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -85,26 +83,30 @@ exports.findOne = async (req, res) => {
   });
   return res.status(200).send(cash_advance);
 };
-
 //TODO ADD EARNING TOTAL LOGIC
 exports.update = async (req, res) => {
   try {
     const { status, ca_status, no_of_payments } = req.body;
     const cash_advance = await CashAdvance.findByPk(req.params.id);
-
     if (no_of_payments && no_of_payments !== cash_advance.no_of_payments) {
       cash_advance.date_to = addDays(
         cash_advance.date_from,
         default_payout_days * no_of_payments
       );
+      fixed_amount_borrowed = Number(
+        Number(cash_advance.amount_borrowed)
+          .toFixed(4)
+          .toString()
+          .replace(".", "")
+      );
       let amount_borrowed = Dinero({
-        amount: parseFloat(cash_advance.amount_borrowed),
+        amount: fixed_amount_borrowed,
         currency: "PHP",
         precision: 4,
       });
       cash_advance.salary_deduction = amount_borrowed
-        .divide(no_of_payments)
-        .getAmount();
+        .divide(parseInt(no_of_payments))
+        .toUnit();
       cash_advance.no_of_payments = no_of_payments;
       cash_advance.status = status || cash_advance.status;
       cash_advance.ca_status = "DELAYED";
