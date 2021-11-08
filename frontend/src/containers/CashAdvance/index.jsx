@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { findAllFilteredEmployees } from "@/features/employee/employeeSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useTable } from "react-table";
 import { Wrapper, Container, Flex, TableContainer } from "./styles";
 import Button from "@/components/Button/";
 import getTimeDuration from "@/helpers/getTimeDuration";
@@ -56,6 +55,9 @@ const CashAdvance = () => {
   const columns = React.useMemo(
     () => [
       {
+        minWidth: 35,
+        width: 35,
+        maxWidth: 35,
         Header: (props) => {
           return <div></div>;
           // return <TableCheckbox onClick={onSelectAll} />;
