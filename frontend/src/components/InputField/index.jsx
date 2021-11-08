@@ -8,6 +8,7 @@ const InputField = ({
   label,
   disabled = false,
   name,
+  fontSize = "xs",
   ...rest
 }) => {
   const {
@@ -17,7 +18,7 @@ const InputField = ({
   return (
     <>
       <Wrapper>
-        {label && <Label>{label}</Label>}
+        {label && <Label fontSize={fontSize}>{label}</Label>}
         <Container disabled={disabled}>
           <Input
             // bg={errors[name] ? theme.colors.violet : 'silver'}
