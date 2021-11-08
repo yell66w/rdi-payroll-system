@@ -108,22 +108,25 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
         addDays(DATE_NOW, DEFAULT_PAYOUT_DAYS * parseInt(e.target.value))
       ).format("YYYY-MM-DD")
     );
-    fixed_amount_borrowed = Number(
-      Number(getValues("amount_borrowed"))
-        .toFixed(4)
-        .toString()
-        .replace(".", "")
+    getSalaryDeduction(e.target.value, getValues("amount_borrowed"));
+  };
+
+  const getSalaryDeduction = (no_of_payments, amt_borrowed) => {
+    let fixed_amount_borrowed = Number(
+      Number(amt_borrowed).toFixed(2).toString().replace(".", "")
     );
-    amount_borrowed = Dinero({
+    let amount_borrowed = Dinero({
       amount: fixed_amount_borrowed,
-      precision: 4,
+      precision: 2,
     });
-
     let salary_deduction = amount_borrowed
-      .divide(parseInt(e.target.value))
+      .divide(parseInt(no_of_payments))
       .toUnit();
-
     setValue("salary_deduction", salary_deduction);
+  };
+
+  const onAmountBorrowedChange = (e) => {
+    getSalaryDeduction(getValues("no_of_payments"), e.target.value);
   };
 
   const columns = React.useMemo(
@@ -226,6 +229,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                     label="Department"
                   />
                   <InputField
+                    onChange={onAmountBorrowedChange}
                     fontSize="xxs"
                     step="0.01"
                     min="0.00"
@@ -258,6 +262,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                   />
                   <InputField
                     disabled
+                    step="0.01"
                     fontSize="xxs"
                     name="salary_deduction"
                     label="Salary Deduction"
