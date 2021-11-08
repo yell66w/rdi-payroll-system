@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { HeaderText, HStack, SectionHeader, Text, VStack } from "@/styles";
 import Table from "@/components/Table";
@@ -24,11 +24,12 @@ import InputField from "@/components/InputField";
 
 ReactModal.setAppElement("#root");
 
-const RunCashAdvance = ({ isOpen, onClose, data }) => {
+const RunCashAdvance = ({ isOpen, onClose }) => {
   const methods = useForm({
     resolver: yupResolver(),
   });
   const { handleSubmit, reset } = methods;
+  const data = useSelector((state) => state.cash_advance.dataToRun);
   const dispatch = useDispatch();
   const onSubmit = (data) => {
     //TODO - ADDRESS IN DB??
@@ -36,11 +37,7 @@ const RunCashAdvance = ({ isOpen, onClose, data }) => {
     reset({});
     onClose();
   };
-
   useEffect(() => {
-    // TODO - REFACTOR
-    //BUGGY CODE
-    console.table(data);
     if (!isOpen) {
       reset({});
     }
@@ -49,21 +46,20 @@ const RunCashAdvance = ({ isOpen, onClose, data }) => {
   const columns = React.useMemo(
     () => [
       {
-        accessor: "original.employee.name",
+        accessor: "first_name",
         Header: () => {
           return <div style={{ fontSize: theme.fontSizes.xs }}>EMPLOYEE</div>;
         },
         Cell: (props) => {
           return (
             <div style={{ fontSize: theme.fontSizes.xs }}>
-              {props.row.original.original.first_name}{" "}
-              {props.row.original.original.last_name}
+              {props.value} {props.row.original.last_name}
             </div>
           );
         },
       },
       {
-        accessor: "original.position.name",
+        accessor: "position.name",
         Header: () => {
           return <div style={{ fontSize: theme.fontSizes.xs }}>POSITION</div>;
         },

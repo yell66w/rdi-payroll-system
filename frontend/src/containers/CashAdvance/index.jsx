@@ -14,6 +14,11 @@ import getTimeDuration from "@/helpers/getTimeDuration";
 import Toolbar from "@/components/Toolbar";
 import { ROLES } from "@/constants/constants";
 import RunCashAdvance from "@/components/Modals/RunCashAdvance";
+import TableCheckbox from "@/components/TableCheckbox";
+import {
+  resetEmployeeToRun,
+  toggleEmployeeToRun,
+} from "@/features/cash_advance/cashAdvanceSlice";
 
 const CashAdvance = () => {
   const dispatch = useDispatch();
@@ -22,18 +27,57 @@ const CashAdvance = () => {
   const authRole = useSelector((state) => state.auth.role);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRunOpen, setIsRunOpen] = useState(false);
-  const [selectedRows, setSelectedRows] = useState([]);
   useEffect(() => {
     dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
+    return () => {
+      dispatch(resetEmployeeToRun());
+    };
   }, []);
 
   const onRunCashAdvanceOpen = () => {
     setIsRunOpen(true);
-    selectedRows.map((d) => console.log(d.original.id));
+  };
+
+  const onSelectAll = () => {
+    console.log(data);
+    // TODO SELECT ALL
+    // data.map((employee) => {
+    //   dispatch(
+    //     toggleEmployeeToRun({
+    //       id: employee.id,
+    //       first_name: employee.first_name,
+    //       last_name: employee.last_name,
+    //       position: employee.position,
+    //     })
+    //   );
+    // });
   };
 
   const columns = React.useMemo(
     () => [
+      {
+        Header: (props) => {
+          return <div></div>;
+          // return <TableCheckbox onClick={onSelectAll} />;
+        },
+        accessor: "id",
+        Cell: (props) => {
+          return (
+            <TableCheckbox
+              onClick={() =>
+                dispatch(
+                  toggleEmployeeToRun({
+                    id: props.value,
+                    first_name: props.row.original.first_name,
+                    last_name: props.row.original.last_name,
+                    position: props.row.original.position,
+                  })
+                )
+              }
+            />
+          );
+        },
+      },
       {
         Header: "COMPANY",
         accessor: "company.name", // accessor is the "key" in the data
@@ -76,11 +120,7 @@ const CashAdvance = () => {
             {isFetching ? (
               <div>Loading</div>
             ) : data.length > 0 ? (
-              <Table
-                setSelectedRows={setSelectedRows}
-                columns={columns}
-                data={data}
-              />
+              <Table columns={columns} data={data} />
             ) : (
               "Wow, such empty"
             )}
@@ -116,11 +156,7 @@ const CashAdvance = () => {
           {isOpen && <Menu />}
         </Flex>
       </Container>
-      <RunCashAdvance
-        data={selectedRows}
-        isOpen={isRunOpen}
-        onClose={() => setIsRunOpen(false)}
-      />
+      <RunCashAdvance isOpen={isRunOpen} onClose={() => setIsRunOpen(false)} />
     </Wrapper>
   );
 };
