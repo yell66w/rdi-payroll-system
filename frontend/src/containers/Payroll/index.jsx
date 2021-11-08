@@ -54,13 +54,6 @@ const Payroll = () => {
           return <div>{getTimeDuration(props.value)} years</div>;
         },
       },
-      {
-        Header: "",
-        accessor: "id",
-        Cell: () => {
-          return <TextLink>Edit</TextLink>;
-        },
-      },
     ],
     []
   );
