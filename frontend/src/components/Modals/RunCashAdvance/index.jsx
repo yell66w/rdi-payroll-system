@@ -68,7 +68,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
   const batchIdsToExecute = useSelector(
     (state) => state.cash_advance.batchIdsToExecute
   );
-  const { handleSubmit, reset, register, setValue } = methods;
+  const { handleSubmit, reset, register, setValue, getValues } = methods;
   const dispatch = useDispatch();
   const [dateTo, setDateTo] = useState(DATE_NOW);
 
@@ -99,6 +99,19 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
       dispatch(resetBatchIdsToExecute());
     };
   }, []);
+
+  const onNoOfPaymentChange = (e) => {
+    setValue(
+      "date_to",
+      dayjs(
+        addDays(DATE_NOW, DEFAULT_PAYOUT_DAYS * parseInt(e.target.value))
+      ).format("YYYY-MM-DD")
+    );
+    setValue(
+      "salary_deduction",
+      getValues("amount_borrowed") / parseInt(e.target.value)
+    );
+  };
 
   const columns = React.useMemo(
     () => [
@@ -209,17 +222,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                   />
                   <HeaderText size="xl">PAYMENT PROCEDURE</HeaderText>
                   <InputField
-                    onChange={(e) => {
-                      setValue(
-                        "date_to",
-                        dayjs(
-                          addDays(
-                            DATE_NOW,
-                            DEFAULT_PAYOUT_DAYS * parseInt(e.target.value)
-                          )
-                        ).format("YYYY-MM-DD")
-                      );
-                    }}
+                    onChange={onNoOfPaymentChange}
                     fontSize="xxs"
                     min="1"
                     type="number"
