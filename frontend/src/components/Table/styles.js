@@ -22,11 +22,13 @@ export const TableStyles = styled.div`
         padding: 0.8em 2em;
       }
     }
-
     th {
       color: ${(props) => props.theme.colors.violet};
       font-family: ${(props) => props.theme.fonts.avenirBlack};
       font-size: 1em;
+      padding: 0em 2em;
+      align-items: center;
+      justify-content: center;
       padding-bottom: 0.3em;
       border-bottom: 1px solid ${(props) => props.theme.colors.violet};
     }
