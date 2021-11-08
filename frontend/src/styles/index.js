@@ -27,12 +27,13 @@ export const Text = styled.small`
 export const VStack = styled.div`
   display: flex;
   gap: 0.5rem;
+  flex-direction: column;
 `;
 
 export const HStack = styled.div`
   display: flex;
-  flex-direction:column
   gap: 0.5rem;
+  flex-direction: row;
 `;
 
 export const SectionHeader = styled.header`

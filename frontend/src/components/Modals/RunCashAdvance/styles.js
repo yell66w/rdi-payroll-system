@@ -85,6 +85,11 @@ export const SubSection = styled.div`
   flex-direction: ${(props) => (props.direction ? props.direction : "column")};
   width: 100%;
   gap: 1rem;
+  background-color: ${(props) => (props.bg ? theme.colors[props.bg] : null)};
+  padding-left: ${(props) => (props.px ? props.px : null)};
+  padding-right: ${(props) => (props.px ? props.px : null)};
+  padding-top: ${(props) => (props.py ? props.py : null)};
+  padding-bottom: ${(props) => (props.py ? props.py : null)}; ;
 `;
 
 export const FilesContainer = styled.div`

@@ -14,7 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { HeaderText, SectionHeader, Text } from "@/styles";
+import { HeaderText, HStack, SectionHeader, Text, VStack } from "@/styles";
 import Table from "@/components/Table";
 import { LeftContainer } from "./styles";
 import PhotoInput from "@/components/PhotoInput";
@@ -119,23 +119,46 @@ const RunCashAdvance = ({ isOpen, onClose, data }) => {
               </SectionHeader>
               <Section>
                 <SubSection>
-                  <InputField disabled name="name" label="Name" />
-                  <InputField disabled name="department" label="Department" />
-                  <InputField name="amount_borrowed" label="Amount borrowed" />
+                  <InputField
+                    fontSize="xxs"
+                    disabled
+                    name="name"
+                    label="Name"
+                  />
+                  <InputField
+                    fontSize="xxs"
+                    disabled
+                    name="department"
+                    label="Department"
+                  />
+                  <InputField
+                    fontSize="xxs"
+                    name="amount_borrowed"
+                    label="Amount borrowed"
+                  />
                   <HeaderText size="xl">PAYMENT PROCEDURE</HeaderText>
                   <InputField
+                    fontSize="xxs"
                     name="no_of_payments"
                     label="Number of payments"
                   />
                   <InputField
                     disabled
+                    fontSize="xxs"
                     type="date"
                     name="date_from"
                     label="From"
                   />
-                  <InputField disabled type="date" name="date_to" label="To" />
+                  <InputField
+                    fontSize="xxs"
+                    disabled
+                    type="date"
+                    name="date_to"
+                    label="To"
+                  />
                   <InputField
                     disabled
+                    fontSize="xxs"
                     name="salary_deduction"
                     label="Salary Deduction"
                   />
