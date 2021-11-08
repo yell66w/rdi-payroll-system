@@ -71,6 +71,7 @@ const CashAdvance = () => {
                     first_name: props.row.original.first_name,
                     last_name: props.row.original.last_name,
                     position: props.row.original.position,
+                    department: props.row.original.position,
                   })
                 )
               }
