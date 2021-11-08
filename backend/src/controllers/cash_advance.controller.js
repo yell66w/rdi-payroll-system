@@ -8,40 +8,44 @@ const Dinero = require("dinero.js");
 exports.create = async (req, res) => {
   try {
     let { amount_borrowed, no_of_payments, employee_id } = req.body;
+    fixed_amount_borrowed = Number(
+      Number(amount_borrowed).toFixed(4).toString().replace(".", "")
+    );
     amount_borrowed = Dinero({
-      amount: Number(amount_borrowed),
-      currency: "PHP",
+      amount: fixed_amount_borrowed,
       precision: 4,
     });
 
-    const employee = await Employee.findByPk(employee_id, {
-      attributes: ["id", "cash_advance_eligibility"],
-    });
-    if (!employee.cash_advance_eligibility) {
-      throw new Error("Employee is not eligible for cash advance.");
-    }
+    res.status(200).send({ amount_borrowed: amount_borrowed.toUnit() });
 
-    const date_now = Date.now();
+    // const employee = await Employee.findByPk(employee_id, {
+    //   attributes: ["id", "cash_advance_eligibility"],
+    // });
+    // if (!employee.cash_advance_eligibility) {
+    //   throw new Error("Employee is not eligible for cash advance.");
+    // }
 
-    const cash_advance_details = {
-      amount_borrowed: amount_borrowed.getAmount(),
-      no_of_payments,
-      employee_id,
-    };
-    cash_advance_details.salary_deduction = amount_borrowed
-      .divide(parseInt(no_of_payments))
-      .getAmount();
+    // const date_now = Date.now();
 
-    cash_advance_details.date_from = date_now;
-    cash_advance_details.date_to = addDays(
-      date_now,
-      default_payout_days * no_of_payments
-    );
+    // const cash_advance_details = {
+    //   amount_borrowed: amount_borrowed.getAmount(),
+    //   no_of_payments,
+    //   employee_id,
+    // };
+    // cash_advance_details.salary_deduction = amount_borrowed
+    //   .divide(parseInt(no_of_payments))
+    //   .getAmount();
 
-    const new_cash_advance = await CashAdvance.create(cash_advance_details);
-    employee.cash_advance_eligibility = false;
-    await employee.save();
-    return res.status(200).send(new_cash_advance);
+    // cash_advance_details.date_from = date_now;
+    // cash_advance_details.date_to = addDays(
+    //   date_now,
+    //   default_payout_days * no_of_payments
+    // );
+
+    // const new_cash_advance = await CashAdvance.create(cash_advance_details);
+    // employee.cash_advance_eligibility = false;
+    // await employee.save();
+    // return res.status(200).send(new_cash_advance);
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -94,7 +98,7 @@ exports.update = async (req, res) => {
         default_payout_days * no_of_payments
       );
       let amount_borrowed = Dinero({
-        amount: Number(cash_advance.amount_borrowed),
+        amount: parseFloat(cash_advance.amount_borrowed),
         currency: "PHP",
         precision: 4,
       });
