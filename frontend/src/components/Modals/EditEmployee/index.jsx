@@ -16,8 +16,13 @@ import {
   FstCol,
   Li,
   SndCol,
+  SeFstCol,
+  SeSndCol,
   SndList,
+  SndHeader,
+  ButtonNext
 } from "./styles";
+import Button from "@/components/Button";
 
 ReactModal.setAppElement("#root");
 
@@ -110,9 +115,44 @@ const EditEmployee = ({ isOpen, onClose }) => {
                 </SndCol>
               </FlxChkBx>
             </FstList>
-            <SndList></SndList>
+            <SndList>
+            <SndHeader>Employement Status</SndHeader>
+              <FlxChkBx>
+                <SeFstCol>
+                  <Li>
+                    <Checkbox
+                      border
+                      name="employee_number"
+                      label="Employment Type"
+                    />
+                  </Li>
+                  <Li>
+                    <Checkbox border name="last_name" label="Department" />
+                  </Li>
+                  <Li>
+                    <Checkbox border name="first_name" label="Position" />
+                  </Li>                  
+                </SeFstCol>
+                <SeSndCol>
+                  <Li>
+                    <Checkbox border name="birth_date" label="Basic Pay" />
+                  </Li>
+                  <Li>
+                    <Checkbox border name="address" label="Date Hired" />
+                  </Li>
+                  <Li>
+                    <Checkbox border name="email" label="Time Shaft" />
+                  </Li>                  
+                </SeSndCol>
+              </FlxChkBx>
+            </SndList>
           </form>
         </FormProvider>
+        <ButtonNext>
+          <Button
+            w="5em"            
+          >NEXT</Button>          
+        </ButtonNext>
       </Wrapper>
     </ReactModal>
   );

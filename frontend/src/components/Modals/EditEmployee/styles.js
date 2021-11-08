@@ -36,7 +36,7 @@ export const CrossArea = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 0.5em;
-  background-color: #aaa;
+  
 `;
 export const CrossIcon = styled.span`
   display: block;
@@ -49,20 +49,30 @@ export const InfoHeader = styled.div`
   font-family: ${theme.fonts.avenirBlack};
   font-size: 1.3rem;
   text-align: center;
-  padding: 0.5em 3em;
-  background-color: #fad;
+  padding: .5em 3em;
+  padding-top: 0em;
+  
 `;
 export const FstList = styled.div`
   background-color: ${theme.colors.white};
   padding: 0.5em;
   margin: 1em;
+  margin-top: 0em;
   border-radius: 0.5em;
 `;
+
 export const FstHeader = styled.div`
   font-family: ${theme.fonts.avenirBlack};
   text-align: center;
   color: ${theme.colors.violet};
 `;
+
+export const SndHeader = styled.div`
+  font-family: ${theme.fonts.avenirBlack};
+  text-align: center;
+  color: ${theme.colors.violet};
+`;
+
 export const FlxChkBx = styled.div`
   padding: 1em 0em;
   display: flex;
@@ -70,26 +80,49 @@ export const FlxChkBx = styled.div`
   justify-content: center;
 `;
 
-export const FstCol = styled.div`
-  font-size: 0.9rem;
-  font-family: ${theme.fonts.avenirBook};
-  text-transform: uppercase;
-  /* background-color: #aaa; */
-`;
+
 export const Li = styled.li`
   list-style-type: none;
-  padding-bottom: 0.5em;
+  padding: .5em;
+`;
+
+export const FstCol = styled.div`
+  font-size: 0.705rem;
+  font-family: ${theme.fonts.avenirBook};
+  text-transform: uppercase;
+  
 `;
 
 export const SndCol = styled.div`
-  font-size: 0.9rem;
+  font-size: 0.705rem;
+  font-family: ${theme.fonts.avenirBook};
+  text-transform: uppercase;  
+`;
+export const SeFstCol = styled.div`
+  font-size: 0.705rem;
   font-family: ${theme.fonts.avenirBook};
   text-transform: uppercase;
+  
+  flex-basis: 45%;
+`;
+
+export const SeSndCol = styled.div`
+  font-size: 0.705rem;
+  font-family: ${theme.fonts.avenirBook};
+  text-transform: uppercase;  
+  flex-basis: 38%;
+  
 `;
 
 export const SndList = styled.div`
   background-color: ${theme.colors.white};
-  padding: 1em;
-  margin: 1em;
+  padding: 0.5em;  
+  margin: 1em;  
   border-radius: 0.5em;
+`;
+
+export const ButtonNext = styled.div `
+  display: flex;
+  justify-content: flex-end;
+  padding: 0em 1em;
 `;
