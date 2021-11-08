@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { theme } from '@/theme';
+import styled from "styled-components";
+import { theme } from "@/theme";
 
 export const OverlayStyle = styled.div`
   z-index: 1000;
@@ -19,8 +19,8 @@ export const ModalStyle = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-//   background-color: ${theme.colors.darkViolet};
-background-color: #F7F6F7;
+  //   background-color: ${theme.colors.darkViolet};
+  background-color: #f7f6f7;
   width: 26rem;
   height: 34rem;
   border-radius: 0.5rem;
@@ -31,72 +31,65 @@ background-color: #F7F6F7;
   outline: none;
 `;
 
-export const Wrapper = styled.div`
-    
-`;
+export const Wrapper = styled.div``;
 export const CrossArea = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    padding: .5em;
-    background-color: #aaa;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em;
+  background-color: #aaa;
 `;
 export const CrossIcon = styled.span`
-    display: block;
-    width: 1.5em;
-    height: 1.5em;
-    color: ${theme.colors.darkViolet};
-    
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  color: ${theme.colors.darkViolet};
+  cursor: pointer;
 `;
 export const InfoHeader = styled.div`
-    font-family: ${theme.fonts.avenirBlack};
-    font-size: 1.3rem;
-    text-align: center;
-    padding: .5em 3em;
-    background-color: #fad;
+  font-family: ${theme.fonts.avenirBlack};
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 0.5em 3em;
+  background-color: #fad;
 `;
 export const FstList = styled.div`
-    background-color: ${theme.colors.white};    
-    padding: .5em;
-    margin: 1em;
-    border-radius: .5em;
+  background-color: ${theme.colors.white};
+  padding: 0.5em;
+  margin: 1em;
+  border-radius: 0.5em;
 `;
 export const FstHeader = styled.div`
-    font-family: ${theme.fonts.avenirBlack};
-    text-align: center;
-    color: ${theme.colors.violet};
+  font-family: ${theme.fonts.avenirBlack};
+  text-align: center;
+  color: ${theme.colors.violet};
 `;
 export const FlxChkBx = styled.div`
-    padding: 1em 0em;
-    display: flex;    
-    column-gap: 1em;
-    justify-content: center;
+  padding: 1em 0em;
+  display: flex;
+  column-gap: 1em;
+  justify-content: center;
 `;
 
 export const FstCol = styled.div`
-    font-size: .9rem;
-    font-family: ${theme.fonts.avenirBook};
-    text-transform: uppercase;
-    background-color: #aaa;
-    
+  font-size: 0.9rem;
+  font-family: ${theme.fonts.avenirBook};
+  text-transform: uppercase;
+  /* background-color: #aaa; */
 `;
 export const Li = styled.li`
-    list-style-type: none;
-    padding-bottom: .5em;
+  list-style-type: none;
+  padding-bottom: 0.5em;
 `;
 
 export const SndCol = styled.div`
-    font-size: .9rem;
-    font-family: ${theme.fonts.avenirBook};
-    text-transform: uppercase;
-    
-    
+  font-size: 0.9rem;
+  font-family: ${theme.fonts.avenirBook};
+  text-transform: uppercase;
 `;
-
 
 export const SndList = styled.div`
-    background-color: ${theme.colors.white};    
-    padding: 1em;
-    margin: 1em;
-    border-radius: .5em;
+  background-color: ${theme.colors.white};
+  padding: 1em;
+  margin: 1em;
+  border-radius: 0.5em;
 `;
-
