@@ -1,7 +1,7 @@
 import Menu from "@/components/Menu";
 import Settings from "@/components/Menu/settings";
 import Table from "@/components/Table";
-import { settingsSelector } from "@/features/settings/settingsSlice";
+import { addFilter, settingsSelector } from "@/features/settings/settingsSlice";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { findAllFilteredEmployees } from "@/features/employee/employeeSlice";
@@ -27,6 +27,7 @@ const CashAdvance = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRunOpen, setIsRunOpen] = useState(false);
   useEffect(() => {
+    dispatch(addFilter({ cash_advance_eligibility: 1 }));
     dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
     return () => {
       dispatch(resetEmployeeToRun());
