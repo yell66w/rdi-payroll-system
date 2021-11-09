@@ -33,6 +33,11 @@ const CashAdvance = () => {
       dispatch(resetEmployeeToRun());
     };
   }, []);
+  useEffect(() => {
+    return () => {
+      dispatch(resetEmployeeToRun());
+    };
+  }, [data]);
 
   const onRunCashAdvanceOpen = () => {
     setIsRunOpen(true);
