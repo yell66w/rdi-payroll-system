@@ -9,12 +9,9 @@ export const Box = styled.span`
   width: 20px;
   background-color: ${theme.colors.white};
   border-radius: 3px;
-<<<<<<< HEAD
   border: ${(props) =>
     props.border ? `1px solid ${theme.colors.darkViolet}` : null};
 
-=======
->>>>>>> 3275190 (cbox conf)
   &:hover {
     background-color: ${(props) =>
       props.disabled ? null : theme.colors.violet};
