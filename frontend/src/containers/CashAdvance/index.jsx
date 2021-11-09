@@ -38,18 +38,7 @@ const CashAdvance = () => {
   };
 
   const onSelectAll = () => {
-    console.log(data);
-    // TODO SELECT ALL
-    // data.map((employee) => {
-    //   dispatch(
-    //     toggleEmployeeToRun({
-    //       id: employee.id,
-    //       first_name: employee.first_name,
-    //       last_name: employee.last_name,
-    //       position: employee.position,
-    //     })
-    //   );
-    // });
+    console.log("", data);
   };
 
   const columns = React.useMemo(
@@ -59,13 +48,13 @@ const CashAdvance = () => {
         width: 35,
         maxWidth: 35,
         Header: (props) => {
-          return <TableCheckbox  />;
+          return <TableCheckbox onChange={onSelectAll} />;
         },
         accessor: "id",
         Cell: (props) => {
           return (
             <TableCheckbox
-              onClick={() =>
+              onChange={(e) => {
                 dispatch(
                   toggleEmployeeToRun({
                     id: props.value,
@@ -74,8 +63,8 @@ const CashAdvance = () => {
                     position: props.row.original.position,
                     department: props.row.original.position,
                   })
-                )
-              }
+                );
+              }}
             />
           );
         },

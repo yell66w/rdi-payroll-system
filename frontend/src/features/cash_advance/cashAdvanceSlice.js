@@ -95,6 +95,9 @@ const companySlice = createSlice({
         state.batchIdsToExecute = filtered;
       }
     },
+    toggleAll:(state,action)=>{
+
+    },
     resetBatchIdsToExecute: (state) => {
       state.batchIdsToExecute = [];
     },
@@ -157,5 +160,6 @@ export const {
   resetEmployeeToRun,
   resetBatchIdsToExecute,
   toggleBatchToExecute,
+  toggleAll
 } = companySlice.actions;
 export default companySlice.reducer;
