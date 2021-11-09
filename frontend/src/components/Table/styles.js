@@ -19,7 +19,7 @@ export const TableStyles = styled.div`
       }
       td {
         font-family: ${(props) => props.theme.fonts.avenirRoman};
-        padding: 1em 0em;
+        padding: 1em;
       }
     }
     th {
@@ -28,7 +28,8 @@ export const TableStyles = styled.div`
       font-size: 1em;
       align-items: center;
       justify-content: center;
-      padding-bottom: 0.3em;
+      padding: 0em 1em;
+      padding-bottom: 1em;
       border-bottom: 1px solid ${(props) => props.theme.colors.violet};
     }
   }

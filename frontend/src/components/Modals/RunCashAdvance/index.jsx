@@ -135,7 +135,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
         width: 35,
         maxWidth: 35,
         Header: (props) => {
-          return <div></div>;
+          return <TableCheckbox  />;
         },
         accessor: "id",
 
