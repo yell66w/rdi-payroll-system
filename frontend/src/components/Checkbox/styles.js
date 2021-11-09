@@ -11,6 +11,7 @@ export const Box = styled.span`
   border-radius: 3px;
   border: ${(props) =>
     props.border ? `1px solid ${theme.colors.darkViolet}` : null};
+
   &:hover {
     background-color: ${(props) =>
       props.disabled ? null : theme.colors.violet};
