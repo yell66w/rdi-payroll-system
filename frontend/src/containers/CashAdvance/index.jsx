@@ -48,13 +48,13 @@ const CashAdvance = () => {
         width: 35,
         maxWidth: 35,
         Header: (props) => {
-          return <TableCheckbox onChange={onSelectAll} />;
+          return <TableCheckbox disabled onChange={onSelectAll} />;
         },
         accessor: "id",
         Cell: (props) => {
           return (
             <TableCheckbox
-              onChange={(e) => {
+              onClick={(e) => {
                 dispatch(
                   toggleEmployeeToRun({
                     id: props.value,
