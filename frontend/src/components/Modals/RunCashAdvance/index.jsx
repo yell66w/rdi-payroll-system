@@ -215,18 +215,17 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
             </Section>
           </LeftContainer>
           <RightContainer>
-            <RightContainer>
-              <SectionHeader>
-                <Text color="" size="xxs">
-                  TOTAL BUDGET
-                </Text>
-                <HeaderText color="violet" m="0">
-                  ₱100,000.00
-                </HeaderText>
-              </SectionHeader>
-              <Section>
-                <SubSection>
-                  {/* <InputField
+            <SectionHeader>
+              <Text color="" size="xxs">
+                TOTAL BUDGET
+              </Text>
+              <HeaderText color="violet" m="0">
+                ₱100,000.00
+              </HeaderText>
+            </SectionHeader>
+            <Section>
+              <SubSection>
+                {/* <InputField
                     fontSize="xxs"
                     disabled
                     name="name"
@@ -238,49 +237,48 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                     name="department"
                     label="Department"
                   /> */}
-                  <InputField
-                    onChange={onAmountBorrowedChange}
-                    fontSize="xxs"
-                    step="0.01"
-                    min="0.00"
-                    type="number"
-                    name="amount_borrowed"
-                    label="Amount borrowed"
-                  />
-                  <HeaderText size="xl">PAYMENT PROCEDURE</HeaderText>
-                  <InputField
-                    onChange={onNoOfPaymentChange}
-                    fontSize="xxs"
-                    min="1"
-                    type="number"
-                    name="no_of_payments"
-                    label="Number of payments"
-                  />
-                  <InputField
-                    disabled
-                    fontSize="xxs"
-                    type="date"
-                    name="date_from"
-                    label="From"
-                  />
-                  <InputField
-                    fontSize="xxs"
-                    disabled
-                    type="date"
-                    name="date_to"
-                    label="To"
-                  />
-                  <InputField
-                    disabled
-                    step="0.01"
-                    fontSize="xxs"
-                    name="salary_deduction"
-                    label="Salary Deduction"
-                  />
-                  <Button>Run</Button>
-                </SubSection>
-              </Section>
-            </RightContainer>
+                <InputField
+                  onChange={onAmountBorrowedChange}
+                  fontSize="xxs"
+                  step="0.01"
+                  min="0.00"
+                  type="number"
+                  name="amount_borrowed"
+                  label="Amount borrowed"
+                />
+                <HeaderText size="xl">PAYMENT PROCEDURE</HeaderText>
+                <InputField
+                  onChange={onNoOfPaymentChange}
+                  fontSize="xxs"
+                  min="1"
+                  type="number"
+                  name="no_of_payments"
+                  label="Number of payments"
+                />
+                <InputField
+                  disabled
+                  fontSize="xxs"
+                  type="date"
+                  name="date_from"
+                  label="From"
+                />
+                <InputField
+                  fontSize="xxs"
+                  disabled
+                  type="date"
+                  name="date_to"
+                  label="To"
+                />
+                <InputField
+                  disabled
+                  step="0.01"
+                  fontSize="xxs"
+                  name="salary_deduction"
+                  label="Salary Deduction"
+                />
+                <Button>Run</Button>
+              </SubSection>
+            </Section>
           </RightContainer>
         </Form>
       </FormProvider>

@@ -1,7 +1,11 @@
 import Menu from "@/components/Menu";
 import Settings from "@/components/Menu/settings";
 import Table from "@/components/Table";
-import { addFilter, settingsSelector } from "@/features/settings/settingsSlice";
+import {
+  addFilter,
+  resetFilters,
+  settingsSelector,
+} from "@/features/settings/settingsSlice";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { findAllFilteredEmployees } from "@/features/employee/employeeSlice";
@@ -29,11 +33,12 @@ const CashAdvance = () => {
   const { isFetching: isGenerating, isSuccess: isGenerated } = useSelector(
     (state) => state.cash_advance
   );
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(addFilter({ cash_advance_eligibility: 1 }));
     dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
     return () => {
       dispatch(resetEmployeeToRun());
+      dispatch(resetFilters());
     };
   }, []);
   useEffect(() => {
