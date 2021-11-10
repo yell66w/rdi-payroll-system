@@ -26,14 +26,19 @@ const MainWrapper = ({ children }) => {
   routesMap.set("/attendance", "ATTENDANCE");
   routesMap.set("/employee-file", "EMPLOYEE FILE");
   routesMap.set("/memo", "MEMO");
-  routesMap.set(`/cash-advance`, "CASH ADVANCE");
-  routesMap.set(`/cash-advance/unprocessed`, "CASH ADVANCE");
-  routesMap.set(`/cash-advance/processed`, "CASH ADVANCE");
+  routesMap.set("/cash-advance", "CASH ADVANCE");
   routesMap.set("/request", "REQUESTS");
   routesMap.set("/for-approval", "FOR APPROVAL");
   routesMap.set("/reports", "REPORTS");
 
-  const headerName = routesMap.get(location.pathname);
+  let headerName = "RDI PAYROLL SYSTEM";
+  if (location.pathname.includes("/cash-advance")) {
+    headerName = routesMap.get(
+      location.pathname.replace(/cash-advance\/?.*/g, "cash-advance")
+    );
+  } else if (routesMap.has(location.pathname)) {
+    headerName = routesMap.get(location.pathname);
+  }
 
   const handleLogout = () => {
     dispatch(logout());
