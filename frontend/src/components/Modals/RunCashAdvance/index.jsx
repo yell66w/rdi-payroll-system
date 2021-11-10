@@ -107,7 +107,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
         dispatch(resetBatchIdsToExecute());
       };
     }
-  }, [isGenerated]);
+  }, [isGenerated, isGenerating]);
 
   const onNoOfPaymentChange = (e) => {
     setValue(
