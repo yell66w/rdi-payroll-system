@@ -11,6 +11,7 @@ export const theme = {
     darkViolet: "#440099",
     default: "#4c00aa",
     secondary: "#ffffff",
+    darkGray: "rgb(10, 10, 10, 0.7)",
   },
   fonts: {
     avenirBlack: "Avenir-Black",
