@@ -36,13 +36,15 @@ export const generateCashAdvanceByBatch = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       let { amount_borrowed, no_of_payments, batchIdsToExecute } = data;
-      batchIdsToExecute.forEach(async (employee_id) => {
-        await API.post("cash-advance", {
-          amount_borrowed,
-          no_of_payments,
-          employee_id,
-        });
-      });
+      await Promise.all(
+        batchIdsToExecute.map(async (employee_id) => {
+          await API.post("cash-advance", {
+            amount_borrowed,
+            no_of_payments,
+            employee_id,
+          });
+        })
+      );
     } catch (error) {
       if (!error.response) {
         throw error;
