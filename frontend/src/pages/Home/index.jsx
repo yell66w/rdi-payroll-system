@@ -44,7 +44,9 @@ const MainWrapper = ({ children }) => {
           <LinkWrapper>
             {role === ROLES.ENCODER && (
               <>
-                <Link to={`/`}>HUMAN RESOURCES</Link>
+                <Link exact to={`/`}>
+                  HUMAN RESOURCES
+                </Link>
                 <Link to={`/payroll`}>PAYROLL</Link>
                 <Link to={`/attendance`}>ATTENDANCE</Link>
                 <Link to={`/employee-file`}>EMPLOYEE FILE</Link>

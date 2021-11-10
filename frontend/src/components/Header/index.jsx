@@ -26,9 +26,9 @@ function Header(props) {
           </HeaderDate>
         </TitleContainer>
         <TabsContainer>
-          {tabsMap.get(pathname)?.map((tab) => {
+          {tabsMap.get(pathname)?.map((tab, idx) => {
             return (
-              <TabLink size="xl" color="darkGray">
+              <TabLink key={`${tab}-${idx}`} size="xl" color="darkGray">
                 {tab}
               </TabLink>
             );
