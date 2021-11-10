@@ -41,7 +41,6 @@ const CashAdvance = () => {
   useEffect(() => {
     return () => {
       dispatch(resetEmployeeToRun());
-      dispatch(resetBatchIdsToExecute());
       dispatch(resetFilters());
     };
   }, []);
@@ -54,7 +53,6 @@ const CashAdvance = () => {
   useEffect(() => {
     return () => {
       dispatch(resetEmployeeToRun());
-      dispatch(resetBatchIdsToExecute());
     };
   }, [data]);
 
