@@ -1,4 +1,5 @@
 import { theme } from "@/theme";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderCan = styled.div`
@@ -29,7 +30,7 @@ export const TabsContainer = styled.div`
   padding: 1.5em 2.5em 1.2em 2.5em;
 `;
 
-export const TabLink = styled.div`
+export const TabLink = styled(Link)`
   color: ${(props) => (props.color ? theme.colors[props.color] : "black")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
   font-family: ${(props) =>
@@ -37,6 +38,7 @@ export const TabLink = styled.div`
   font-size: ${(props) =>
     props.size ? theme.fontSizes[props.size] : theme.fontSizes.md};
   cursor: pointer;
+  text-decoration: none;
   &:focus {
     text-decoration: underline;
   }

@@ -14,7 +14,14 @@ import {
 function Header(props) {
   const { pathname } = useLocation();
   const tabsMap = new Map();
-  tabsMap.set("/cash-advance", ["RUN", "PROCESSED C.A.'s"]);
+  tabsMap.set("/cash-advance", [
+    { title: "RUN", to: "/cash-advance" },
+    { title: "PROCESSED C.A.'s", to: "/cash-advance/processed" },
+  ]);
+  tabsMap.set("/cash-advance/processed", [
+    { title: "RUN", to: "/cash-advance" },
+    { title: "PROCESSED C.A.'s", to: "/cash-advance/processed" },
+  ]);
 
   return (
     <>
@@ -26,10 +33,15 @@ function Header(props) {
           </HeaderDate>
         </TitleContainer>
         <TabsContainer>
-          {tabsMap.get(pathname)?.map((tab, idx) => {
+          {tabsMap.get(pathname)?.map(({ title, to }, idx) => {
             return (
-              <TabLink key={`${tab}-${idx}`} size="xl" color="darkGray">
-                {tab}
+              <TabLink
+                to={to}
+                key={`${title}-${idx}`}
+                size="xl"
+                color="darkGray"
+              >
+                {title}
               </TabLink>
             );
           })}
