@@ -27,6 +27,7 @@ const MainWrapper = ({ children }) => {
   routesMap.set("/employee-file", "EMPLOYEE FILE");
   routesMap.set("/memo", "MEMO");
   routesMap.set(`/cash-advance`, "CASH ADVANCE");
+  routesMap.set(`/cash-advance/unprocessed`, "CASH ADVANCE");
   routesMap.set(`/cash-advance/processed`, "CASH ADVANCE");
   routesMap.set("/request", "REQUESTS");
   routesMap.set("/for-approval", "FOR APPROVAL");

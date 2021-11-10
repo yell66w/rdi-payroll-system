@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 
 const initialState = {
   data: [],
+  processedData: [],
+  unprocessedData: [],
   dataToRun: [], //BATCH IN MODAL
   batchIdsToExecute: [], //FINAL BATCH IDS
   isError: false,
@@ -30,6 +32,53 @@ export const findAllCashAdvance = createAsyncThunk(
     }
   }
 );
+
+export const findAllProcessedCAs = createAsyncThunk(
+  "/cash-advance/processed",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await API.get("cash-advance", {
+        params: {
+          status: "PROCESSED",
+        },
+      });
+      if (res.status === 200) {
+        return res.data;
+      } else {
+        throw new Error(res.data);
+      }
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const findAllUnprocessedCAs = createAsyncThunk(
+  "/cash-advance/unprocessed",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await API.get("cash-advance", {
+        params: {
+          status: "UNPROCESSED",
+        },
+      });
+      if (res.status === 200) {
+        return res.data;
+      } else {
+        throw new Error(res.data);
+      }
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 // TODO BACKEND GENERATE BATCH CA
 export const generateCashAdvanceByBatch = createAsyncThunk(
   "/cash-advance/generate-by-batch",
@@ -117,6 +166,34 @@ const companySlice = createSlice({
       })
       .addCase(findAllCashAdvance.rejected, (state, { payload }) => {
         state.data = [];
+        state.isFetching = false;
+        state.isError = true;
+        state.errorMessage = payload.message;
+      })
+      .addCase(findAllProcessedCAs.pending, (state, { payload }) => {
+        state.isFetching = true;
+      })
+      .addCase(findAllProcessedCAs.fulfilled, (state, { payload }) => {
+        state.processedData = payload;
+        state.isFetching = false;
+        state.isSuccess = true;
+      })
+      .addCase(findAllProcessedCAs.rejected, (state, { payload }) => {
+        state.processedData = [];
+        state.isFetching = false;
+        state.isError = true;
+        state.errorMessage = payload.message;
+      })
+      .addCase(findAllUnprocessedCAs.pending, (state, { payload }) => {
+        state.isFetching = true;
+      })
+      .addCase(findAllUnprocessedCAs.fulfilled, (state, { payload }) => {
+        state.unprocessedData = payload;
+        state.isFetching = false;
+        state.isSuccess = true;
+      })
+      .addCase(findAllUnprocessedCAs.rejected, (state, { payload }) => {
+        state.unprocessedData = [];
         state.isFetching = false;
         state.isError = true;
         state.errorMessage = payload.message;

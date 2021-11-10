@@ -10,20 +10,20 @@ import { Wrapper, Container, Flex, TableContainer } from "./styles";
 import Toolbar from "@/components/Toolbar";
 import {
   findAllCashAdvance,
-  findAllProcessedCAs,
+  findAllUnprocessedCAs,
 } from "@/features/cash_advance/cashAdvanceSlice";
 import { caStatusColorPicker } from "@/helpers/colorPicker";
 
-const ProcessedCA = () => {
+const UnprocessedCA = () => {
   const dispatch = useDispatch();
-  const { processedData: data, isFetching } = useSelector(
+  const { unprocessedData: data, isFetching } = useSelector(
     (state) => state.cash_advance
   );
   const { isOpen } = useSelector(settingsSelector);
   const authRole = useSelector((state) => state.auth.role);
 
   useEffect(() => {
-    dispatch(findAllProcessedCAs());
+    dispatch(findAllUnprocessedCAs());
   }, []);
 
   const columns = React.useMemo(
@@ -85,4 +85,4 @@ const ProcessedCA = () => {
   );
 };
 
-export default ProcessedCA;
+export default UnprocessedCA;

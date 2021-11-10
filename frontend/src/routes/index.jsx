@@ -33,6 +33,11 @@ const routes = [
     component: lazy(() => import("@/containers/ProcessedCA")),
   },
   {
+    path: "cash-advance/unprocessed",
+    exact: true,
+    component: lazy(() => import("@/containers/UnprocessedCA")),
+  },
+  {
     path: "request",
     component: lazy(() => import("@/containers/Request")),
   },

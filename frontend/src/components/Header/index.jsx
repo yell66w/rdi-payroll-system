@@ -13,12 +13,20 @@ import {
 function Header(props) {
   const { pathname } = useLocation();
   const tabsMap = new Map();
+  // REFACTOR
   tabsMap.set("/cash-advance", [
     { title: "RUN", to: "/cash-advance" },
+    { title: "UNPROCESSED C.A.'s", to: "/cash-advance/unprocessed" },
+    { title: "PROCESSED C.A.'s", to: "/cash-advance/processed" },
+  ]);
+  tabsMap.set("/cash-advance/unprocessed", [
+    { title: "RUN", to: "/cash-advance" },
+    { title: "UNPROCESSED C.A.'s", to: "/cash-advance/unprocessed" },
     { title: "PROCESSED C.A.'s", to: "/cash-advance/processed" },
   ]);
   tabsMap.set("/cash-advance/processed", [
     { title: "RUN", to: "/cash-advance" },
+    { title: "UNPROCESSED C.A.'s", to: "/cash-advance/unprocessed" },
     { title: "PROCESSED C.A.'s", to: "/cash-advance/processed" },
   ]);
 
