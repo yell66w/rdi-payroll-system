@@ -19,6 +19,7 @@ import { ROLES } from "@/constants/constants";
 import RunCashAdvance from "@/components/Modals/RunCashAdvance";
 import TableCheckbox from "@/components/TableCheckbox";
 import {
+  resetBatchIdsToExecute,
   resetEmployeeToRun,
   toggleEmployeeToRun,
 } from "@/features/cash_advance/cashAdvanceSlice";
@@ -40,6 +41,7 @@ const CashAdvance = () => {
   useEffect(() => {
     return () => {
       dispatch(resetEmployeeToRun());
+      dispatch(resetBatchIdsToExecute());
       dispatch(resetFilters());
     };
   }, []);
@@ -52,6 +54,7 @@ const CashAdvance = () => {
   useEffect(() => {
     return () => {
       dispatch(resetEmployeeToRun());
+      dispatch(resetBatchIdsToExecute());
     };
   }, [data]);
 
@@ -169,7 +172,12 @@ const CashAdvance = () => {
           {isOpen && <Menu />}
         </Flex>
       </Container>
-      <RunCashAdvance isOpen={isRunOpen} onClose={() => setIsRunOpen(false)} />
+      {isRunOpen ? (
+        <RunCashAdvance
+          isOpen={isRunOpen}
+          onClose={() => setIsRunOpen(false)}
+        />
+      ) : null}
     </Wrapper>
   );
 };
