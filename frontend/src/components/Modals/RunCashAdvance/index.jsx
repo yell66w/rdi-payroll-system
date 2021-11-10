@@ -72,6 +72,9 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
   );
   const { handleSubmit, reset, setValue, getValues } = methods;
   const dispatch = useDispatch();
+  const { isFetching: isGenerating, isSuccess: isGenerated } = useSelector(
+    (state) => state.cash_advance
+  );
 
   const data = useSelector((state) => state.cash_advance.dataToRun);
   const onSubmit = async (data) => {
@@ -98,6 +101,13 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
       dispatch(resetBatchIdsToExecute());
     };
   }, []);
+  useEffect(() => {
+    if (isGenerated) {
+      return () => {
+        dispatch(resetBatchIdsToExecute());
+      };
+    }
+  }, [isGenerated]);
 
   const onNoOfPaymentChange = (e) => {
     setValue(
