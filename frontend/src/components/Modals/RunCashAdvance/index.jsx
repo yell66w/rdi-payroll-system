@@ -32,6 +32,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
 import { addDays } from "@/helpers/date.helper";
 import Dinero from "dinero.js";
+import { toast } from "react-toastify";
 
 ReactModal.setAppElement("#root");
 
@@ -73,11 +74,10 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.cash_advance.dataToRun);
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     let { amount_borrowed, no_of_payments } = data;
     // TODO - ADDRESS IN DB??
     // DISPATCH CASH ADVANCE
-    console.log(data);
     dispatch(
       generateCashAdvanceByBatch({
         amount_borrowed,
@@ -86,7 +86,6 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
       })
     );
     reset();
-    onClose();
   };
   useEffect(() => {
     if (!isOpen) {

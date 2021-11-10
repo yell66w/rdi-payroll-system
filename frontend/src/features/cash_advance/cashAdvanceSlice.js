@@ -32,7 +32,7 @@ export const findAllCashAdvance = createAsyncThunk(
 );
 // TODO BACKEND GENERATE BATCH CA
 export const generateCashAdvanceByBatch = createAsyncThunk(
-  "/cash-advance/create",
+  "/cash-advance/generate-by-batch",
   async (data, { rejectWithValue }) => {
     try {
       let { amount_borrowed, no_of_payments, batchIdsToExecute } = data;
@@ -53,7 +53,7 @@ export const generateCashAdvanceByBatch = createAsyncThunk(
 );
 
 export const generateCashAdvance = createAsyncThunk(
-  "/cash-advance/create",
+  "/cash-advance/generate",
   async (data, { rejectWithValue }) => {
     try {
       const res = await API.post("cash-advance", data);
@@ -95,9 +95,7 @@ const companySlice = createSlice({
         state.batchIdsToExecute = filtered;
       }
     },
-    toggleAll:(state,action)=>{
-
-    },
+    toggleAll: (state, action) => {},
     resetBatchIdsToExecute: (state) => {
       state.batchIdsToExecute = [];
     },
@@ -105,53 +103,54 @@ const companySlice = createSlice({
       state.dataToRun = [];
     },
   },
-  extraReducers: {
-    [findAllCashAdvance.pending]: (state) => {
-      state.isFetching = true;
-    },
-    [findAllCashAdvance.fulfilled]: (state, { payload }) => {
-      state.data = payload;
-      state.isFetching = false;
-      state.isSuccess = true;
-    },
-    [findAllCashAdvance.rejected]: (state, { payload }) => {
-      state.data = [];
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = payload.message;
-    },
-    [generateCashAdvance.pending]: (state) => {
-      state.isFetching = true;
-    },
-    [generateCashAdvance.fulfilled]: (state, { payload }) => {
-      state.dataToRun = [];
-      state.batchIdsToExecute = [];
-      state.isFetching = false;
-      state.isSuccess = true;
-      toast.success(`Cash advance generated successfully.`);
-    },
-    [generateCashAdvance.rejected]: (state, { payload }) => {
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = payload;
-      toast.error(payload);
-    },
-    [generateCashAdvanceByBatch.pending]: (state) => {
-      state.isFetching = true;
-    },
-    [generateCashAdvanceByBatch.fulfilled]: (state, { payload }) => {
-      state.dataToRun = [];
-      state.batchIdsToExecute = [];
-      state.isFetching = false;
-      state.isSuccess = true;
-      toast.success(`Cash advance generated successfully.`);
-    },
-    [generateCashAdvanceByBatch.rejected]: (state, { payload }) => {
-      state.isFetching = false;
-      state.isError = true;
-      state.errorMessage = payload;
-      toast.error(payload);
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(findAllCashAdvance.pending, (state, { payload }) => {
+        state.isFetching = true;
+      })
+      .addCase(findAllCashAdvance.fulfilled, (state, { payload }) => {
+        state.data = payload;
+        state.isFetching = false;
+        state.isSuccess = true;
+      })
+      .addCase(findAllCashAdvance.rejected, (state, { payload }) => {
+        state.data = [];
+        state.isFetching = false;
+        state.isError = true;
+        state.errorMessage = payload.message;
+      })
+      .addCase(generateCashAdvance.pending, (state, { payload }) => {
+        state.isFetching = true;
+      })
+      .addCase(generateCashAdvance.fulfilled, (state, { payload }) => {
+        state.dataToRun = [];
+        state.batchIdsToExecute = [];
+        state.isFetching = false;
+        state.isSuccess = true;
+        toast.success(`Cash advance generated successfully.`);
+      })
+      .addCase(generateCashAdvance.rejected, (state, { payload }) => {
+        state.isFetching = false;
+        state.isError = true;
+        state.errorMessage = payload;
+        toast.error(payload);
+      })
+      .addCase(generateCashAdvanceByBatch.pending, (state, { payload }) => {
+        state.isFetching = true;
+      })
+      .addCase(generateCashAdvanceByBatch.fulfilled, (state, { payload }) => {
+        state.dataToRun = [];
+        state.batchIdsToExecute = [];
+        state.isFetching = false;
+        state.isSuccess = true;
+        toast.success(`Cash advance generated successfully.`);
+      })
+      .addCase(generateCashAdvanceByBatch.rejected, (state, { payload }) => {
+        state.isFetching = false;
+        state.isError = true;
+        state.errorMessage = payload;
+        toast.error("Something went wrong!");
+      });
   },
 });
 
@@ -160,6 +159,6 @@ export const {
   resetEmployeeToRun,
   resetBatchIdsToExecute,
   toggleBatchToExecute,
-  toggleAll
+  toggleAll,
 } = companySlice.actions;
 export default companySlice.reducer;

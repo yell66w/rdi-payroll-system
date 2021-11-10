@@ -39,6 +39,7 @@ const CashAdvance = () => {
   useEffect(() => {
     if (isGenerated) {
       dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
+      setIsRunOpen(false);
     }
   }, [isGenerating, isGenerated]);
   useEffect(() => {
