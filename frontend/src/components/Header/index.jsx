@@ -11,7 +11,7 @@ import {
 } from "./styles";
 
 function Header(props) {
-  const { pathname } = useLocation();
+  let { pathname } = useLocation();
   const tabsMap = new Map();
   // REFACTOR
   tabsMap.set("/cash-advance", [
@@ -19,16 +19,9 @@ function Header(props) {
     { title: "UNPROCESSED C.A.'s", to: "/cash-advance/unprocessed" },
     { title: "PROCESSED C.A.'s", to: "/cash-advance/processed" },
   ]);
-  tabsMap.set("/cash-advance/unprocessed", [
-    { title: "RUN", to: "/cash-advance" },
-    { title: "UNPROCESSED C.A.'s", to: "/cash-advance/unprocessed" },
-    { title: "PROCESSED C.A.'s", to: "/cash-advance/processed" },
-  ]);
-  tabsMap.set("/cash-advance/processed", [
-    { title: "RUN", to: "/cash-advance" },
-    { title: "UNPROCESSED C.A.'s", to: "/cash-advance/unprocessed" },
-    { title: "PROCESSED C.A.'s", to: "/cash-advance/processed" },
-  ]);
+  if (pathname.includes("cash-advance")) {
+    pathname = pathname.replace(/cash-advance\/?.*/g, "cash-advance");
+  }
 
   return (
     <>
