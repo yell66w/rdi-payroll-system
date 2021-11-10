@@ -81,14 +81,18 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
     let { amount_borrowed, no_of_payments } = data;
     // TODO - ADDRESS IN DB??
     // DISPATCH CASH ADVANCE
-    dispatch(
-      generateCashAdvanceByBatch({
-        amount_borrowed,
-        no_of_payments,
-        batchIdsToExecute,
-      })
-    );
-    reset();
+    if (batchIdsToExecute.length > 0) {
+      dispatch(
+        generateCashAdvanceByBatch({
+          amount_borrowed,
+          no_of_payments,
+          batchIdsToExecute,
+        })
+      );
+      reset();
+    } else {
+      toast.error("Please select an employee.");
+    }
   };
   useEffect(() => {
     if (!isOpen) {
@@ -101,6 +105,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
       dispatch(resetBatchIdsToExecute());
     };
   }, []);
+
   useEffect(() => {
     if (isGenerated) {
       return () => {
