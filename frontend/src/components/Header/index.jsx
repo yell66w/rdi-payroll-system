@@ -1,4 +1,3 @@
-import { Text } from "@/styles";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import CurrDate from "./date";
@@ -36,6 +35,8 @@ function Header(props) {
           {tabsMap.get(pathname)?.map(({ title, to }, idx) => {
             return (
               <TabLink
+                exact
+                activeClassName="active"
                 to={to}
                 key={`${title}-${idx}`}
                 size="xl"

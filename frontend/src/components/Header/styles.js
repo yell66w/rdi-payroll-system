@@ -1,5 +1,5 @@
 import { theme } from "@/theme";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderCan = styled.div`
@@ -28,9 +28,13 @@ export const TabsContainer = styled.div`
   display: flex;
   gap: 3rem;
   padding: 1.5em 2.5em 1.2em 2.5em;
+  .active {
+    color: ${theme.colors.default};
+    text-decoration: underline;
+  }
 `;
 
-export const TabLink = styled(Link)`
+export const TabLink = styled(NavLink)`
   color: ${(props) => (props.color ? theme.colors[props.color] : "black")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : null)};
   font-family: ${(props) =>
