@@ -4,17 +4,10 @@ import Table from "@/components/Table";
 import { settingsSelector } from "@/features/settings/settingsSlice";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { findAllEmployees } from "@/features/employee/employeeSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useTable } from "react-table";
-import { Wrapper, TextLink, Container, Flex, TableContainer } from "./styles";
-import Button from "@/components/Button/";
-import getTimeDuration from "@/helpers/getTimeDuration";
+import { Wrapper, Container, Flex, TableContainer } from "./styles";
 import Toolbar from "@/components/Toolbar";
-import { ROLES } from "@/constants/constants";
-import EditEmployee from "@/components/Modals/EditEmployee";
-import AddEmployee from "@/components/Modals/AddEmployee";
 import { findAllCashAdvance } from "@/features/cash_advance/cashAdvanceSlice";
 import { caStatusColorPicker } from "@/helpers/colorPicker";
 
