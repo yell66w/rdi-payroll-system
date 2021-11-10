@@ -238,6 +238,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                     label="Department"
                   /> */}
                 <InputField
+                  border
                   onChange={onAmountBorrowedChange}
                   fontSize="xxs"
                   step="0.01"
@@ -248,6 +249,7 @@ const RunCashAdvance = ({ isOpen, onClose }) => {
                 />
                 <HeaderText size="xl">PAYMENT PROCEDURE</HeaderText>
                 <InputField
+                  border
                   onChange={onNoOfPaymentChange}
                   fontSize="xxs"
                   min="1"

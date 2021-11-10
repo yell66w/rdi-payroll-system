@@ -9,6 +9,7 @@ const InputField = ({
   disabled = false,
   name,
   fontSize = "xs",
+  border = false,
   ...rest
 }) => {
   const {
@@ -21,6 +22,7 @@ const InputField = ({
         {label && <Label fontSize={fontSize}>{label}</Label>}
         <Container disabled={disabled}>
           <Input
+            border={border}
             // bg={errors[name] ? theme.colors.violet : 'silver'}
             placeholder={placeholder}
             type={type}

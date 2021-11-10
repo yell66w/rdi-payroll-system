@@ -35,7 +35,9 @@ export const Input = styled.input`
   border-radius: 5px;
   font-size: ${(props) => props.theme.fontSizes.xs};
   font-family: ${(props) => props.theme.fontSizes.avenirRoman};
-  background-color: ${theme.colors.gray};
+  background-color: ${(props) =>
+    props.border ? theme.colors.white : theme.colors.gray};
+  border: ${(props) => (props.border ? `1px solid silver` : null)};
 `;
 
 export const Label = styled.small`
