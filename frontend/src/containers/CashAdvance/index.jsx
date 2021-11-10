@@ -36,6 +36,8 @@ const CashAdvance = () => {
   useEffect(async () => {
     dispatch(addFilter({ cash_advance_eligibility: 1 }));
     dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
+  }, []);
+  useEffect(() => {
     return () => {
       dispatch(resetEmployeeToRun());
       dispatch(resetFilters());
