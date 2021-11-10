@@ -26,6 +26,9 @@ const CashAdvance = () => {
   const authRole = useSelector((state) => state.auth.role);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRunOpen, setIsRunOpen] = useState(false);
+  const { isFetching: isGenerating, isSuccess: isGenerated } = useSelector(
+    (state) => state.cash_advance
+  );
   useEffect(() => {
     dispatch(addFilter({ cash_advance_eligibility: 1 }));
     dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
@@ -33,6 +36,11 @@ const CashAdvance = () => {
       dispatch(resetEmployeeToRun());
     };
   }, []);
+  useEffect(() => {
+    if (isGenerated) {
+      dispatch(findAllFilteredEmployees({ cash_advance_eligibility: 1 }));
+    }
+  }, [isGenerating, isGenerated]);
   useEffect(() => {
     return () => {
       dispatch(resetEmployeeToRun());
