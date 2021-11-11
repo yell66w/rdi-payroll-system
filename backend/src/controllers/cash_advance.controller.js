@@ -53,11 +53,11 @@ exports.findAll = async (req, res) => {
   // const date_from = req.query.date_from;
   // const date_to = req.query.date_to;
   const status = req.query.status;
-  const approval_status = req.query.approval_status;
+  const ca_status = req.query.ca_status;
   let andItems = [];
 
   if (status) andItems.push({ status: status });
-  if (approval_status) andItems.push({ approval_status: approval_status });
+  if (ca_status) andItems.push({ ca_status: ca_status });
 
   let options = {
     where: {
